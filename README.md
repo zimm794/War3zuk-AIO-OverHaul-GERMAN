@@ -18,4 +18,6 @@ War3zuk Discord -> https://discord.gg/FcDrGvMHeT
 
 Zombie-Backen Discord -> https://discord.gg/6uuDcqWGST
 
+Zombie-BackenLOGO.png
+
 https://www.zombie-backen.de/carbon/Zimm22.png

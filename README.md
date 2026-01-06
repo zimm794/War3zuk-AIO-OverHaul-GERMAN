@@ -21,8 +21,8 @@ Zombie-Backen Discord -> https://discord.gg/6uuDcqWGST
 Zombie-BackenLOGO.png
 
 <picture>
-  <source srcset="War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png" media="(width >= 600px)" />
-  <img src="War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png" alt="MDN" />
+  <source srcset="[War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png](https://github.com/zimm794/War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png)" media="(width >= 600px)" />
+  <img src="[War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png](https://github.com/zimm794/War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png)" />
 </picture>
 
-!([Zombie-Backen](https://github.com/zimm794/War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png))
+!(https://github.com/zimm794/War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png)

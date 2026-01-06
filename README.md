@@ -20,4 +20,4 @@ Zombie-Backen Discord -> https://discord.gg/6uuDcqWGST
 
 Zombie-BackenLOGO.png
 
-!(https://www.zombie-backen.de/carbon/Zimm22.png)
+!([Zombie-Backen](https://github.com/zimm794/War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png))

@@ -13,3 +13,7 @@ Only the Localization.txt file was edited.
 My Twitch channel -> https://www.twitch.tv/zimm794
 
 Mein Twitch Kanal -> https://www.twitch.tv/zimm794
+
+War3zuk Discord -> https://discord.gg/FcDrGvMHeT
+
+Zombie-Backen Discord -> https://discord.gg/6uuDcqWGST

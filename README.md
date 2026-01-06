@@ -24,5 +24,3 @@ Zombie-BackenLOGO.png
   <source srcset="[War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png](https://github.com/zimm794/War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png)" media="(width >= 600px)" />
   <img src="[War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png](https://github.com/zimm794/War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png)" />
 </picture>
-
-!(https://github.com/zimm794/War3zuk-AIO-OverHaul-GERMAN/blob/main/Zombie-BackenLOGO.png)

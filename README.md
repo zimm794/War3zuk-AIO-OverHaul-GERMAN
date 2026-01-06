@@ -17,3 +17,5 @@ Mein Twitch Kanal -> https://www.twitch.tv/zimm794
 War3zuk Discord -> https://discord.gg/FcDrGvMHeT
 
 Zombie-Backen Discord -> https://discord.gg/6uuDcqWGST
+
+https://www.zombie-backen.de/carbon/Zimm22.png

@@ -1,0 +1,942 @@
+<configs>
+	
+	<remove xpath="/quests/quest[@id='quest_whiteRiverCitizen1']"/>
+	<remove xpath="/quests/quest[@id='tier1_buried_supplies']"/>
+	<remove xpath="/quests/quest[@id='tier2_buried_supplies']"/>
+	<remove xpath="/quests/quest[@id='tier3_buried_supplies']"/>
+	<remove xpath="/quests/quest_list[@id='test_quests']"/>
+	<remove xpath="/quests/quest_list[@id='trader_rekt_quests']"/>
+	<remove xpath="/quests/quest_list[@id='trader_jen_quests']"/>
+	<remove xpath="/quests/quest_list[@id='trader_bob_quests']"/>
+	<remove xpath="/quests/quest_list[@id='trader_hugh_quests']"/>
+	<remove xpath="/quests/quest_list[@id='trader_joel_quests']"/>
+	
+<insertBefore xpath="/quests/quest[@id='treasure_taylor']">
+	
+<quest id="quest_whiteRiverCitizen1">
+	<property name="group_name_key" value="quest_WhiteRiverCitizen"/>
+	<property name="name_key" value="quest_WhiteRiverCitizen1"/>
+	<property name="subtitle_key" value="quest_WhiteRiverCitizen1_subtitle"/>
+	<property name="description_key" value="quest_WhiteRiverCitizen1_description"/>
+	<property name="icon" value="ui_game_symbol_map_trader"/>
+	<property name="category_key" value="quest"/>
+	<property name="add_to_tier_complete" value="false"/>
+	<property name="shareable" value="false"/>
+	<property name="quest_hints" value="quest_whiteRiverCitizen1_hint1,quest_whiteRiverCitizen1_hint2"/>
+	<property name="completiontype" value="TurnIn"/>
+	<property name="completion_key" value="quest_white_river_completion"/>
+
+	<action type="ShowMessageWindow">
+		<property name="message" value="quest_WhiteRiverCitizen1_description"/>
+		<property name="title" value="quest_WhiteRiverCitizen1_description_title"/>
+		<property name="delay" value="3"/>
+	</action>
+	
+	<objective type="Goto" id="trader" value="5" phase="1">
+		<property name="biome_filter_type" value="OnlyBiome"/>
+		<property name="biome_filter" value="pine_forest"/>
+		<property name="nav_object" value="go_to_trader"/>
+		<property name="allow_current_poi" value="true"/>
+	</objective>
+
+	<objective type="InteractWithNPC">
+		<property name="phase" value="2"/>
+		<property name="nav_object" value="return_to_trader"/>
+		<property name="use_closest" value="true"/>
+	</objective>
+	
+	<action type="SetCVar">
+		<property name="cvar" value="IntroComplete"/>
+		<property name="value" value="1"/>
+		<property name="on_complete" value="true"/>
+	</action>
+
+	<reward type="SkillPoints" value="5"/>
+	<reward type="Exp" value="1000"/>
+	<reward type="Item" id="HDScrapIronShovel" value="2"/>
+</quest>
+
+<quest id="War3zuk Quest Reward Armor 01" template="challengegroup_reward_homesteading">
+	<variable name="name" value="Quest Reward Armor 01"/>
+	<variable name="subtitle" value="Quest Reward Armor 01"/>
+	<variable name="description" value="Quest Reward Armor 01"/>
+	<property name="completion_key" value="Uve completed the Armor Quests 01"/>
+		
+	<reward type="Exp" value="5000"/>
+	<reward type="SkillPoints" value="1"/>
+	<reward type="Item" id="RyuSen101s Ramen Noodles" value="5"/>
+</quest>
+
+<quest id="War3zuk Quest Reward Armor 02" template="challengegroup_reward_homesteading">
+	<variable name="name" value="Quest Reward Armor 02"/>
+	<variable name="subtitle" value="Quest Reward Armor 02"/>
+	<variable name="description" value="Quest Reward Armor 02"/>
+	<property name="completion_key" value="Uve completed the Armor Quests 02"/>
+		
+	<reward type="Exp" value="5000"/>
+	<reward type="SkillPoints" value="1"/>
+	<reward type="Item" id="HD Military Helmet" value="6"/>
+	<reward type="Item" id="HD Military Vest" value="6"/>
+	<reward type="Item" id="HD Military Gloves" value="6"/>
+	<reward type="Item" id="HD Military Boots" value="6"/>
+	<reward type="Item" id="Class Armor VM" value="1"/>
+</quest>
+	
+<quest id="War3zuk Quest Reward Bruiser" template="challengegroup_reward_homesteading">
+	<variable name="name" value="Quest Reward Bruiser"/>
+	<variable name="subtitle" value="Quest Reward Bruiser"/>
+	<variable name="description" value="Quest Reward Bruiser"/>
+	<property name="completion_key" value="Uve completed the Bruiser Quests"/>
+		
+	<reward type="Exp" value="5000"/>
+	<reward type="SkillPoints" value="1"/>
+	<reward type="Item" id="HD BR1NXlS Booper" value="6"/>
+	<reward type="Item" id="CamoesCarrackHammer" value="6"/>
+	<reward type="Item" id="HD Xcalibur" value="6"/>
+	<reward type="Item" id="Class Bruiser VM" value="1"/>
+</quest>
+
+<quest id="War3zuk Quest Reward Cook" template="challengegroup_reward_homesteading">
+	<variable name="name" value="Quest Reward Cook"/>
+	<variable name="subtitle" value="Quest Reward Cook"/>
+	<variable name="description" value="Quest Reward Cook"/>
+	<property name="completion_key" value="Uve completed the Cook Quests"/>
+		
+	<reward type="Exp" value="5000"/>
+	<reward type="SkillPoints" value="1"/>
+	<reward type="Item" id="Warm Chunky Steak And Potato" value="5"/>
+	<reward type="Item" id="Warm Chunky Hobo Stew" value="5"/>
+	<reward type="Item" id="HD Meat Hammer" value="6"/>
+	<reward type="Item" id="HD Meat Cleaver" value="6"/>
+	<reward type="Item" id="Class Cook VM" value="1"/>
+	<reward type="Item" id="HD Hazmat Mask Schematic" value="1"/>
+</quest>
+
+<quest id="War3zuk Quest Reward Builder" template="challengegroup_reward_homesteading">
+	<variable name="name" value="Quest Reward Builder"/>
+	<variable name="subtitle" value="Quest Reward Builder"/>
+	<variable name="description" value="Quest Reward Builder"/>
+	<property name="completion_key" value="Uve completed the Builder Quests"/>
+		
+	<reward type="Exp" value="5000"/>
+	<reward type="SkillPoints" value="1"/>
+	<reward type="Item" id="resourceCobblestones" value="5000"/>
+	<reward type="Item" id="resourceConcreteMix" value="5000"/>
+	<reward type="Item" id="resourceForgedSteel" value="1000"/>
+	<reward type="Item" id="Class Builder VM" value="1"/>
+	<reward type="Item" id="HD Hazmat Jacket Schematic" value="1"/>
+</quest>
+
+<quest id="War3zuk Quest Reward Engineer" template="challengegroup_reward_homesteading">
+	<variable name="name" value="Quest Reward Engineer"/>
+	<variable name="subtitle" value="Quest Reward Engineer"/>
+	<variable name="description" value="Quest Reward Engineer"/>
+	<property name="completion_key" value="Uve completed the Engineer Quests"/>
+		
+	<reward type="Exp" value="5000"/>
+	<reward type="SkillPoints" value="1"/>
+	<reward type="Item" id="HDBreachingC4" value="20"/>
+	<reward type="Item" id="HD Ground Mine" value="20"/>
+	<reward type="Item" id="HD Blade Trap" value="5"/>
+	<reward type="Item" id="HD Dart Trap" value="5"/>
+	<reward type="Item" id="Class Engineer VM" value="1"/>
+</quest>
+
+<quest id="War3zuk Quest Reward Farmer" template="challengegroup_reward_homesteading">
+	<variable name="name" value="Quest Reward Farmer"/>
+	<variable name="subtitle" value="Quest Reward Farmer"/>
+	<variable name="description" value="Quest Reward Farmer"/>
+	<property name="completion_key" value="Uve completed the Farmer Quests"/>
+		
+	<reward type="Exp" value="5000"/>
+	<reward type="SkillPoints" value="1"/>
+	<reward type="Item" id="HD Spas 12" value="6"/>
+	<reward type="Item" id="Class Farmer VM" value="1"/>
+	<reward type="Item" id="HD Hazmat Gloves Schematic" value="1"/>
+</quest>
+
+<quest id="War3zuk Quest Reward Gunman" template="challengegroup_reward_homesteading">
+	<variable name="name" value="Quest Reward Gunman"/>
+	<variable name="subtitle" value="Quest Reward Gunman"/>
+	<variable name="description" value="Quest Reward Gunman"/>
+	<property name="completion_key" value="Uve completed the Gunman Quests"/>
+		
+	<reward type="Exp" value="5000"/>
+	<reward type="SkillPoints" value="1"/>
+	<reward type="Item" id="HD CheyTac M300" value="6"/>
+	<reward type="Item" id="HDCheyTacM300Silencer" value="1"/>
+	<reward type="Item" id="HDCheyTacM300ScopeLarge" value="1"/>
+	<reward type="Item" id="408Round" value="1000"/>
+	<reward type="Item" id="Class Gunman VM" value="1"/>
+</quest>
+
+<quest id="War3zuk Quest Reward Mechanic" template="challengegroup_reward_homesteading">
+	<variable name="name" value="Quest Reward Mechanic"/>
+	<variable name="subtitle" value="Quest Reward Mechanic"/>
+	<variable name="description" value="Quest Reward Mechanic"/>
+	<property name="completion_key" value="Uve completed the Mechanic Quests"/>
+		
+	<reward type="Exp" value="5000"/>
+	<reward type="SkillPoints" value="1"/>
+	<reward type="Item" id="HDWar3zukInterceptorPlaceable" value="1"/>
+	<reward type="Item" id="Class Mechanic VM" value="1"/>
+	<reward type="Item" id="HD Hazmat Boots Schematic" value="1"/>
+</quest>
+
+<quest id="War3zuk Quest Reward Medic" template="challengegroup_reward_homesteading">
+	<variable name="name" value="Quest Reward Medic"/>
+	<variable name="subtitle" value="Quest Reward Medic"/>
+	<variable name="description" value="Quest Reward Medic"/>
+	<property name="completion_key" value="Uve completed the Medic Quests"/>
+		
+	<reward type="Exp" value="5000"/>
+	<reward type="SkillPoints" value="1"/>
+	<reward type="Item" id="HD Bollock Rot Injection" value="2"/>
+	<reward type="Item" id="HD Bird Flu Injection" value="2"/>
+	<reward type="Item" id="HD Brain Herpes Injection" value="2"/>
+	<reward type="Item" id="HD MRSA Injection" value="2"/>
+	<reward type="Item" id="HD Rabies Injection" value="2"/>
+	<reward type="Item" id="Class Medic VM" value="1"/>
+</quest>
+
+<quest id="War3zuk Quest Reward Psychopath" template="challengegroup_reward_homesteading">
+	<variable name="name" value="Quest Reward Psychopath"/>
+	<variable name="subtitle" value="Quest Reward Psychopath"/>
+	<variable name="description" value="Quest Reward Psychopath"/>
+	<property name="completion_key" value="Uve completed the Psychopath Quests"/>
+		
+	<reward type="Exp" value="5000"/>
+	<reward type="SkillPoints" value="1"/>
+	<reward type="Item" id="HD Dragunov SVD" value="6"/>
+	<reward type="Item" id="HDDragunovSVDSilencer" value="1"/>
+	<reward type="Item" id="HDDragunovSVDScopeLarge" value="1"/>
+	<reward type="Item" id="ammo762mmBulletBall" value="1000"/>
+	<reward type="Item" id="Class Psychopath VM" value="1"/>
+</quest>
+
+<quest id="War3zuk Quest Reward RadAddon" template="challengegroup_reward_homesteading">
+	<variable name="name" value="Quest Reward RadAddon"/>
+	<variable name="subtitle" value="Quest Reward RadAddon"/>
+	<variable name="description" value="Quest Reward RadAddon"/>
+	<property name="completion_key" value="Uve completed the RadAddon Quests"/>
+		
+	<reward type="Exp" value="5000"/>
+	<reward type="SkillPoints" value="1"/>
+	<reward type="Item" id="foodBurntSmoothie" value="10"/>
+	<reward type="Item" id="foodOasisSmoothie" value="10"/>
+	<reward type="Item" id="foodFrostbiteSmoothie" value="10"/>
+	<reward type="Item" id="foodAtomicSmoothie" value="10"/>
+</quest>
+
+<quest id="War3zuk Armor Quest">
+	<property name="name_key" value="Prove Your Worthy To War3zuk"/>
+	<property name="subtitle_key" value="Kill Zombies"/>
+	<property name="description_key" value="Nutze die Chance, zu kämpfen und dich zu behaupten, und vernichte die Zombies."/>
+	<property name="icon" value="ui_game_symbol_Armor"/>
+	<property name="repeatable" value="true"/>
+	<property name="category_key" value="challenge"/>
+	<property name="difficulty" value="medium"/>
+	<property name="difficulty_tier" value="4"/>
+	<property name="offer_key" value="Nutze die Chance, zu kämpfen und dich zu behaupten, und vernichte die Zombies."/>
+	<property name="statement_key" value="Clear All Zombie Spawns."/>
+	<property name="response_key" value="Clear Sleepers"/>
+
+	<property name="completiontype" value="TurnIn"/>
+	<property name="completion_key" value="Ich hätte dir das nicht zugetraut. Du hast deinen Kampfgeist bewiesen. Gut gemacht, jetzt gibt's deine Belohnung."/>
+
+	<objective type="RandomPOIGoto">
+		<property name="phase" value="1"/>
+		<property name="biome_filter_type" value="SameBiome" param1="biome_filter_type"/>
+		<property name="biome_filter" value="burnt_forest" param1="biome_filter"/>
+		<property name="nav_object" value="quest"/>
+		<property name="poi_tier" value="-1" param1="poi_tier"/>
+	</objective>
+
+	<objective type="RallyPoint">
+		<property name="phase" value="2"/>
+		<property name="nav_object" value="rally"/>
+		<property name="rally_marker_type" value="questRallyMarkerClear"/>
+	</objective>
+
+	<objective type="ClearSleepers">
+		<property name="phase" value="3"/>
+		<property name="nav_object" value="sleeper_volume"/>
+	</objective>
+
+	<objective type="POIStayWithin">
+		<property name="phase" value="3"/>
+		<property name="radius" value="25"/>
+	</objective>
+
+	<objective type="ReturnToNPC">
+		<property name="phase" value="4"/>
+		<property name="nav_object" value="return_to_trader"/>
+	</objective>
+
+	<objective type="InteractWithNPC">
+		<property name="phase" value="4"/>
+		<property name="nav_object" value="return_to_trader"/>
+	</objective>
+
+	<reward type="Exp" value="2000"/>
+	<reward type="Item" id="casinoCoin" value="2000"/>
+	<reward type="Item" id="armorLumberjackHelmet" value="3"/>
+	<reward type="Item" id="armorLumberjackOutfit" value="3"/>
+	<reward type="Item" id="armorLumberjackGloves" value="3"/>
+	<reward type="Item" id="armorLumberjackBoots" value="3"/>
+</quest>
+
+<quest id="War3zuk Blade Quest">
+	<property name="name_key" value="Time to earn your merrit"/>
+	<property name="subtitle_key" value="Kill Zombies"/>
+	<property name="description_key" value="Hier ist deine Chance, dir die allmächtige HD-Machete zu sichern."/>
+	<property name="icon" value="ui_game_symbol_Blade"/>
+	<property name="repeatable" value="true"/>
+	<property name="category_key" value="challenge"/>
+	<property name="difficulty" value="medium"/>
+	<property name="difficulty_tier" value="4"/>
+	<property name="offer_key" value="Hier ist deine Chance, dir die allmächtige HD-Machete zu sichern."/>
+	<property name="statement_key" value="Clear All Zombie Spawns."/>
+	<property name="response_key" value="Clear Sleepers"/>
+
+	<property name="completiontype" value="TurnIn"/>
+	<property name="completion_key" value="Ich hätte dir das nicht zugetraut. Du hast deinen Kampfgeist bewiesen. Gut gemacht, jetzt gibt's deine Belohnung."/>
+
+	<objective type="RandomPOIGoto">
+		<property name="phase" value="1"/>
+		<property name="biome_filter_type" value="SameBiome" param1="biome_filter_type"/>
+		<property name="biome_filter" value="burnt_forest" param1="biome_filter"/>
+		<property name="nav_object" value="quest"/>
+		<property name="poi_tier" value="-1" param1="poi_tier"/>
+	</objective>
+		
+	<objective type="RallyPoint">
+		<property name="phase" value="2"/>
+		<property name="nav_object" value="rally"/>
+		<property name="rally_marker_type" value="questRallyMarkerClear"/>
+	</objective>
+
+	<objective type="ClearSleepers">
+		<property name="phase" value="3"/>
+		<property name="nav_object" value="sleeper_volume"/>
+	</objective>
+
+	<objective type="POIStayWithin">
+		<property name="phase" value="3"/>
+		<property name="radius" value="25"/>
+	</objective>
+
+	<objective type="ReturnToNPC">
+		<property name="phase" value="4"/>
+		<property name="nav_object" value="return_to_trader"/>
+	</objective>
+
+	<objective type="InteractWithNPC">
+		<property name="phase" value="4"/>
+		<property name="nav_object" value="return_to_trader"/>
+	</objective>
+
+	<reward type="Exp" value="2000"/>
+	<reward type="Item" id="casinoCoin" value="1000"/>
+	<reward type="Item" id="HD Machete" value="6"/>
+		
+</quest>
+	
+<quest id="Find The Trader">
+	<property name="group_name_key" value="quest_next_trader"/>
+	<property name="name_key" value="quest_next_trader"/>
+	<property name="subtitle_key" value="Sie haben einen neuen Händler gefunden."/>
+	<property name="description_key" value="Sie haben einen neuen Händler gefunden."/>
+	<property name="icon" value="ui_game_symbol_map_trader"/>
+	<property name="category_key" value="quest"/>
+	<property name="shareable" value="false"/>
+	<property name="repeatable" value="true"/>
+	<property name="difficulty" value="easy"/>
+	<property name="difficulty_tier" value="1"/>
+
+	<property name="unique_key" value="traderquest"/>
+
+	<property name="offer_key" value="quest_next_trader_offer"/>
+	<property name="statement_key" value="quest_next_trader_statement"/>
+	<property name="response_key" value="quest_next_trader_response"/>
+
+	<property name="completiontype" value="TurnIn"/>
+	<property name="completion_key" value="quest_next_trader_completion"/>
+
+	<property name="return_to_quest_giver" value="false"/>
+
+	<property name="quest_type" value="special"/>
+
+	<objective type="Goto" id="trader" value="5" phase="1">
+		<property name="nav_object" value="go_to_trader"/>
+	</objective>
+
+	<objective type="InteractWithNPC">
+		<property name="phase" value="2"/>
+		<property name="nav_object" value="return_to_trader"/>
+		<property name="use_closest" value="true"/>
+	</objective>
+
+	<reward type="Exp" value="50"/>
+</quest>
+	
+</insertBefore>
+
+<!--<set xpath="/quests/quest[@id='test_nexttrader']/objective[@type='Goto']/property[@name='location_tag']/@value">TraderRekt</set>
+<set xpath="/quests/quest[@id='test_nexttrader']/objective[@type='Goto']/property[@name='location_name']/@value">trader_rekt</set>
+
+<set xpath="/quests/quest[@id='tier2_nexttrader']/objective[@type='Goto']/property[@name='location_tag']/@value">TraderRekt</set>
+<set xpath="/quests/quest[@id='tier2_nexttrader']/objective[@type='Goto']/property[@name='location_name']/@value">trader_rekt</set>
+
+<set xpath="/quests/quest_list[@id='trader_jen_quests']/quest[@id='tier3_nexttrader']/@id">tier2_nexttrader</set>
+<set xpath="/quests/quest_list[@id='trader_rekt_quests']/quest[@id='tier2_nexttrader']/@id">tier3_nexttrader</set>-->
+		
+<insertAfter xpath="/quests/quest[@id='tier6_fetch_clear']">
+	
+<quest id="tier1_buried_supplies">
+		<property name="name_key" value="Tier 1 Buried Supplies"/>
+		<property name="subtitle_key" value="Tier 1 Buried Supplies"/>
+		<property name="description_key" value="Tier 1 Buried Supplies"/>
+		<property name="icon" value="ui_game_symbol_treasure"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="quest"/>
+		<property name="offer_key" value="War3zuk und seine Bande von skrupellosen, geldgierigen Bastarden sind mit meinem Pornovorrat abgehauen. Spürt sie auf! Bringt sie alle um und bringt mir mein Zeug zurück!"/>
+		<property name="difficulty" value="medium"/>
+		<property name="difficulty_tier" value="1"/>
+		<property name="statement_key" value="quest_buried_supplies_statement"/>
+		<property name="response_key" value="quest_buried_supplies_response"/>
+		<property name="completiontype" value="TurnIn"/>
+		<property name="completion_key" value="quest_buried_supplies_completion"/>
+		<property name="shareable" value="false"/>
+
+		<objective type="RandomGotoNPC" phase="1">
+			<property name="completion_distance" value="20"/>
+			<property name="distance" value="100-150"/>
+			<property name="nav_object" value="quest"/>
+		</objective>
+		
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerBuriedSupplies"/>
+			<property name="activate_event" value="quest_treasure_replace_road"/>
+		</objective>
+
+		<objective type="StayWithin">
+			<property name="phase" value="3"/>
+			<property name="radius" value="25"/>
+		</objective>
+
+		<objective type="TreasureChest">
+			<property name="phase" value="3"/>
+			<property name="block" value="cntBuriedLootStashT1"/>
+			<property name="default_radius" value="10"/>
+			<property name="container_type" value="Supplies"/>
+			<property name="nav_object" value="treasure"/>
+			<property name="direct_nav_object" value="treasure_direct"/>
+			<property name="blocks_per_reduction" value="5"/>
+			<property name="radius_reduction_sound" value="ui_radius_shrink"/>
+			<property name="use_nearby" value="true"/>
+		</objective>
+
+		<event type="TreasureRadiusReduction" chance="0.25">
+			<action type="SpawnGSEnemy" id="SleeperGSList" value="1-3"/>
+		</event>
+
+		<objective type="FetchFromTreasure">
+			<property name="phase" value="3"/>
+			<property name="block" value="cntBuriedLootStashT1"/>
+			<property name="quest_item_ID" value="1"/>
+			<property name="item_count" value="1"/>
+		</objective>
+
+		<action type="SpawnGSEnemy" id="SleeperGSList" value="3-5" phase="4"/>
+
+		<objective type="ReturnToNPC">
+			<property name="phase" value="4"/>
+			<property name="nav_object" value="return_to_trader"/>
+		</objective>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+			<property name="nav_object" value="return_to_trader"/>
+		</objective>
+
+		<reward type="Exp" value="1000"/>
+		<reward type="Item" id="casinoCoin" value="1000"/>
+
+		<reward type="LootItem" id="groupQuestMedical" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestWeapons,groupQuestArmor" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestAmmo" ischosen="true" value="2"/>
+		<reward type="LootItem" id="groupQuestTools" ischosen="true" value="3"/>
+		<reward type="LootItem" id="groupQuestSchematics" ischosen="true" value="3"/>
+		<reward type="LootItem" id="groupQuestMods" ischosen="true" value="3"/>
+</quest>
+
+<quest id="tier2_buried_supplies">
+		<property name="name_key" value="Tier 2 Buried Supplies"/>
+		<property name="subtitle_key" value="Tier 2 Buried Supplies"/>
+		<property name="description_key" value="Tier 2 Buried Supplies"/>
+		<property name="icon" value="ui_game_symbol_treasure"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="quest"/>
+		<property name="offer_key" value="War3zuk hat's schon wieder getan. Er hat die ganze Backup-Grub geklaut. Holt euch mein Zeug! Und wenn ihr seine Crew seht, macht sie fertig!"/>
+		<property name="difficulty" value="medium"/>
+		<property name="difficulty_tier" value="2"/>
+		<property name="statement_key" value="quest_buried_supplies_statement"/>
+		<property name="response_key" value="quest_buried_supplies_response"/>
+		<property name="completiontype" value="TurnIn"/>
+		<property name="completion_key" value="quest_buried_supplies_completion"/>
+		<property name="shareable" value="false"/>
+
+		<objective type="RandomGotoNPC" phase="1">
+			<property name="completion_distance" value="20"/>
+			<property name="distance" value="100-150"/>
+			<property name="nav_object" value="quest"/>
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerBuriedSupplies"/>
+			<property name="activate_event" value="quest_treasure_replace_road"/>
+		</objective>
+
+		<objective type="StayWithin">
+			<property name="phase" value="3"/>
+			<property name="radius" value="25"/>
+		</objective>
+
+		<objective type="TreasureChest">
+			<property name="phase" value="3"/>
+			<property name="block" value="cntBuriedLootStashT2"/>
+			<property name="default_radius" value="10"/>
+			<property name="container_type" value="Supplies"/>
+			<property name="nav_object" value="treasure"/>
+			<property name="direct_nav_object" value="treasure_direct"/>
+			<property name="blocks_per_reduction" value="5"/>
+			<property name="radius_reduction_sound" value="ui_radius_shrink"/>
+			<property name="use_nearby" value="true"/>
+		</objective>
+
+		<event type="TreasureRadiusReduction" chance="0.25">
+			<action type="SpawnGSEnemy" id="SleeperGSList" value="2-4"/>
+		</event>
+
+		<objective type="FetchFromTreasure">
+			<property name="phase" value="3"/>
+			<property name="block" value="cntBuriedLootStashT2"/>
+			<property name="quest_item_ID" value="1"/>
+			<property name="item_count" value="1"/>
+		</objective>
+
+		<action type="SpawnGSEnemy" id="SleeperGSList" value="5-7" phase="4"/>
+
+		<objective type="ReturnToNPC">
+			<property name="phase" value="4"/>
+			<property name="nav_object" value="return_to_trader"/>
+		</objective>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+			<property name="nav_object" value="return_to_trader"/>
+		</objective>
+
+		<reward type="Exp" value="1000"/>
+		<reward type="Item" id="casinoCoin" value="1500"/>
+
+		<reward type="LootItem" id="groupQuestMedical" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestWeapons,groupQuestArmor" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestAmmo" ischosen="true" value="2"/>
+		<reward type="LootItem" id="groupQuestTools" ischosen="true" value="3"/>
+		<reward type="LootItem" id="groupQuestSchematics" ischosen="true" value="3"/>
+		<reward type="LootItem" id="groupQuestMods" ischosen="true" value="3"/>
+</quest>
+
+<quest id="tier3_buried_supplies">
+		<property name="name_key" value="Tier 3 Buried Supplies"/>
+		<property name="subtitle_key" value="Tier 3 Buried Supplies"/>
+		<property name="description_key" value="Tier 3 Buried Supplies"/>
+		<property name="icon" value="ui_game_symbol_treasure"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="quest"/>
+		<property name="offer_key" value="War3zuk hat sich mit meinem Zigarrenvorrat aus dem Staub gemacht. Die feinsten Zigarren auf Erden. Holt sie euch zurück, koste es, was es wolle."/>
+		<property name="difficulty" value="medium"/>
+		<property name="difficulty_tier" value="3"/>
+		<property name="statement_key" value="quest_buried_supplies_statement"/>
+		<property name="response_key" value="quest_buried_supplies_response"/>
+		<property name="completiontype" value="TurnIn"/>
+		<property name="completion_key" value="quest_buried_supplies_completion"/>
+		<property name="shareable" value="false"/>
+
+		<objective type="RandomGotoNPC" phase="1">
+			<property name="completion_distance" value="20"/>
+			<property name="distance" value="100-150"/>
+			<property name="nav_object" value="quest"/>
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="start_mode" value="Create"/>
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerBuriedSupplies"/>
+			<property name="activate_event" value="quest_treasure_replace_road"/>
+		</objective>
+
+		<objective type="StayWithin">
+			<property name="phase" value="3"/>
+			<property name="radius" value="25"/>
+		</objective>
+
+		<objective type="TreasureChest">
+			<property name="phase" value="3"/>
+			<property name="block" value="cntBuriedLootStashT3"/>
+			<property name="default_radius" value="10"/>
+			<property name="container_type" value="Supplies"/>
+			<property name="nav_object" value="treasure"/>
+			<property name="direct_nav_object" value="treasure_direct"/>
+			<property name="blocks_per_reduction" value="5"/>
+			<property name="radius_reduction_sound" value="ui_radius_shrink"/>
+			<property name="use_nearby" value="true"/>
+		</objective>
+
+		<event type="TreasureRadiusReduction" chance="0.25">
+			<action type="SpawnGSEnemy" id="SleeperGSList" value="3-5"/>
+		</event>
+
+		<objective type="FetchFromTreasure">
+			<property name="phase" value="3"/>
+			<property name="block" value="cntBuriedLootStashT3"/>
+			<property name="quest_item_ID" value="1"/>
+			<property name="item_count" value="1"/>
+		</objective>
+
+		<action type="SpawnGSEnemy" id="SleeperGSList" value="5-7" phase="4"/>
+
+		<objective type="ReturnToNPC">
+			<property name="phase" value="4"/>
+			<property name="nav_object" value="return_to_trader"/>
+		</objective>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+			<property name="nav_object" value="return_to_trader"/>
+		</objective>
+
+		<reward type="Exp" value="1000"/>
+		<reward type="Item" id="casinoCoin" value="2000"/>
+
+		<reward type="LootItem" id="groupQuestMedical" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestWeapons,groupQuestArmor" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestAmmo" ischosen="true" value="3"/>
+		<reward type="LootItem" id="groupQuestTools" ischosen="true" value="3"/>
+		<reward type="LootItem" id="groupQuestSchematics" ischosen="true" value="3"/>
+		<reward type="LootItem" id="groupQuestMods" ischosen="true" value="3"/>
+</quest>
+	
+</insertAfter>
+
+	<remove xpath="/quests/quest[@id='treasure_nickole']"/>
+	<remove xpath="/quests/quest[@id='treasure_stephan']"/>
+	<remove xpath="/quests/quest[@id='treasure_jennifer']"/>
+	<remove xpath="/quests/quest[@id='treasure_claude']"/>
+	<remove xpath="/quests/quest[@id='treasure_sarah']"/>
+	<remove xpath="/quests/quest[@id='treasure_raphael']"/>
+	
+<insertBefore xpath="/quests/quest[@id='tier1_fetch']">
+	
+<quest id="HD_Treasure_Trader_Luke">
+		<property name="name_key" value="HD Treasure Trader Luke"/>
+		<property name="subtitle_key" value="HD Treasure Trader Luke"/>
+		<property name="description_key" value="HD Treasure Trader Luke"/>
+		<property name="icon" value="ui_game_symbol_treasure"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="treasure"/>
+		<property name="offer_key" value="Du hast die Schatzkarte von Händler Luke gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Hamsterer von Lebensmitteln."/>
+		<property name="add_to_tier_complete" value="false"/>
+		<property name="shareable" value="false"/>
+
+		<objective type="TreasureChest">
+			<property name="block" value="cntBuriedTreasureStashT1"/>
+			<property name="distance" value="150-250"/>
+			<property name="default_radius" value="9"/>
+			<property name="nav_object" value="treasure"/>
+			<property name="direct_nav_object" value="treasure_direct"/>
+			<property name="blocks_per_reduction" value="10"/>
+			<property name="radius_reduction_sound" value="ui_radius_shrink"/>
+			<property name="explosion_event" value="quest_treasure_explosion_horde"/>
+		</objective>
+</quest>
+	
+<quest id="HD_Treasure_Trader_Jen">
+		<property name="name_key" value="HD Treasure Trader Jen"/>
+		<property name="subtitle_key" value="HD Treasure Trader Jen"/>
+		<property name="description_key" value="HD Treasure Trader Jen"/>
+		<property name="icon" value="ui_game_symbol_treasure"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="treasure"/>
+		<property name="offer_key" value="Du hast die Schatzkarte von Trader Jen gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Sammler von Sanitätsausrüstung."/>
+		<property name="add_to_tier_complete" value="false"/>
+		<property name="shareable" value="false"/>
+
+		<objective type="TreasureChest">
+			<property name="block" value="cntBuriedTreasureStashT2"/>
+			<property name="distance" value="150-250"/>
+			<property name="default_radius" value="9"/>
+			<property name="nav_object" value="treasure"/>
+			<property name="direct_nav_object" value="treasure_direct"/>
+			<property name="blocks_per_reduction" value="10"/>
+			<property name="radius_reduction_sound" value="ui_radius_shrink"/>
+			<property name="explosion_event" value="quest_treasure_explosion_horde"/>
+		</objective>
+</quest>
+	
+<quest id="HD_Treasure_Trader_Rekt">
+		<property name="name_key" value="HD Treasure Trader Rekt"/>
+		<property name="subtitle_key" value="HD Treasure Trader Rekt"/>
+		<property name="description_key" value="HD Treasure Trader Rekt"/>
+		<property name="icon" value="ui_game_symbol_treasure"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="treasure"/>
+		<property name="offer_key" value="Du hast die Schatzkarte von Händler Rekt gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Sammler von landwirtschaftlichen Ressourcen."/>
+		<property name="add_to_tier_complete" value="false"/>
+		<property name="shareable" value="false"/>
+
+		<objective type="TreasureChest">
+			<property name="block" value="cntBuriedTreasureStashT3"/>
+			<property name="distance" value="150-250"/>
+			<property name="default_radius" value="9"/>
+			<property name="nav_object" value="treasure"/>
+			<property name="direct_nav_object" value="treasure_direct"/>
+			<property name="blocks_per_reduction" value="10"/>
+			<property name="radius_reduction_sound" value="ui_radius_shrink"/>
+			<property name="explosion_event" value="quest_treasure_explosion_horde"/>
+		</objective>
+</quest>
+	
+<quest id="HD_Treasure_Trader_Bob">
+		<property name="name_key" value="HD Treasure Trader Bob"/>
+		<property name="subtitle_key" value="HD Treasure Trader Bob"/>
+		<property name="description_key" value="HD Treasure Trader Bob"/>
+		<property name="icon" value="ui_game_symbol_treasure"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="treasure"/>
+		<property name="offer_key" value="Du hast Trader Bobs Schatzkarte gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Sammler von Mechanikerteilen."/>
+		<property name="add_to_tier_complete" value="false"/>
+		<property name="shareable" value="false"/>
+
+		<objective type="TreasureChest">
+			<property name="block" value="cntBuriedTreasureStashT4"/>
+			<property name="distance" value="150-250"/>
+			<property name="default_radius" value="9"/>
+			<property name="nav_object" value="treasure"/>
+			<property name="direct_nav_object" value="treasure_direct"/>
+			<property name="blocks_per_reduction" value="10"/>
+			<property name="radius_reduction_sound" value="ui_radius_shrink"/>
+			<property name="explosion_event" value="quest_treasure_explosion_horde"/>
+		</objective>
+</quest>
+	
+<quest id="HD_Treasure_Trader_Hugh">
+		<property name="name_key" value="HD Treasure Trader Hugh"/>
+		<property name="subtitle_key" value="HD Treasure Trader Hugh"/>
+		<property name="description_key" value="HD Treasure Trader Hugh"/>
+		<property name="icon" value="ui_game_symbol_treasure"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="treasure"/>
+		<property name="offer_key" value="Du hast die Schatzkarte von Händler Hugh gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Waffensammler."/>
+		<property name="add_to_tier_complete" value="false"/>
+		<property name="shareable" value="false"/>
+
+		<objective type="TreasureChest">
+			<property name="block" value="cntBuriedTreasureStashT5"/>
+			<property name="distance" value="150-250"/>
+			<property name="default_radius" value="9"/>
+			<property name="nav_object" value="treasure"/>
+			<property name="direct_nav_object" value="treasure_direct"/>
+			<property name="blocks_per_reduction" value="10"/>
+			<property name="radius_reduction_sound" value="ui_radius_shrink"/>
+			<property name="explosion_event" value="quest_treasure_explosion_horde"/>
+		</objective>
+</quest>
+	
+<quest id="HD_Treasure_Trader_Joel">
+		<property name="name_key" value="HD Treasure Trader Joel"/>
+		<property name="subtitle_key" value="HD Treasure Trader Joel"/>
+		<property name="description_key" value="HD Treasure Trader Joel"/>
+		<property name="icon" value="ui_game_symbol_treasure"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="treasure"/>
+		<property name="offer_key" value="Du hast die Schatzkarte von Händler Joel gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Rüstungssammler."/>
+		<property name="add_to_tier_complete" value="false"/>
+		<property name="shareable" value="false"/>
+
+		<objective type="TreasureChest">
+			<property name="block" value="cntBuriedTreasureStashT6"/>
+			<property name="distance" value="150-250"/>
+			<property name="default_radius" value="9"/>
+			<property name="nav_object" value="treasure"/>
+			<property name="direct_nav_object" value="treasure_direct"/>
+			<property name="blocks_per_reduction" value="10"/>
+			<property name="radius_reduction_sound" value="ui_radius_shrink"/>
+			<property name="explosion_event" value="quest_treasure_explosion_horde"/>
+		</objective>
+</quest>
+	
+</insertBefore>
+
+<insertAfter xpath="/quests/quest[@id='tier6_test_turnin']">
+	
+	<quest_list id="test_quests">
+		<quest id="test_sleepers"/>
+		<quest id="test_fetch"/>
+		<quest id="test_fetchsleep"/>
+		<quest id="test_fetchinfested"/>
+		<quest id="test_hiddensleep"/>
+		<quest id="test_restorepower"/>
+		<quest id="test_sleepers_infested"/>
+	</quest_list>
+
+	<quest_list id="trader_quests">
+		<quest id="tier1_clear"/>
+		<quest id="tier1_fetch"/>
+		<quest id="tier1_buried_supplies"/>
+		<quest id="tier2_clear"/>
+		<quest id="tier2_clear_infested"/>
+		<quest id="tier2_fetch"/>
+		<quest id="tier2_fetch_clear"/>
+		<quest id="tier2_restore_power"/>
+		<quest id="tier2_buried_supplies"/>
+		<quest id="tier3_clear"/>
+		<quest id="tier3_clear_infested"/>
+		<quest id="tier3_fetch"/>
+		<quest id="tier3_fetch_clear"/>
+		<quest id="tier3_restore_power"/>
+		<quest id="tier3_buried_supplies"/>
+		<quest id="tier4_clear"/>
+		<quest id="tier4_clear_infested"/>
+		<quest id="tier4_restore_power"/>
+		<quest id="tier4_fetch_clear"/>
+		<quest id="tier5_clear"/>
+		<quest id="tier5_clear_infested"/>
+		<quest id="tier5_fetch_clear"/>
+		<quest id="tier6_clear_infested"/>
+		<quest id="tier2_nexttrader"/>
+		<quest id="tier3_nexttrader"/>
+		<quest id="tier4_nexttrader"/>
+		<quest id="tier5_nexttrader"/>
+	</quest_list>
+	
+</insertAfter>
+
+	<remove xpath="/quests/quest[@id='tier2_nexttrader']"/>
+	<remove xpath="/quests/quest[@id='tier3_nexttrader']"/>
+	<remove xpath="/quests/quest[@id='tier4_nexttrader']"/>
+	<remove xpath="/quests/quest[@id='tier5_nexttrader']"/>
+	<remove xpath="/quests/quest[@id='test_nexttrader']"/>
+
+<insertAfter xpath="/quests/quest[@id='test_turnin2']">
+
+	<quest id="tier2_nexttrader">
+		<property name="group_name_key" value="quest_next_trader"/>
+		<property name="name_key" value="quest_next_trader"/>
+		<property name="subtitle_key" value="quest_next_trader_subtitle"/>
+		<property name="description_key" value="quest_next_trader_description"/>
+		<property name="icon" value="ui_game_symbol_map_trader"/>
+		<property name="category_key" value="quest"/>
+		<property name="difficulty" value="medium"/>
+		<property name="shareable" value="false"/>
+		<property name="repeatable" value="true"/>
+		<property name="difficulty" value="medium"/>
+		<property name="difficulty_tier" value="2" param1="difficulty" />
+
+		<property name="unique_key" value="traderquest" />
+
+		<property name="offer_key" value="quest_next_trader_offer"/>
+		<property name="statement_key" value="quest_next_trader_statement"/>
+		<property name="response_key" value="quest_next_trader_response"/>
+
+		<property name="completiontype" value="TurnIn"/>
+		<property name="completion_key" value="quest_next_trader_completion"/>
+
+		<property name="return_to_quest_giver" value="false" />
+		<property name="add_to_tier_complete" value="false" />
+
+		<property name="quest_type" value="special" />
+
+		<objective type="Goto" id="trader" value="5" phase="1">
+			<property name="nav_object" value="go_to_trader" />
+			<property name="biome_filter_type" value="ExcludeBiome" param1="biome_filter_type" />
+			<property name="biome_filter" value="wasteland" param1="biome_filter" />
+		</objective>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="return_to_trader" />
+		</objective>
+
+		<reward type="Exp" value="2500"/>
+	</quest>
+	
+	<quest id="tier3_nexttrader" template="tier2_nexttrader">
+		<variable name="difficulty" value="3" />
+		
+		<reward type="Exp" value="3500"/>
+	</quest>
+	
+	<quest id="tier4_nexttrader" template="tier2_nexttrader">
+		<variable name="difficulty" value="4" />
+		<variable name="biome_filter_type" value="AnyBiome" />
+		<variable name="biome_filter" value="" />
+		
+		<reward type="Exp" value="4500"/>
+	</quest>
+
+	<quest id="tier5_nexttrader" template="tier2_nexttrader">
+		<variable name="difficulty" value="5" />
+		<variable name="biome_filter_type" value="AnyBiome" />
+		<variable name="biome_filter" value="" />
+		
+		<reward type="Exp" value="5500"/>
+	</quest>
+
+	<quest id="test_nexttrader">
+		<property name="group_name_key" value="quest_next_trader"/>
+		<property name="name_key" value="quest_next_trader"/>
+		<property name="subtitle_key" value="quest_next_trader_subtitle"/>
+		<property name="description_key" value="quest_next_trader_description"/>
+		<property name="icon" value="ui_game_symbol_map_trader"/>
+		<property name="category_key" value="quest"/>
+		<property name="difficulty" value="medium"/>
+		<property name="shareable" value="false"/>
+		<property name="repeatable" value="true"/>
+		<property name="difficulty" value="medium"/>
+		<property name="difficulty_tier" value="1"/>
+
+		<property name="unique_key" value="traderquest" />
+
+		<property name="offer_key" value="quest_next_trader_offer"/>
+		<property name="statement_key" value="quest_next_trader_statement"/>
+		<property name="response_key" value="quest_next_trader_response"/>
+
+		<property name="completiontype" value="TurnIn"/>
+		<property name="return_to_quest_giver" value="false" />
+		<property name="quest_type" value="special" />
+
+		<objective type="Goto" id="trader" value="5" phase="1">
+			<property name="nav_object" value="go_to_trader" />
+		</objective>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="return_to_trader" />
+		</objective>
+
+		<reward type="Exp" value="100"/>
+		<reward type="Item" id="resourceRockSmall" ischosen="true" isfixed="true" value="1"/>
+	</quest>
+	
+</insertAfter>
+</configs>

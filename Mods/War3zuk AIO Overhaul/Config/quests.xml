@@ -231,18 +231,18 @@
 <quest id="War3zuk Armor Quest">
 	<property name="name_key" value="Prove Your Worthy To War3zuk"/>
 	<property name="subtitle_key" value="Kill Zombies"/>
-	<property name="description_key" value="Nutze die Chance, zu kämpfen und dich zu behaupten, und vernichte die Zombies."/>
+	<property name="description_key" value="Blessed with the chance to Fight and Hold your own, Take out the Zombies."/>
 	<property name="icon" value="ui_game_symbol_Armor"/>
 	<property name="repeatable" value="true"/>
 	<property name="category_key" value="challenge"/>
 	<property name="difficulty" value="medium"/>
 	<property name="difficulty_tier" value="4"/>
-	<property name="offer_key" value="Nutze die Chance, zu kämpfen und dich zu behaupten, und vernichte die Zombies."/>
+	<property name="offer_key" value="Blessed with the chance to Fight and Hold your own, Take out the Zombies."/>
 	<property name="statement_key" value="Clear All Zombie Spawns."/>
 	<property name="response_key" value="Clear Sleepers"/>
 
 	<property name="completiontype" value="TurnIn"/>
-	<property name="completion_key" value="Ich hätte dir das nicht zugetraut. Du hast deinen Kampfgeist bewiesen. Gut gemacht, jetzt gibt's deine Belohnung."/>
+	<property name="completion_key" value="Didnt know you had it in you. Youve shown your true grit. Good Work, Now for your Reward."/>
 
 	<objective type="RandomPOIGoto">
 		<property name="phase" value="1"/>
@@ -289,18 +289,18 @@
 <quest id="War3zuk Blade Quest">
 	<property name="name_key" value="Time to earn your merrit"/>
 	<property name="subtitle_key" value="Kill Zombies"/>
-	<property name="description_key" value="Hier ist deine Chance, dir die allmächtige HD-Machete zu sichern."/>
+	<property name="description_key" value="This is your chance to earn the almighty HD Machete."/>
 	<property name="icon" value="ui_game_symbol_Blade"/>
 	<property name="repeatable" value="true"/>
 	<property name="category_key" value="challenge"/>
 	<property name="difficulty" value="medium"/>
 	<property name="difficulty_tier" value="4"/>
-	<property name="offer_key" value="Hier ist deine Chance, dir die allmächtige HD-Machete zu sichern."/>
+	<property name="offer_key" value="This is your chance to earn the almighty HD Machete."/>
 	<property name="statement_key" value="Clear All Zombie Spawns."/>
 	<property name="response_key" value="Clear Sleepers"/>
 
 	<property name="completiontype" value="TurnIn"/>
-	<property name="completion_key" value="Ich hätte dir das nicht zugetraut. Du hast deinen Kampfgeist bewiesen. Gut gemacht, jetzt gibt's deine Belohnung."/>
+	<property name="completion_key" value="Didnt know you had it in you. Youve shown your true grit. Good Work, Now for your Reward."/>
 
 	<objective type="RandomPOIGoto">
 		<property name="phase" value="1"/>
@@ -345,8 +345,8 @@
 <quest id="Find The Trader">
 	<property name="group_name_key" value="quest_next_trader"/>
 	<property name="name_key" value="quest_next_trader"/>
-	<property name="subtitle_key" value="Sie haben einen neuen Händler gefunden."/>
-	<property name="description_key" value="Sie haben einen neuen Händler gefunden."/>
+	<property name="subtitle_key" value="Youve found a New Trader"/>
+	<property name="description_key" value="Youve found a New Trader"/>
 	<property name="icon" value="ui_game_symbol_map_trader"/>
 	<property name="category_key" value="quest"/>
 	<property name="shareable" value="false"/>
@@ -400,7 +400,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="quest"/>
-		<property name="offer_key" value="War3zuk und seine Bande von skrupellosen, geldgierigen Bastarden sind mit meinem Pornovorrat abgehauen. Spürt sie auf! Bringt sie alle um und bringt mir mein Zeug zurück!"/>
+		<property name="offer_key" value="War3zuk And his Gang of Cut Throat Thirsty Bastards have run off with my Porn Stash. Track them down. Kill them all And bring back my Shit."/>
 		<property name="difficulty" value="medium"/>
 		<property name="difficulty_tier" value="1"/>
 		<property name="statement_key" value="quest_buried_supplies_statement"/>
@@ -481,7 +481,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="quest"/>
-		<property name="offer_key" value="War3zuk hat's schon wieder getan. Er hat die ganze Backup-Grub geklaut. Holt euch mein Zeug! Und wenn ihr seine Crew seht, macht sie fertig!"/>
+		<property name="offer_key" value="War3zuk Has done it again. hes stole all the Backup Grub. Go get my Stuff And if you see his Crew Fuck Them Up."/>
 		<property name="difficulty" value="medium"/>
 		<property name="difficulty_tier" value="2"/>
 		<property name="statement_key" value="quest_buried_supplies_statement"/>
@@ -562,7 +562,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="quest"/>
-		<property name="offer_key" value="War3zuk hat sich mit meinem Zigarrenvorrat aus dem Staub gemacht. Die feinsten Zigarren auf Erden. Holt sie euch zurück, koste es, was es wolle."/>
+		<property name="offer_key" value="War3zuk has knicked off with My Stoggy Stash. The finest Cigars on this heavenly Earth. Get them back at ANY cost."/>
 		<property name="difficulty" value="medium"/>
 		<property name="difficulty_tier" value="3"/>
 		<property name="statement_key" value="quest_buried_supplies_statement"/>
@@ -654,7 +654,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="treasure"/>
-		<property name="offer_key" value="Du hast die Schatzkarte von Händler Luke gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Hamsterer von Lebensmitteln."/>
+		<property name="offer_key" value="You've found Trader Luke's Treasure Map, This person was a serious food horder before the zombie outbreak."/>
 		<property name="add_to_tier_complete" value="false"/>
 		<property name="shareable" value="false"/>
 
@@ -677,7 +677,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="treasure"/>
-		<property name="offer_key" value="Du hast die Schatzkarte von Trader Jen gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Sammler von Sanitätsausrüstung."/>
+		<property name="offer_key" value="You've found Trader Jen's Treasure Map, This person was a serious Medics horder before the zombie outbreak."/>
 		<property name="add_to_tier_complete" value="false"/>
 		<property name="shareable" value="false"/>
 
@@ -700,7 +700,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="treasure"/>
-		<property name="offer_key" value="Du hast die Schatzkarte von Händler Rekt gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Sammler von landwirtschaftlichen Ressourcen."/>
+		<property name="offer_key" value="You've found Trader Rekt's Treasure Map, This person was a serious Farming horder before the zombie outbreak."/>
 		<property name="add_to_tier_complete" value="false"/>
 		<property name="shareable" value="false"/>
 
@@ -723,7 +723,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="treasure"/>
-		<property name="offer_key" value="Du hast Trader Bobs Schatzkarte gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Sammler von Mechanikerteilen."/>
+		<property name="offer_key" value="You've found Trader Bob's Treasure Map, This person was a serious Mechanics horder before the zombie outbreak."/>
 		<property name="add_to_tier_complete" value="false"/>
 		<property name="shareable" value="false"/>
 
@@ -746,7 +746,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="treasure"/>
-		<property name="offer_key" value="Du hast die Schatzkarte von Händler Hugh gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Waffensammler."/>
+		<property name="offer_key" value="You've found Trader Hugh's Treasure Map, This person was a serious Weapons horder before the zombie outbreak."/>
 		<property name="add_to_tier_complete" value="false"/>
 		<property name="shareable" value="false"/>
 
@@ -769,7 +769,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="treasure"/>
-		<property name="offer_key" value="Du hast die Schatzkarte von Händler Joel gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Rüstungssammler."/>
+		<property name="offer_key" value="You've found Trader Joel's Treasure Map, This person was a serious Armor horder before the zombie outbreak."/>
 		<property name="add_to_tier_complete" value="false"/>
 		<property name="shareable" value="false"/>
 

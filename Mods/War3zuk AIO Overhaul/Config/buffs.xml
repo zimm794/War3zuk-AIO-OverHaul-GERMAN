@@ -10,6 +10,18 @@
 	</append>
 
 	<append xpath="/buffs">
+		
+<buff name="buffGuppyRadiationLeak" name_key="buffBurningWeaponName" icon="ui_game_symbol_fire" icon_color="0,255,0" hidden="true">
+	<stack_type value="replace"/>
+	<duration value="0"/>
+
+	<effect_group>
+		<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="#@modfolder:Resources/guppyParticleRadiationExposure.unity3d?guppyParticleRadiationExposure" local_offset="0,0,0" parent_transform="Head"/>
+		<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="guppyParticleRadiationExposure"/>
+		<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="guppyParticleRadiationExposure"/>
+		<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="guppyParticleRadiationExposure"/>
+	</effect_group>
+</buff>
 
 		<buff name="IZY_Race_white" hidden="true" icon="ui_game_symbol_radiation" icon_color="220,90,20">
 			<stack_type value="ignore"/>
@@ -4528,8 +4540,8 @@
 		<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurningEnvironmentHack"/>
 		<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurningEnvironment"/>
 		<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurningElement"/>
-		<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffHazardBurningElement" />
-		<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFireAOEEffect" />
+		<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffHazardBurningElement"/>
+		<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFireAOEEffect"/>
 	</effect_group>
 </buff>
 

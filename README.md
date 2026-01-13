@@ -1,7 +1,8 @@
 # War3zuk-AIO-OverHaul-GERMAN<br/>
 War3zuk AIO OverHaul in Deutsch<br/>
 War3zuk AIO OverHaul in German<br/>
-For War3zuk AIO OverHaul 7D2D v2.5 B23 Final Stable Build from 06.01.2026<br/>
+For War3zuk AIO OverHaul Updated v2.0 to v2.1 7D2D v2.5 B23 Stable Build from 13.01.2026<br/>
+Updated v2.0 to v2.1 7D2D v2.5 B23 Stable
 All Rights Reserved by War3zuk<br/>
 Only the Localization.txt file was edited.<br/>
 My Twitch channel -> https://www.twitch.tv/zimm794<br/>

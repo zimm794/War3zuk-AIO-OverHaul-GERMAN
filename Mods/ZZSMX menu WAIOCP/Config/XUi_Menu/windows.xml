@@ -358,47 +358,6 @@
 							</rect>
 						</rect>
 
-<!-- Test --><!--
-						<rect name="WarChangeLog2" depth="5" pos="-687,0" width="330" height="200" controller="NewsWindow" sources="@modfolder:/Changelog/ZombieBacken.xml" visible="{has_news}">
-							<sprite name="backgroundGame" depth="-3" pivot="center" sprite="menu_empty" color="0,0,0,196" type="sliced" globalopacity="false" />
-							<texture name="newsImage" depth="-2" pos="0,0" height="200" pivot="center" color="255,255,255,96" original_aspect_ratio="true" rect_size="0.996,0.996" rect_offset="0.002,0.002" />
-							<button name="btnLink" depth="10" pivot="center" style="hover,scroll,press" sprite="menu_empty" hoverscale="1.025" defaultcolor="0,0,0,1" disabledcolor="0,0,0,1" hovercolor="100,100,100,100" type="sliced" enabled="{has_news}" gamepad_selectable="{has_news}" nav_right="btnContinue" sound_play_on_hover="[default_hover]" />
-
-							<sprite name="textBackground" depth="0" pos="0,-63" width="330" height="75" pivot="center" sprite="menu_empty" color="0,0,0,225" type="sliced" globalopacity="false" />
-
-							<label name="headline1" depth="0" pos="5,-12" width="320" height="24" pivot="center" text="{headline}" font_size="22" spacing_x="2" justify="left" upper_case="true" color="[red]" overflow="ClampContent" />
-							<label name="headline2" depth="1" pos="-65,-36" width="150" height="18" pivot="center" text="{headline2}" font_size="12" spacing_x="2" justify="left" upper_case="true" color="[lightestGrey]" />
-
-							<label name="date" depth="1" pos="85,-37" width="150" height="18" pivot="center" text="{date} - {age}" font_size="12" spacing_x="1" justify="right" color="[lightestGrey]" />
-							<label name="text" depth="1" pos="-125,-54" width="280" height="18" pivot="topleft" text="{text}" font_size="16" spacing_x="1" color="[white]" />
-
-							<label name="readmore" depth="1" pos="0,80" width="330" pivot="center" text="Click to view..." font_size="12" spacing_x="1" justify="center" color="[lightestGrey]" />
-
-							<rect name="selectionButtons" depth="99" createuiwidget="true" anchor_left="backgroundGame,0,0" anchor_right="backgroundGame,1,0" anchor_bottom="backgroundGame,0,-50" anchor_top="backgroundGame,0,-10">
-								<War_combobox_news	name="entrySelection"
-													pos="15,35"
-													width="300"
-													height="18"
-													type="ComboBoxFloat"
-													value_min="0.001"
-													value_max="1"
-													value_wrap="true"
-													value_increment="1"
-													scroll_by_increment="true"
-													format_string=" "
-													index_markers="false"
-													segmented_fill="true"
-													segment_count="1"
-													bg_color="35,31,31"
-													enabled_fill_color="[red]"
-													gamepad_selectable="false"
-													gamepad_decrease="GUI Window Paging Up"
-													gamepad_increase="GUI Window Paging Down"
-													gamepad_callout_size_increase="8" />
-							</rect>
-						</rect>
---><!-- Test -->
-						<!--Zweites Fenster-->
 						<rect name="smxLatestVersions" depth="5" pos="-342,-365" width="330" height="200" controller="NewsWindow" sources="@modfolder:/Changelog/War3zukLatest.xml" visible="{has_news}">
 							<sprite name="backgroundGame" depth="-3" pivot="center" sprite="menu_empty" color="0,0,0,196" type="sliced" globalopacity="false" />
 							<texture name="newsImage" depth="-2" pos="0,0" height="200" pivot="center" color="255,255,255,96" original_aspect_ratio="true" rect_size="0.996,0.996" rect_offset="0.002,0.002" />

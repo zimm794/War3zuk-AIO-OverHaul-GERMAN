@@ -1,7 +1,7 @@
 # War3zuk-AIO-OverHaul-GERMAN<br/>
 War3zuk AIO OverHaul in Deutsch<br/>
 War3zuk AIO OverHaul in German<br/>
-For War3zuk AIO OverHaul Updated Updated 2.3 Final, Updated SMX from 19.01.2026<br/>
+For War3zuk AIO OverHaul Updated 2.3 Final + Updated SMX from 19.01.2026<br/>
 All Rights Reserved by War3zuk<br/>
 
 My Twitch channel -> https://www.twitch.tv/zimm794<br/>

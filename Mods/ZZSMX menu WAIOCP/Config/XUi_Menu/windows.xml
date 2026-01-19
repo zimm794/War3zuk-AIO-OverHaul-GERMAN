@@ -1,0 +1,491 @@
+<Windows>
+	
+<remove xpath="/windows/window[@name='newContinueGame']"/>
+	
+<insertAfter xpath="/windows/window[@name='newsWindow']" >
+	
+	<window name="newContinueGame" anchor="CenterCenter" pos="-592,400" width="1185" height="780" controller="NewContinueGame" cursor_area="true">
+		<panel name="header" pos="0,0" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
+			<label style="header.name" name="windowheader" pos="6,-6" width="550" text_key="xuiNewContinueGame" />
+		</panel>
+		
+		<rect pos="0,-50" height="680" width="590" name="leftPanel">
+			<rect name="newContent" visible="{isnewgame}">
+				<sprite depth="10" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" globalopacity="true" globalopacitymod="0.9" />
+				<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
+
+				<rect pos="8,-40">
+					<grid rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<rect>
+							<label depth="4" width="250" height="30" style="hover" tooltip_key="goGameNameDesc" text_key="goGameName" font_size="28" color="[white]" justify="right" pivot="topleft" />
+							<textfield name="txtGameName" depth="5" pos="289,0" width="232" height="32" pivot="topLeft" on_hover="true" character_limit="50"/>
+						</rect>
+						<rect visible="{false}">
+							<label depth="4" width="250" height="30" style="hover" tooltip_key="goGameModeDesc" text_key="goGameMode" font_size="28" color="[white]" justify="right" pivot="topleft" />
+							<combobox name="cbxGameMode" type="ComboBoxList`1[GameMode]" value_wrap="false" pos="255,0" width="300" height="32" />
+						</rect>
+						<rect>
+							<label depth="4" width="250" height="30" style="hover" tooltip_key="goGameWorldDesc" text_key="goGameWorld" font_size="28" color="[white]" justify="right" pivot="topleft" />
+							<combobox name="cbxWorldName" type="ComboBoxList`1[XUiC_NewContinueGame+LevelInfo]" value_wrap="false" pos="255,0" width="300" height="32" />
+						</rect>
+						<rect visible="{isnotgenerateworld}">
+							<label depth="4" width="250" height="30" style="hover" text_key="xuiMapSize" font_size="28" color="[white]" justify="right" pivot="topleft" />
+							<sprite depth="3" name="backgroundMain"  pos="289,0" width="232" height="32" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
+							<label name="countyName" depth="4" pos="289,-2" width="232" height="32" style="hover" font_size="28" color="[white]" justify="center" pivot="topleft" text="{mapsize}" />
+						</rect>
+						<rect visible="{isnotgenerateworld}">
+							<label depth="4" width="250" height="30" style="hover" tooltip_key="xuiSaveDataLimitDesc" text_key="xuiSaveDataLimit" font_size="28" color="[white]" justify="right" pivot="topleft" />
+							<combobox depth="108" pos="255,0" width="300" height="32" name="cbxSaveDataLimit" type="ComboBoxEnum`1[SaveDataLimitType]" localization_prefix="xuiSaveDataLimitOptions" value_wrap="true" />
+						</rect>
+						<rect visible="{differentworldversion}">
+							<label depth="4" width="250" height="30" style="hover" text_key="xuiWorldDifferentGameVersion" font_size="28" color="[white]" justify="right" pivot="topleft" />
+							<sprite depth="3" name="backgroundMain"  pos="289,0" width="232" height="32" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
+							<label depth="4" pos="289,-2" width="232" height="32" style="hover" font_size="28" justify="center" pivot="topleft" text="{worldgameversion}" tooltip_key="xuiWorldDifferentVersionTooltip" color="[red]" />
+						</rect>
+					</grid>
+				</rect>
+				
+				<rect pos="8,-155" visible="{isgenerateworld}" controller="WorldGenerationWindowGroup">
+					<grid rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical">
+						<rect>
+							<label depth="4" width="250" height="30" style="hover" tooltip_key="xuiRwgCountyNameDesc" text="Seed" text_key="xuiRwgCountyName" font_size="28" color="[white]" justify="right" pivot="topleft" />
+							<sprite depth="3" name="backgroundMain"  pos="289,0" width="232" height="32" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
+							<label name="countyName" depth="4" pos="289,-2" width="232" height="32" style="hover" font_size="28" color="[white]" justify="center" pivot="topleft" />
+						</rect>
+						<rect>
+							<label depth="4" width="250" height="30" style="hover" tooltip_key="xuiRwgWorldSeedDesc" text="Seed" text_key="xuiRwgWorldSeed" font_size="28" color="[white]" justify="right" pivot="topleft" />
+							<textfield name="seedInput" depth="5" pos="289,0" width="232" height="32" pivot="topLeft" />
+						</rect>
+						<rect>
+							<label depth="4" width="250" height="30" style="hover" tooltip_key="xuiRwgWorldSizeDesc" text="World Size" text_key="xuiRwgWorldSize" font_size="28" color="[white]" justify="right" pivot="topleft" />
+							<combobox depth="108" pos="255,0" width="300" height="32" name="WorldSize" type="ComboBoxList`1[System.Int32]" values="6144,8192,10240" value_wrap="false" />
+						</rect>
+						<rect>
+							<label depth="4" width="250" height="30" style="hover" tooltip_key="xuiSaveDataLimitDesc" text_key="xuiSaveDataLimit" font_size="28" color="[white]" justify="right" pivot="topleft" />
+							<combobox depth="108" pos="255,0" width="300" height="32" name="SaveDataLimitComboBox" type="ComboBoxEnum`1[SaveDataLimitType]" localization_prefix="xuiSaveDataLimitOptions" value_wrap="true" />
+						</rect>
+						<rect/>
+						<rect>
+							<simplebutton name="btnGenerateWorld" pos="289,0" width="232" height="32" font_size="26" text="Advanced Generation" caption_key="btnAdvancedGeneration" upper_case="true"/>
+						</rect>
+					</grid>
+				</rect>
+				
+			</rect>
+	
+			<rect name="continueContent" visible="{iscontinuegame}">
+				<rect name="saves" pos="0,0" height="680" width="590" controller="SavegamesList" matching_version_color="60,255,60,128" compatible_version_color="255,216,0" incompatible_version_color="[red]" clear_selection_on_open="false" clear_searchtext_on_open="true">
+					<sprite depth="8" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />
+					<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
+
+					<rect depth="4" name="searchControls" height="44" pos="0,-0">
+						<sprite depth="8" name="backgroundMain" sprite="menu_empty" color="[black]" type="sliced" fillcenter="false" />
+
+						<sprite depth="4" name="searchIcon" style="icon30px" pos="5,-22" sprite="ui_game_symbol_search" pivot="Left"/>
+						<textfield name="searchInput" depth="5" pos="40,-7" width="250" height="30" search_field="true" />
+						
+						<panel pos="478,0" width="98" height="43" disableautobackground="true">
+							<pager name="pager" pos="1,-6" contents_parent="saves"/>
+						</panel>
+					</rect>
+					
+					<grid name="list" depth="2" rows="9" cols="1" pos="0,-44" height="490" cell_width="610" cell_height="61" repeat_content="true" arrangement="vertical" >
+						<savegames_list_entry width="590" height="61" />
+					</grid>
+
+					<simplebutton name="btnDeleteSave" pos="290,-620" width="200" height="32" font_size="26" caption_key="btnDelete" pivot="center" upper_case="true" />
+				</rect>
+			</rect>
+		</rect>
+		
+		<rect name="rightPanel" pos="595,-50" width="590" height="680">
+			<sprite depth="10" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" globalopacity="true" globalopacitymod="0.9" />
+			<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
+
+			<rect name="tabs" controller="TabSelector" select_tab_contents_on_open="false">			
+				<rect name="tabsHeader" height="39" depth="0">
+					<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="4" cell_width="144" cell_height="36" repeat_content="true" arrangement="horizontal">
+						<rect controller="TabSelectorButton">
+							<simplebutton name="tabButton" depth="2" pos="-1,0" width="143" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" caption="{tab_name_localized}" />
+							<sprite depth="8" sprite="menu_empty2px" pos="141,0" width="2" height="36" color="[black]" />
+						</rect>
+					</grid>
+				</rect>
+				
+				<rect name="tabsContents" depth="2">
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsGeneral">
+						<grid pos="6,-77" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+							<gameoption name="ServerEnabled" title="goServerEnabled" value_wrap="false" value_type="bool" values="" display_names="goServerEnabledOff,goServerEnabledOn" value_localization_prefix="" />
+							<gameoption name="Region" title="goRegion" value_wrap="true" value_type="string" values="NorthAmericaEast,NorthAmericaWest,CentralAmerica,SouthAmerica,Europe,Russia,Asia,MiddleEast,Africa,Oceania" display_names="" value_localization_prefix="goRegionName" has_default="false" always_show="true" />
+							<gameoption name="ServerVisibility" title="goServerVisibility" value_wrap="false" value_type="int" values="" display_names="goServerVisibility0,goServerVisibility1,goServerVisibility2" value_localization_prefix="" />
+							<gameoption name="ServerEACPeerToPeer" title="goEacEnabled" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" has_default="true" enabled="{servereacpeertopeer}"/>
+							<gameoption name="ServerAllowCrossplay" title="goServerAllowCrossplay" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix=""  tooltip_key="{crossplayTooltip}"/>
+							<gameoption name="ServerPassword" title="goPassword" value_wrap="false" value_type="string" values="" display_names="" value_localization_prefix="" is_textinput="true" password_field="true" character_limit="30" />
+							<gameoption name="ServerMaxPlayerCount" title="goMaxPlayers" value_wrap="false" value_type="int" values="2, 4, 6, 8, 16" display_names="" value_localization_prefix="goPlayer" platform="!PS5,!XBOX_S,!XBOX_X"/>
+							<gameoption name="ServerMaxPlayerCount" title="goMaxPlayers" value_wrap="false" value_type="int" values="2, 3, 4" values_enforced="true" display_names="" value_localization_prefix="goPlayer" platform="PS5,XBOX_X"/>
+							<gameoption name="ServerMaxPlayerCount" title="goMaxPlayers" value_wrap="false" value_type="int" values="2" values_enforced="true" display_names="" value_localization_prefix="goPlayer" platform="XBOX_S"/>
+							<gameoption name="AISmellMode" title="goAISmellMode" value_wrap="false" value_type="int" values="" display_names="goOff,goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
+							<gameoption name="ZombieFeralSense" title="goZombieFeralSense" value_wrap="false" value_type="int" values="" display_names="goOff,goZMDay,goZMNight,goZMAll" value_localization_prefix="" />
+							<gameoption name="GameDifficulty" title="goDifficulty" value_wrap="false" value_type="int" values="" display_names="goDifficulty1,goDifficulty2,goDifficulty3,goDifficulty4,goDifficulty5,goDifficulty6" value_localization_prefix="" />
+							<gameoption name="XPMultiplier" title="goXPMultiplier" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goXPMultiplierValue" />
+							<gameoption name="DayNightLength" title="goDayLength" value_wrap="false" value_type="int" values="10, 20, 30, 40, 50, 60, 90, 120" display_names="" value_localization_prefix="goMinute" />
+							<gameoption name="DayLightLength" title="goDayLightLength" value_wrap="false" value_type="int" values="12, 14, 16, 18" display_names="" value_localization_prefix="goDayLightLengthValue" />
+						</grid>
+					</rect>
+
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsBasic">
+						<grid pos="6,-77" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+							<gameoption name="BloodMoonFrequency" title="goBloodMoonFrequency" value_wrap="false" value_type="int" values="0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 20, 30" display_names="goDisabled" value_localization_prefix="goDay" />
+							<gameoption name="BloodMoonRange" title="goBloodMoonRange" value_wrap="false" value_type="int" values="0, 1, 2, 3, 4, 7, 10, 14, 20" display_names="" value_localization_prefix="goDay" />
+							<gameoption name="BloodMoonWarning" title="goBloodMoonWarning" value_wrap="false" value_type="int" values="-1, 8, 18" display_names="goDisabled,goMorning,goEvening" value_localization_prefix="" />
+							<gameoption name="BloodMoonEnemyCount" title="goBloodMoonEnemyCount" value_wrap="false" value_type="int" values="4, 6, 8, 10, 12, 16, 24, 32, 64" display_names="" value_localization_prefix="goEnemie" />
+							<gameoption name="ZombieMove" title="goZombieMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
+							<gameoption name="ZombieMoveNight" title="goZombieMoveNight" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
+							<gameoption name="ZombieFeralMove" title="goZombieFeralMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
+							<gameoption name="ZombieBMMove" title="goZombieBMMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
+							<gameoption name="BuildCreate" title="goBuildCreate" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" platform="!PS5,!XBOX"/>
+							<gameoption name="BuildCreate" title="goBuildCreate" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" tooltip_key="goBuildCreateDescPS5" platform="PS5" />
+							<gameoption name="BuildCreate" title="goBuildCreate" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" tooltip_key="goBuildCreateDescXBOX" platform="XBOX" />
+							<gameoption name="AirDropFrequency" title="goAirDropFrequency" value_wrap="false" value_type="int" values="0, 24, 48, 96" display_names="goDisabled" value_localization_prefix="goAirDropValue" />
+							<gameoption name="JarRefund" title="goJarRefund" value_wrap="false" value_type="int" values="0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100" display_names="" value_localization_prefix="goLootAbundanceValue" />
+							<gameoption name="AirDropMarker" title="goMarkAirDrops" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
+							<gameoption name="BiomeProgression" title="goBiomeProgression" value_wrap="false" value_type="bool" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="" />
+						</grid>
+					</rect>
+
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsAdvanced">
+						<grid pos="6,-77" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+							<gameoption name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
+							<gameoption name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
+							<gameoption name="BlockDamageAIBM" title="goBlockDamageAIBM" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
+							<gameoption name="LootAbundance" title="goLootAbundance" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 150, 200" display_names="" value_localization_prefix="goLootAbundanceValue" />
+							<gameoption name="LootRespawnDays" title="goLootRespawnDays" value_wrap="false" value_type="int" values="-1, 5, 7, 10, 15, 20, 30, 40, 50" display_names="goDisabled" value_localization_prefix="goLootRespawnDaysValue" />
+							<gameoption name="MaxChunkAge" title="goMaxChunkAge" value_wrap="false" value_type="int" values="-1, 10, 20, 30, 40, 50, 75, 100" display_names="goDisabled" value_localization_prefix="goDay" />
+							<gameoption name="DeathPenalty" title="goDeathPenalty" value_wrap="false" value_type="int" values="" display_names="goNone,goXPOnly,goInjured,goPermaDeath" value_localization_prefix="" />
+							<gameoption name="DropOnDeath" title="goDropOnDeath" value_wrap="false" value_type="int" values="" display_names="goNone,goAll,goToolbelt,goBackpack,goDeleteAll" value_localization_prefix="" />
+							<gameoption name="DropOnQuit" title="goDropOnQuit" value_wrap="false" value_type="int" values="" display_names="goNone,goAll,goToolbelt,goBackpack" value_localization_prefix="" />
+							<gameoption name="EnemySpawnMode" title="goEnemySpawn" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
+							<gameoption name="StormFreq" title="goStormFreq" value_wrap="false" value_type="int" values="0, 50, 100, 150, 200, 300, 400, 500" display_names="" value_localization_prefix="goBlockDamageValue" />
+							<gameoption name="QuestProgressionDailyLimit" title="goQuestProgressionDailyLimit" value_wrap="false" value_type="int" values="-1,1,2,3,4,5,6,7,8" display_names="goUnlimited"/>
+							<gameoption name="PersistentPlayerProfiles" title="goPersistentCharacters" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
+						</grid>
+					</rect>
+					
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsMultiplayer">
+						<grid pos="6,-77" rows="14" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+							<gameoption name="PlayerKillingMode" title="goPlayerKillingMode" value_wrap="false" value_type="int" values="" display_names="goPlayerKillingModeNoKilling,goPlayerKillingModeKillAlliesOnly,goPlayerKillingModeKillStrangersOnly,goPlayerKillingModeKillEveryone" value_localization_prefix="" />
+							<gameoption name="LandClaimSize" title="goLandClaimSize" value_wrap="false" value_type="int" values="21, 31, 41, 51, 71" display_names="" value_localization_prefix="goLandClaimSizeValue" />
+							<gameoption name="LandClaimDeadZone" title="goLandClaimDeadZone" value_wrap="false" value_type="int" values="0, 5, 10, 15, 20, 30, 40, 50" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue" />
+							<gameoption name="LandClaimExpiryTime" title="goLandClaimExpiryTime" value_wrap="false" value_type="int" values="1, 2, 3, 4, 5, 7, 10, 30" display_names="" value_localization_prefix="goLandClaimExpiryTimeValue" />
+							<gameoption name="LandClaimDecayMode" title="goLandClaimDecayMode" value_wrap="false" value_type="int" values="" display_names="goLandClaimDecayModeSlow,goLandClaimDecayModeFast,goLandClaimDecayModeNone" value_localization_prefix="" />
+							<gameoption name="LandClaimOnlineDurabilityModifier" title="goLandClaimOnlineDurabilityModifier" value_wrap="false" value_type="int" values="0, 1, 2, 4, 8, 16, 32, 64, 128, 256" display_names="goInfinite" value_localization_prefix="goLandClaimOnlineDurabilityModifierValue" />
+							<gameoption name="LandClaimOfflineDurabilityModifier" title="goLandClaimOfflineDurabilityModifier" value_wrap="false" value_type="int" values="0, 1, 2, 4, 8, 16, 32, 64, 128, 256" display_names="goInfinite" value_localization_prefix="goLandClaimOfflineDurabilityModifierValue" />
+							<gameoption name="LandClaimOfflineDelay" title="goLandClaimOfflineDelay" value_wrap="false" value_type="int" values="0, 1, 5, 10, 20, 30, 60" display_names="" value_localization_prefix="goMinute" />
+							<gameoption name="BedrollDeadZoneSize" title="goBedrollDeadZoneSize" value_wrap="false" value_type="int" values="0, 5, 15, 30" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue" />
+							<gameoption name="BedrollExpiryTime" title="goBedrollExpiryTime" value_wrap="false" value_type="int" values="3, 7, 15, 30, 45, 60" display_names="" value_localization_prefix="goLandClaimExpiryTimeValue" />
+							<gameoption name="PartySharedKillRange" title="goPartySharedKillRange" value_wrap="false" value_type="int" values="0, 100, 500, 1000, 5000, 10000" display_names="goDisabled" value_localization_prefix="goPartySharedKillRangeValue" />				
+							<gameoption name="DayCount" title="goDayCount" value_wrap="false" value_type="int" values="0, 1, 3, 5, 7, 9" display_names="goUnlimited" value_localization_prefix="goDay" />
+							<gameoption name="FragLimit" title="goFragLimit" value_wrap="false" value_type="int" values="0, 1, 5, 10, 15, 20, 25, 50" display_names="goUnlimited" value_localization_prefix="goFrag" />
+							<gameoption name="MatchLength" title="goMatchLength" value_wrap="false" value_type="int" values="0, 5, 10, 15, 20, 30, 60" display_names="goUnlimited" value_localization_prefix="goMinute" />
+							<gameoption name="RebuildMap" title="goRebuildMap" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
+							<gameoption name="ZombiePlayers" title="goZombiePlayers" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
+							<gameoption name="MaxSpawnedZombies" title="goMaxSpawnedZombies" value_wrap="false" value_type="int" values="30, 60, 90, 120" display_names="" value_localization_prefix="" />
+							<gameoption name="ServerPort" title="goPort" value_wrap="false" value_type="int" values="" display_names="" value_localization_prefix="" is_textinput="true" character_limit="5"/>
+						</grid>
+					</rect>
+					
+				</rect>
+			</rect>
+		</rect>
+
+		<rect pos="0, -750">
+			<simplebutton name="btnBack" depth="3" pos="0, 0" width="200" height="48" font_size="32" caption_key="xuiBack" upper_case="true" />
+			<simplebutton name="btnDataManagement" depth="3" pos="205, 0" pivot="left" width="200" height="48" font_size="32" caption_key="xuiDmManageSaves" upper_case="true" />
+			<simplebutton name="btnDefaults" depth="3" pos="960, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiDefaults" visible="{isnewgame}" upper_case="true" />
+			<simplebutton name="btnStart" depth="3" pos="1165, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiStart" sound="[start]" parse_actions="true" />
+		</rect>
+		
+		<rect name="dm_bar_enabled" visible="{showbar}">
+			<dm_data_bar pos="0, -800" width="1185" />
+		</rect>
+		
+		<panel name="deleteSavePanel" depth="20" createuipanel="true" on_hover="true" disableautobackground="true">
+			<rect pos="400,-200" width="400" height="200">
+				<panel pos="-20,20" width="440" height="240" clipping="softclip" clippingsoftness="20,20" disableautobackground="true">
+					<sprite depth="0" name="backgroundMain" sprite="menu_empty" color="0,0,0,100" type="sliced" fillcenter="true" />
+				</panel>
+			
+				<panel name="header" pos="0,0" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
+					<label style="header.name" name="panelheader" pos="6,-6" width="550" text_key="xuiDeleteSaveGame" />
+				</panel>
+				
+				<rect pos="0,-50" height="106">
+					<sprite depth="10" name="border" sprite="menu_empty2px" color="[black]" type="sliced" fillcenter="false" globalopacity="true" globalopacitymod="0.9" />
+					<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" globalopacitymod="2" />
+					
+					<label name="deleteText" pos="10,-8" width="380" height="100" pivot="topleft" justify="left" depth="2" />
+				</rect>
+				<rect pos="0, -164">
+					<simplebutton name="btnCancel" depth="3" pos="0, 0" width="180" height="36" font_size="32" caption_key="xuiCancel" upper_case="true" />
+					<simplebutton name="btnConfirm" depth="3" pos="400, 0" pivot="right" width="180" height="36" font_size="32" caption_key="btnConfirm" upper_case="true" />
+				</rect>
+			</rect>
+		</panel>
+	</window>
+	
+</insertAfter>
+
+				<remove xpath="/windows/window[@name='newsScreen']" />
+
+				<append xpath="/windows">
+					<window name="newsScreen" depth="305" pos="0,0" width="1050" height="780" anchor="CenterCenter" controller="NewsScreen">
+
+						<texture name="bgTexture" depth="1" texture="@:Textures/UI/news_background.jpg" color="[white]" anchor_left="#cam,0,-5" anchor_right="#cam,1,5" anchor_bottom="#cam,0,-5" anchor_top="#cam,1,5" />
+
+						<rect name="logo" depth="3" createuiwidget="true">
+							<texture name="gameLogo" pos="570,90" height="800" pivot="center" texture="@:Textures/UI/news_logo.png" color="[white]" keep_aspect_ratio="BasedOnHeight" aspect_ratio="0.608" />
+						</rect>
+
+						<rect name="continue" depth="4" pos="550,-400" width="400" height="100" createuiwidget="true">
+							<label name="continueButtonLabelController" depth="11" pivot="center" style="smx_label_outline" text_key="xuiNewsContinueController" font_size="28" spacing_x="5" upper_case="true" color="[white]" overflow="resizefreely" parse_actions="true" visible="{is_controller_input}" />
+							<label name="continueButtonLabelKeyboard" depth="11" pivot="center" style="smx_label_outline" text_key="xuiNewsContinueKeyboard" font_size="28" spacing_x="5" upper_case="true" color="[white]" overflow="resizefreely" parse_actions="true" visible="{# !is_controller_input}" />
+							<button name="btnContinue" depth="10" pos="0,0" pivot="center" style="hover,press" sprite="smx_button_foreground" hoverscale="1.1" defaultcolor="[smx_element_button_foreground]" hovercolor="[smx_element_button_selected]" type="sliced" sound_play_on_hover="[default_hover]" sound="[default_click]" />
+						</rect>
+
+						<label name="copyrightNotice" depth="4" pivot="bottom" style="smx_label_outline" text_key="xuiNewsCopyrightNotice" font_size="14" spacing_x="4" justify="center" upper_case="true" color="255,255,255,150" anchor_left="#cam,0,50" anchor_right="#cam,1,-50" anchor_bottom="#cam,0,20" anchor_top="#cam,0,200" />
+
+						<rect name="featured" depth="5" pos="-700,-45" width="305" height="400" controller="NewsWindow" sources="@modfolder:/Changelog/War3zukVideo.xml" auto_cycle_time_per_entry="0">
+							<texture name="newsImage" depth="2" pivot="center" color="[white]" original_aspect_ratio="true" rect_size="0.996,0.996" rect_offset="0.002,0.002" />
+							<button name="btnLink" depth="10" pivot="center" style="hover,scroll,press" sprite="menu_empty" hoverscale="1.02" defaultcolor="0,0,0,1" disabledcolor="0,0,0,1" hovercolor="100,100,100,100" type="sliced" enabled="{has_news}" gamepad_selectable="{has_news}" nav_right="btnContinue" sound_play_on_hover="[default_hover]" />
+
+							<rect name="selectionButtons" depth="99" createuiwidget="true">
+								<smx_combobox_news	name="entrySelection"
+													pos="-140,-175"
+													width="280"
+													height="18"
+													type="ComboBoxFloat"
+													value_min="0.001"
+													value_max="1"
+													value_wrap="true"
+													value_increment="1"
+													scroll_by_increment="true"
+													format_string=" "
+													index_markers="false"
+													segmented_fill="true"
+													segment_count="1"
+													bg_color="35,31,31"
+													enabled_fill_color="[red]"
+													gamepad_selectable="false"
+													gamepad_decrease="GUI Page Down"
+													gamepad_increase="GUI Page Up"
+													gamepad_callout_size_increase="8" />
+							</rect>
+						</rect>
+
+						<rect name="game" depth="5" pos="-189,-45" width="706" height="400" controller="NewsWindow" sources="@modfolder:/Changelog/War3zukNews.xml">
+							<sprite name="backgroundGame" depth="-3" pivot="center" sprite="menu_empty" color="0,0,0,196" type="sliced" globalopacity="false" />
+							<texture name="newsImage" depth="-2" pos="0,0" height="400" pivot="center" color="255,255,255,96" original_aspect_ratio="true" rect_size="0.996,0.996" rect_offset="0.002,0.002" />
+							<button name="btnLink" depth="10" pivot="center" style="hover,scroll,press" sprite="menu_empty" hoverscale="1.01" defaultcolor="0,0,0,1" disabledcolor="0,0,0,1" hovercolor="100,100,100,100" type="sliced" enabled="{has_news}" gamepad_selectable="{has_news}" nav_left="btnContinue" sound_play_on_hover="[default_hover]" />
+
+							<label name="headline1" depth="1" pos="0,175" width="680" height="34" pivot="center" style="smx_label_outline" text="{headline}" font_size="32" spacing_x="2" justify="left" upper_case="true" color="[red]" overflow="ClampContent" />
+							<label name="headline2" depth="1" pos="0,145" width="680" height="30" pivot="center" style="smx_label_outline" text="{headline2}" font_size="28" spacing_x="2" justify="left" upper_case="true" color="[white]" />
+
+							<label name="date" depth="1" pos="5,120" width="670" height="18" pivot="center" style="smx_label_outline" text="{date} - {age}" font_size="16" spacing_x="1" color="[lightestGrey]" />
+							<label name="text" depth="1" pos="-315,100" width="650" height="250" pivot="topleft" style="smx_label_outline" text="{text}" font_size="20" spacing_x="1" justify="left" color="[lightestGrey]" />
+
+							<label name="readmore" depth="1" pos="10,-160" width="650" height="18" pivot="center" style="smx_label_outline" text_key="xuiNewsReadMore" font_size="16" spacing_x="2" justify="left" color="[lightestGrey]" />
+
+							<rect name="selectionButtons" depth="99" createuiwidget="true" anchor_left="backgroundGame,0,0" anchor_right="backgroundGame,1,0" anchor_bottom="backgroundGame,0,-50" anchor_top="backgroundGame,0,-10">
+								<smx_combobox_news	name="entrySelection"
+													pos="200,35"
+													width="300"
+													height="18"
+													type="ComboBoxFloat"
+													value_min="0.001"
+													value_max="2"
+													value_wrap="true"
+													value_increment="1"
+													scroll_by_increment="true"
+													format_string=" "
+													index_markers="false"
+													segmented_fill="true"
+													segment_count="2"
+													bg_color="35,31,31"
+													enabled_fill_color="[red]"
+													gamepad_selectable="false"
+													gamepad_decrease="GUI Window Paging Up"
+													gamepad_increase="GUI Window Paging Down"
+													gamepad_callout_size_increase="8" />
+							</rect>
+						</rect>
+
+						<rect name="smxChangeLog" depth="5" pos="-687,-365" width="330" height="200" controller="NewsWindow" sources="@modfolder:/Changelog/War3zukmenuCL.xml" visible="{has_news}">
+							<sprite name="backgroundGame" depth="-3" pivot="center" sprite="menu_empty" color="0,0,0,196" type="sliced" globalopacity="false" />
+							<texture name="newsImage" depth="-2" pos="0,0" height="200" pivot="center" color="255,255,255,96" original_aspect_ratio="true" rect_size="0.996,0.996" rect_offset="0.002,0.002" />
+							<button name="btnLink" depth="10" pivot="center" style="hover,scroll,press" sprite="menu_empty" hoverscale="1.025" defaultcolor="0,0,0,1" disabledcolor="0,0,0,1" hovercolor="100,100,100,100" type="sliced" enabled="{has_news}" gamepad_selectable="{has_news}" nav_right="btnContinue" sound_play_on_hover="[default_hover]" />
+
+							<sprite name="textBackground" depth="0" pos="0,-63" width="330" height="75" pivot="center" sprite="menu_empty" color="0,0,0,225" type="sliced" globalopacity="false" />
+
+							<label name="headline1" depth="0" pos="5,-12" width="320" height="24" pivot="center" style="smx_label_outline" text="{headline}" font_size="22" spacing_x="2" justify="left" upper_case="true" color="[red]" overflow="ClampContent" />
+							<label name="headline2" depth="1" pos="-65,-36" width="150" height="18" pivot="center" style="smx_label_outline" text="{headline2}" font_size="12" spacing_x="2" justify="left" upper_case="true" color="[lightestGrey]" />
+
+							<label name="date" depth="1" pos="85,-37" width="150" height="18" pivot="center" style="smx_label_outline" text="{date} - {age}" font_size="12" spacing_x="1" justify="right" color="[lightestGrey]" />
+							<label name="text" depth="1" pos="-125,-54" width="280" height="18" pivot="topleft" style="smx_label_outline" text="{text}" font_size="16" spacing_x="1" color="[white]" />
+
+							<label name="readmore" depth="1" pos="0,80" width="330" pivot="center" style="smx_label_outline" text="Click to view..." font_size="12" spacing_x="1" justify="center" color="[lightestGrey]" />
+
+							<rect name="selectionButtons" depth="99" createuiwidget="true" anchor_left="backgroundGame,0,0" anchor_right="backgroundGame,1,0" anchor_bottom="backgroundGame,0,-50" anchor_top="backgroundGame,0,-10">
+								<smx_combobox_news	name="entrySelection"
+													pos="15,35"
+													width="300"
+													height="18"
+													type="ComboBoxFloat"
+													value_min="0.001"
+													value_max="2"
+													value_wrap="true"
+													value_increment="1"
+													scroll_by_increment="true"
+													format_string=" "
+													index_markers="false"
+													segmented_fill="true"
+													segment_count="2"
+													bg_color="35,31,31"
+													enabled_fill_color="[red]"
+													gamepad_selectable="false"
+													gamepad_decrease="GUI Window Paging Up"
+													gamepad_increase="GUI Window Paging Down"
+													gamepad_callout_size_increase="8" />
+							</rect>
+						</rect>
+
+<!-- Test --><!--
+						<rect name="WarChangeLog2" depth="5" pos="-687,0" width="330" height="200" controller="NewsWindow" sources="@modfolder:/Changelog/ZombieBacken.xml" visible="{has_news}">
+							<sprite name="backgroundGame" depth="-3" pivot="center" sprite="menu_empty" color="0,0,0,196" type="sliced" globalopacity="false" />
+							<texture name="newsImage" depth="-2" pos="0,0" height="200" pivot="center" color="255,255,255,96" original_aspect_ratio="true" rect_size="0.996,0.996" rect_offset="0.002,0.002" />
+							<button name="btnLink" depth="10" pivot="center" style="hover,scroll,press" sprite="menu_empty" hoverscale="1.025" defaultcolor="0,0,0,1" disabledcolor="0,0,0,1" hovercolor="100,100,100,100" type="sliced" enabled="{has_news}" gamepad_selectable="{has_news}" nav_right="btnContinue" sound_play_on_hover="[default_hover]" />
+
+							<sprite name="textBackground" depth="0" pos="0,-63" width="330" height="75" pivot="center" sprite="menu_empty" color="0,0,0,225" type="sliced" globalopacity="false" />
+
+							<label name="headline1" depth="0" pos="5,-12" width="320" height="24" pivot="center" text="{headline}" font_size="22" spacing_x="2" justify="left" upper_case="true" color="[red]" overflow="ClampContent" />
+							<label name="headline2" depth="1" pos="-65,-36" width="150" height="18" pivot="center" text="{headline2}" font_size="12" spacing_x="2" justify="left" upper_case="true" color="[lightestGrey]" />
+
+							<label name="date" depth="1" pos="85,-37" width="150" height="18" pivot="center" text="{date} - {age}" font_size="12" spacing_x="1" justify="right" color="[lightestGrey]" />
+							<label name="text" depth="1" pos="-125,-54" width="280" height="18" pivot="topleft" text="{text}" font_size="16" spacing_x="1" color="[white]" />
+
+							<label name="readmore" depth="1" pos="0,80" width="330" pivot="center" text="Click to view..." font_size="12" spacing_x="1" justify="center" color="[lightestGrey]" />
+
+							<rect name="selectionButtons" depth="99" createuiwidget="true" anchor_left="backgroundGame,0,0" anchor_right="backgroundGame,1,0" anchor_bottom="backgroundGame,0,-50" anchor_top="backgroundGame,0,-10">
+								<War_combobox_news	name="entrySelection"
+													pos="15,35"
+													width="300"
+													height="18"
+													type="ComboBoxFloat"
+													value_min="0.001"
+													value_max="1"
+													value_wrap="true"
+													value_increment="1"
+													scroll_by_increment="true"
+													format_string=" "
+													index_markers="false"
+													segmented_fill="true"
+													segment_count="1"
+													bg_color="35,31,31"
+													enabled_fill_color="[red]"
+													gamepad_selectable="false"
+													gamepad_decrease="GUI Window Paging Up"
+													gamepad_increase="GUI Window Paging Down"
+													gamepad_callout_size_increase="8" />
+							</rect>
+						</rect>
+--><!-- Test -->
+						<!--Zweites Fenster-->
+						<rect name="smxLatestVersions" depth="5" pos="-342,-365" width="330" height="200" controller="NewsWindow" sources="@modfolder:/Changelog/War3zukLatest.xml" visible="{has_news}">
+							<sprite name="backgroundGame" depth="-3" pivot="center" sprite="menu_empty" color="0,0,0,196" type="sliced" globalopacity="false" />
+							<texture name="newsImage" depth="-2" pos="0,0" height="200" pivot="center" color="255,255,255,96" original_aspect_ratio="true" rect_size="0.996,0.996" rect_offset="0.002,0.002" />
+							<button name="btnLink" depth="10" pivot="center" style="hover,scroll,press" sprite="menu_empty" hoverscale="1.025" defaultcolor="0,0,0,1" disabledcolor="0,0,0,1" hovercolor="100,100,100,100" type="sliced" enabled="{has_news}" gamepad_selectable="{has_news}" nav_right="btnContinue" sound_play_on_hover="[default_hover]" />
+
+							<sprite name="textBackground" depth="0" pos="0,-63" width="330" height="75" pivot="center" sprite="menu_empty" color="0,0,0,225" type="sliced" globalopacity="false" />
+
+							<label name="headline1" depth="0" pos="5,-12" width="320" height="24" pivot="center" style="smx_label_outline" text="{headline}" font_size="22" spacing_x="2" justify="left" upper_case="true" color="[red]" overflow="ClampContent" />
+							<label name="headline2" depth="1" pos="-65,-36" width="150" height="18" pivot="center" style="smx_label_outline" text="{headline2}" font_size="12" spacing_x="2" justify="left" color="[lightestGrey]" upper_case="true" />
+
+							<label name="date" depth="1" pos="85,-37" width="150" height="18" pivot="center" style="smx_label_outline" text="{date} - {age}" font_size="12" spacing_x="1" justify="right" color="[lightestGrey]" />
+							<label name="text" depth="1" pos="-125,-54" width="280" height="18" pivot="topleft" style="smx_label_outline" text="{text}" font_size="16" spacing_x="1" color="[white]" />
+
+							<label name="readmore" depth="1" pos="0,80" width="330" pivot="center" style="smx_label_outline" text="Click to download..." font_size="12" spacing_x="1" justify="center" color="[lightestGrey]" />
+
+							<rect name="selectionButtons" depth="99" createuiwidget="true" anchor_left="backgroundGame,0,0" anchor_right="backgroundGame,1,0" anchor_bottom="backgroundGame,0,-50" anchor_top="backgroundGame,0,-10">
+								<smx_combobox_news	name="entrySelection"
+													pos="15,35"
+													width="300"
+													height="18"
+													type="ComboBoxFloat"
+													value_min="0.001"
+													value_max="2"
+													value_wrap="true"
+													value_increment="1"
+													scroll_by_increment="true"
+													format_string=" "
+													index_markers="false"
+													segmented_fill="true"
+													segment_count="2"
+													bg_color="35,31,31"
+													enabled_fill_color="[red]"
+													gamepad_selectable="false"
+													gamepad_decrease="GUI Window Paging Up"
+													gamepad_increase="GUI Window Paging Down"
+													gamepad_callout_size_increase="8" />
+							</rect>
+						</rect>
+
+						<rect name="smxOptionals" depth="5" pos="2,-365" width="330" height="200" controller="NewsWindow" sources="@modfolder:/Changelog/War3zukOptionals.xml" visible="{has_news}">
+							<sprite name="backgroundGame" depth="-3" pivot="center" sprite="menu_empty" color="0,0,0,196" type="sliced" globalopacity="false" />
+							<texture name="newsImage" depth="-2" pos="0,0" height="200" pivot="center" color="255,255,255,96" original_aspect_ratio="true" rect_size="0.996,0.996" rect_offset="0.002,0.002" />
+							<button name="btnLink" depth="10" pivot="center" style="hover,scroll,press" sprite="menu_empty" hoverscale="1.025" defaultcolor="0,0,0,1" disabledcolor="0,0,0,1" hovercolor="100,100,100,100" type="sliced" enabled="{has_news}" gamepad_selectable="{has_news}" nav_right="btnContinue" sound_play_on_hover="[default_hover]" />
+
+							<sprite name="textBackground" depth="0" pos="0,-63" width="330" height="75" pivot="center" sprite="menu_empty" color="0,0,0,225" type="sliced" globalopacity="false" />
+
+							<label name="headline1" depth="0" pos="5,-12" width="320" height="24" pivot="center" style="smx_label_outline" text="{headline}" font_size="22" spacing_x="2" justify="left" upper_case="true" color="[red]" overflow="ClampContent" />
+							<label name="headline2" depth="1" pos="-65,-36" width="150" height="18" pivot="center" style="smx_label_outline" text="{headline2}" font_size="12" spacing_x="2" justify="left" upper_case="true" color="[lightestGrey]" />
+
+							<label name="date" depth="1" pos="85,-37" width="150" height="18" pivot="center" style="smx_label_outline" text="{date} - {age}" font_size="12" spacing_x="1" justify="right" color="[lightestGrey]" />
+							<label name="text" depth="1" pos="-125,-54" width="280" height="40" pivot="topleft" style="smx_label_outline" text="{text}" font_size="16" spacing_x="1" color="[white]" />
+
+							<label name="readmore" depth="1" pos="0,80" width="330" pivot="center" style="smx_label_outline" text="Click to download..." font_size="12" spacing_x="1" justify="center" color="[lightestGrey]" />
+
+							<rect name="selectionButtons" depth="99" createuiwidget="true" anchor_left="backgroundGame,0,0" anchor_right="backgroundGame,1,0" anchor_bottom="backgroundGame,0,-50" anchor_top="backgroundGame,0,-10">
+								<smx_combobox_news	name="entrySelection"
+													pos="15,35"
+													width="300"
+													height="18"
+													type="ComboBoxFloat"
+													value_min="0.001"
+													value_max="1"
+													value_wrap="true"
+													value_increment="1"
+													scroll_by_increment="true"
+													format_string=" "
+													index_markers="false"
+													segmented_fill="true"
+													segment_count="1"
+													bg_color="35,31,31"
+													enabled_fill_color="[red]"
+													gamepad_selectable="false"
+													gamepad_decrease="GUI Window Paging Up"
+													gamepad_increase="GUI Window Paging Down"
+													gamepad_callout_size_increase="8" />
+							</rect>
+						</rect>
+					</window>
+				</append>
+				
+	<set xpath="/windows/window[@name='menuBackground']/@width">1920</set>
+	<set xpath="/windows/window[@name='menuBackground']/@height">1080</set>
+	<set xpath="/windows/window[@name='menuBackground']/texture/@texture">@modfolder:Textures/menu/WARmenu.png</set>
+	<set xpath="/windows/window[@name='mainMenuLogo']/texture/@texture">@modfolder:Textures/menu/WARlogo.png</set>
+
+	<append xpath="/windows/window[@name='menuBackground']">
+		<videoplayer name="bgTexture" depth="2" video="@modfolder:Videos/smxcore_menu_background.mp4" autoplay="true" loop="true" anchor_left="#cam,0,-5" anchor_bottom="#cam,0,-5" anchor_right="#cam,1,5" anchor_top="#cam,1,5" />
+	</append>
+
+</Windows>

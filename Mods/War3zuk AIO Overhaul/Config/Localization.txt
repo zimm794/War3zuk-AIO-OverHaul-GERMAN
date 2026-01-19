@@ -4758,3 +4758,20 @@ zombieBikerHDVFeral,entityclasses,Entity,,,Feral Biker Reggie,,Wilder Biker Regg
 zombieBikerHDVRadiated,entityclasses,Entity,,,Radiated Biker Albert,,Verstrahlter Biker Albert,,,,,,,,,,,,
 AUTO_FIX_KEY_1884,,,,,,,,,,,,,,,,,,,
 BearRugDesc,,item,Tools,newKey,A Beautiful Rug made from the hide of a Harvested Bear.,,Ein wunderschöner Teppich aus dem Fell eines erlegten Bären.,,,,,,,,,,,,
+
+ResourceLiquidHoney,,item,Food,newKey,Liquid Honey,,Flüssiger Honig,
+ResourceLiquidHoneyDesc,,item,Tools,newKey,"Found by harvesting certain trees that have active Bee Hives in them.",,"Gefunden durch das Ernten bestimmter Bäume, die aktive Bienenvölker beherbergen.",
+
+vehicleFLTractor,vehicles,item,,,FarmLife Tractor,,FarmLife Traktor,
+vehicleFLTractorPlaceable,vehicles,item,,,FarmLife Tractor,,FarmLife Traktor,
+
+FLFarmingAxe,,item,Food,newKey,FarmLife Axe,,FarmLife Axt,
+FLFarmingAxeDesc,,item,Tools,newKey,"FarmLife Axe is a great tool for harvesting as well as upgrading.",,"FarmLife Axt ist ein großartiges Werkzeug sowohl für die Ernte als auch für die Aufrüstung.",
+FLFarmingShovel,,item,Food,newKey,FarmLife Shovel,,FarmLife Schaufel,
+FLFarmingShovelDesc,,item,Tools,newKey,"FarmLife Shovel is a great starter craftable for digging up those holes, it uses slightly less Stamina than the Iron version but is slightly better at digging.",,"Die FarmLife-Schaufel ist ein tolles Starter-Herstellungswerkzeug zum Ausheben von Löchern. Sie verbraucht etwas weniger Ausdauer als die Eisenversion, ist aber beim Graben etwas besser.",
+
+FLTractorChassis,,item,Food,newKey,Tractor Chassis,,Traktorfahrgestell,
+FLTractorAccessories,,item,Food,newKey,Tractor Accessories,,Traktorzubehör,
+
+FLTractorChassisDesc,,item,Tools,newKey,"Chassis for the FarmLife Tractor.",,"Fahrgestell für den FarmLife-Traktor.",
+FLTractorAccessoriesDesc,,item,Tools,newKey,"Accessories for the FarmLife Tractor.",,"Zubehör für den FarmLife Traktor.",

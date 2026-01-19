@@ -1,0 +1,35 @@
+<news>
+
+  <entry>
+    <date>2026-01-19 12:00:00Z</date>
+    <title>ZOMBIE-BACKEN</title>
+    <title2>WAR3ZUK IN DEUTSCH</title2>
+    <text>Dies ist eine vollständige deutsche Übersetzung der War3zuk AIO OverHaul Mod.
+Alle Texte wurden originalgetreu und spielnah ins Deutsche übertragen,
+ohne das Gameplay oder die Struktur der ursprünglichen Mod zu verändern.
+Diese Übersetzung wird laufend gepflegt und an neue Mod-Versionen angepasst.
+Hinweis: Es handelt sich ausschließlich um eine Übersetzung.
+Alle Inhalte und Mechaniken stammen vom originalen Mod-Autor.</text>
+    <link>https://github.com/zimm794/War3zuk-AIO-OverHaul-GERMAN</link>
+    <imagerelpath>war3zukZB.png</imagerelpath>
+  </entry>
+
+  <entry>
+    <date>2025-08-27 12:00:00Z</date>
+    <title>War3zuk</title>
+    <title2>News</title2>
+    <text>War3zuk AIO OverHaul 7D2D v2.5 B23 Final Stable Build
+
+What this Mod is about, This Mod changes around 90% of the Total game Mechanics in the sense of Code, It adds many weapons All of which have been
+bought from various stores to try to get the best looking and playing Mod I can manage, Its constantly being worked on and improved and should
+always be kept upto date with the latest version of the main core game, The AIO also adds many Blocks and Different items that require abit
+more learning in order to understand how it all works, A good example of this is the main weapons are no longer repaired using the default
+repair kits but instead use 4 Custom made variants that are crafted on the player to do with each type of gun.. The link above explains the
+Mod in much more detail.. Some of My Original Modlets that were used to create this AIO are as follows.. Around 20 or so more have been added
+directly to the AIO that cant be made into Modlets due to them needing certain bits of code from the AIO so would cause Conflicts..
+Thank you to the following Modlet creators who helped shape out the world with their modlets.</text>
+    <link>https://dev.azure.com/war3zuk/_git/War3zuk-AIO-Mod-Launcher-v2?path=/ChangeLog.rtf</link>
+    <imagerelpath>War3zukMenu.png</imagerelpath>
+  </entry>
+
+</news>

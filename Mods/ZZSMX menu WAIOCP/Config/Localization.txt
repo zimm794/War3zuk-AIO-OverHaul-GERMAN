@@ -1,0 +1,4 @@
+Key,File,Type,UsedInMainMenu,NoTranslate,english,Context / Alternate Text,german,latam,french,italian,japanese,koreana,polish,brazilian,russian,turkish,schinese,tchinese,spanish
+
+smxCurrentVersionBranch,UI,Menu,x,,War3zuk 2.4 German Stable,..
+smxCurrentVersionNumber,UI,Menu,x,,TFP Game Files v2.5 B27 Stable,..

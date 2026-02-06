@@ -4,11 +4,6 @@
 <set xpath="/buffs/buff[@name='buffDrugSteroids']/effect_group/passive_effect[@name='CarryCapacity']/@value">105</set>
 	
 <remove xpath="/buffs/buff[@name='buffNewbieCoat']"/>
-<!--<remove xpath="/buffs/buff[starts-with(@name, 'buffIsOnFire')]/effect_group[starts-with(@name, 'run particles')]"/>-->
-<remove xpath="/buffs/buff[@name='buffBurnt_Storm']"/>
-<remove xpath="/buffs/buff[@name='buffDesert_Storm']"/>
-<remove xpath="/buffs/buff[@name='buffSnow_Storm']"/>
-<remove xpath="/buffs/buff[@name='buffWasteland_Storm']"/>
 
 <append xpath="//buff[@name='buffStatusCheck01']/effect_group/triggered_effect[@buff='buffDrowning01']">
 	<requirement name="!HasBuff" buff="buffHDScubaTank"/>
@@ -94,311 +89,782 @@
 		
 </insertAfter>
 
+<remove xpath="/buffs/buff[@name='buffBurnt_Storm']"/>
+<remove xpath="/buffs/buff[@name='buffBurnt_Storm_Stage01']"/>
+<remove xpath="/buffs/buff[@name='buffBurnt_Storm_Stage02']"/>
+<remove xpath="/buffs/buff[@name='buffBurnt_Storm_Recover01']"/>
+
+<remove xpath="/buffs/buff[@name='buffDesert_Storm']"/>
+<remove xpath="/buffs/buff[@name='buffDesert_Storm_Stage01']"/>
+<remove xpath="/buffs/buff[@name='buffDesert_Storm_Stage02']"/>
+<remove xpath="/buffs/buff[@name='buffDesert_Storm_Recover01']"/>
+
+<remove xpath="/buffs/buff[@name='buffSnow_Storm']"/>
+<remove xpath="/buffs/buff[@name='buffSnow_Storm_Stage01']"/>
+<remove xpath="/buffs/buff[@name='buffSnow_Storm_Stage02']"/>
+<remove xpath="/buffs/buff[@name='buffSnow_Storm_Recover01']"/>
+
+<remove xpath="/buffs/buff[@name='buffWasteland_Storm']"/>
+<remove xpath="/buffs/buff[@name='buffWasteland_Storm_Stage01']"/>
+<remove xpath="/buffs/buff[@name='buffWasteland_Storm_Stage02']"/>
+<remove xpath="/buffs/buff[@name='buffWasteland_Storm_Recover01']"/>
+
 <insertAfter xpath="/buffs/buff[@name='buffHazard_Slow']" >
 
-<buff name="buffBurnt_Storm" name_key="buffBurnt_StormName" description_key="buffBurnt_StormDesc" icon="ui_game_symbol_storm" icon_color="150,100,50" icon_blink="true">
-    <damage_type value="weather" />
-    <update_rate value="1" />
-    <display_value value=".StormTimerDisplay" />
-    <display_value_format value="time" />
-    <effect_group>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".StormTimerGrace" operation="set" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".StormTimerDMG" operation="set" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$StormDamage" operation="set" value="0"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="10" effect_name="StormBurnt">
-        <requirement name="!HasBuff" buff="god" />
-      </triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="10" effect_name="StormBurnt" />
-      <triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffBurnt_Storm" />
-    </effect_group>
-    <effect_group>
-      <requirement name="CVarCompare" cvar=".StormTimerGrace" operation="GT" value="0" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerGrace" operation="subtract" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDisplay" operation="set" value="@.StormTimerGrace" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <requirement name="CVarCompare" cvar=".StormTimerGrace" operation="LTE" value="0" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDMG" operation="subtract" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDisplay" operation="set" value="@.StormTimerDMG" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <requirement name="!HasBuff" buff="god" />
-      <requirement name="CVarCompare" cvar=".StormTimerGrace" operation="LTE" value="0" />
-      <requirement name="CVarCompare" cvar=".StormTimerDMG" operation="EQ" value="5" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="@$StormDamage" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="player#painsm" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <requirement name="CVarCompare" cvar=".StormTimerDMG" operation="LTE" value="0" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDMG" operation="set" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Smoke2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Smoke2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".StormTimerGrace,.StormTimerDMG,$StormDamage,$StormDamageTotal,.StormTimerDisplay" />
-    </effect_group>
-</buff>
+	<buff name="buffBurnt_Storm" hidden="true" name_key="buffBurnt_StormName" description_key="buffBurnt_StormDesc" icon="ui_game_symbol_storm_burnt" icon_color="150,100,50" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBurnt_Storm_Stage01">
+				<requirement name="!HasBuff" buff="god"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffBurnt_Storm"/>
+		</effect_group>
+		<effect_group>
+			<passive_effect name="LootDropProb" operation="perc_add" value="5"/>
+		</effect_group>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".StormTimerGrace,.StormTimerDMG,$StormDamage,$StormDamageTotal,.StormTimerDisplay"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".BurntStage01BaseTime,.BurntStage01DMGBase,.BurntStage01DMGRate,.BurntStage01Target"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffBurnt_Storm_Recover01"/>
+		</effect_group>
+	</buff>
 
-<buff name="buffDesert_Storm" name_key="buffDesert_StormName" description_key="buffDesert_StormDesc" icon="ui_game_symbol_storm" icon_color="200,200,100" icon_blink="true">
-    <damage_type value="weather" />
-    <update_rate value="1" />
-    <display_value value=".StormTimerDisplay" />
-    <display_value_format value="time" />
-    <effect_group>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".StormTimerGrace" operation="set" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".StormTimerDMG" operation="set" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$StormDamage" operation="set" value="0"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="10" effect_name="StormDesert">
-        <requirement name="!HasBuff" buff="god" />
-      </triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="10" effect_name="StormDesert" />
-      <triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffDesert_Storm" />
-    </effect_group>
-    <effect_group>
-      <requirement name="CVarCompare" cvar=".StormTimerGrace" operation="GT" value="0" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerGrace" operation="subtract" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDisplay" operation="set" value="@.StormTimerGrace" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <requirement name="CVarCompare" cvar=".StormTimerGrace" operation="LTE" value="0" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDMG" operation="subtract" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDisplay" operation="set" value="@.StormTimerDMG" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <requirement name="!HasBuff" buff="god" />
-      <requirement name="CVarCompare" cvar=".StormTimerGrace" operation="LTE" value="0" />
-      <requirement name="CVarCompare" cvar=".StormTimerDMG" operation="EQ" value="5" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="@$StormDamage" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="player#painsm" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <requirement name="CVarCompare" cvar=".StormTimerDMG" operation="LTE" value="0" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDMG" operation="set" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Hot3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".StormTimerGrace,.StormTimerDMG,$StormDamage,$StormDamageTotal,.StormTimerDisplay" />
-    </effect_group>
-</buff>
+	<buff name="buffBurnt_Storm_Stage01" name_key="buffBurnt_Storm_Stage01Name" description_key="buffBurnt_Storm_Stage01Desc" icon="ui_game_symbol_storm_burnt" icon_color="255,204,0" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<display_value value=".BurntStage01Display"/>
+		<display_value_format value="time"/>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".BurntTrackTime" operation="GT" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BurntStage01BaseTime" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BurntStage01Target" operation="set" value="@.BurntStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BurntStage01Target" operation="multiply" value="@.insulationTotal"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BurntStage01Target" operation="add" value="@.BurntStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BurntStage01Display" operation="set" value="@.BurntStage01Target"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BurntStage01Display" operation="subtract" value="@.BurntTrackTime"/>
+		</effect_group>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntTrackTime" operation="add" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffBurnt_Storm_Recover01"/>
+			<requirement name="CVarCompare" cvar=".BurntTrackTime" operation="LT" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BurntStage01BaseTime" operation="set" value="30"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffBurnt_Storm_Recover01"/>
+			<requirement name="CVarCompare" cvar=".BurntTrackTime" operation="LT" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01BaseTime" operation="set" value="30"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffBurnt_Storm_Recover01"/>
+			<requirement name="CVarCompare" cvar=".BurntStage01BaseTime" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01Target" operation="set" value="@.BurntStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01Target" operation="multiply" value="@.insulationTotal"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01Target" operation="add" value="@.BurntStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01Display" operation="set" value="@.BurntStage01Target"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01Display" operation="subtract" value="@.BurntTrackTime"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".BurntStage01BaseTime" operation="EQ" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01BaseTime" operation="set" value="30"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffBurnt_Storm_Recover01"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BurntStage01DMGBase" operation="set" value="25"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01DMGRate" operation="set" value="@.BurntStage01DMGBase"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01DMGRate" operation="divide" value="@.BurntStage01Target">
+					<requirement name="CVarCompare" cvar=".BurntStage01Target" operation="GT" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01DMG" operation="add" value="@.BurntStage01DMGRate"/>
+				<passive_effect name="StaminaMaxBlockage" operation="base_add" value="@.BurntStage01DMG"/>
+		</effect_group>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="10" effect_name="StormBurnt">
+				<requirement name="!HasBuff" buff="god"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="10" effect_name="StormBurnt"/>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffBurnt_Storm_Stage01"/>
+		</effect_group>
+		<effect_group>
+			<requirement_group op="or">
+				<requirement name="IsSheltered"/>
+				<requirement name="!HasBuff" buff="buffBurnt_Storm"/>
+			</requirement_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurnt_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffBurnt_Storm_Recover01">
+					<requirement name="!HasBuff" buff="buffBurnt_Storm_Recover01"/>
+				</triggered_effect>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".BurntStage01Display" operation="LTE" value="0"/>
+			<requirement name="!HasBuff" buff="buffBurnt_Storm_Recover01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurnt_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".BurntStage01Display"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffBurnt_Storm_Stage02"/>
+		</effect_group>
+	</buff>
 
-<buff name="buffSnow_Storm" name_key="buffSnow_StormName" description_key="buffSnow_StormDesc" icon="ui_game_symbol_storm" icon_color="100,100,255" icon_blink="true">
-    <damage_type value="weather" />
-    <update_rate value="1" />
-    <display_value value=".StormTimerDisplay" />
-    <display_value_format value="time" />
-    <effect_group>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".StormTimerGrace" operation="set" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".StormTimerDMG" operation="set" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$StormDamage" operation="set" value="0"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="10" effect_name="StormSnow">
-        <requirement name="!HasBuff" buff="god" />
-      </triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="10" effect_name="StormSnow" />
-      <triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffSnow_Storm" />
-    </effect_group>
-    <effect_group>
-      <requirement name="CVarCompare" cvar=".StormTimerGrace" operation="GT" value="0" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerGrace" operation="subtract" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDisplay" operation="set" value="@.StormTimerGrace" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <requirement name="CVarCompare" cvar=".StormTimerGrace" operation="LTE" value="0" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDMG" operation="subtract" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDisplay" operation="set" value="@.StormTimerDMG" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <requirement name="!HasBuff" buff="god" />
-      <requirement name="CVarCompare" cvar=".StormTimerGrace" operation="LTE" value="0" />
-      <requirement name="CVarCompare" cvar=".StormTimerDMG" operation="EQ" value="5" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="@$StormDamage" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="player#painsm" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <requirement name="CVarCompare" cvar=".StormTimerDMG" operation="LTE" value="0" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDMG" operation="set" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Cold3"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold3"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".StormTimerGrace,.StormTimerDMG,$StormDamage,$StormDamageTotal,.StormTimerDisplay" />
-    </effect_group>
-</buff>
+	<buff name="buffBurnt_Storm_Stage02" name_key="buffBurnt_Storm_Stage02Name" description_key="buffBurnt_Storm_Stage02Desc" icon="ui_game_symbol_storm_burnt" icon_color="255,0,0" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="10" effect_name="StormBurnt">
+				<requirement name="!HasBuff" buff="god"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="10" effect_name="StormBurnt"/>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffBurnt_Storm_Stage02"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffBurnt_Storm_Recover01,god"/>
+				<passive_effect name="StaminaMaxBlockage" operation="base_add" value="@.BurntStage01DMG">
+					<requirement name="!HasBuff" buff="buffBurnt_Storm_Recover01"/>
+				</passive_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-4">
+					<requirement name="!HasBuff" buff="buffBurnt_Hazard_Over,buffBurntSmoothieRun"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-2">
+					<requirement name="HasBuff" buff="buffBurnt_Hazard_Over"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-2">
+					<requirement name="HasBuff" buff="buffBurntSmoothieRun"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="player#painsm"/>
+		</effect_group>
+		<effect_group>
+			<requirement_group op="or">
+				<requirement name="IsSheltered"/>
+				<requirement name="!HasBuff" buff="buffBurnt_Storm"/>
+			</requirement_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurnt_Storm_Stage02"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffBurnt_Storm_Recover01"/>
+		</effect_group>
+	</buff>
 
-<buff name="buffWasteland_Storm" name_key="buffWasteland_StormName" description_key="buffWasteland_StormDesc" icon="ui_game_symbol_storm" icon_color="100,255,100" icon_blink="true">
-    <damage_type value="weather" />
-    <update_rate value="1" />
-    <display_value value=".StormTimerDisplay" />
-    <display_value_format value="time" />
-    <effect_group>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".StormTimerGrace" operation="set" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".StormTimerDMG" operation="set" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$StormDamage" operation="set" value="0"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="10" effect_name="StormWasteland">
-        <requirement name="!HasBuff" buff="god" />
-      </triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="10" effect_name="StormWasteland" />
-      <triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffWasteland_Storm" />
-    </effect_group>
-    <effect_group>
-      <requirement name="CVarCompare" cvar=".StormTimerGrace" operation="GT" value="0" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerGrace" operation="subtract" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDisplay" operation="set" value="@.StormTimerGrace" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <requirement name="CVarCompare" cvar=".StormTimerGrace" operation="LTE" value="0" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDMG" operation="subtract" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDisplay" operation="set" value="@.StormTimerDMG" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <requirement name="!HasBuff" buff="god" />
-      <requirement name="CVarCompare" cvar=".StormTimerGrace" operation="LTE" value="0" />
-      <requirement name="CVarCompare" cvar=".StormTimerDMG" operation="EQ" value="5" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="@$StormDamage" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="player#painsm" />
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <requirement name="CVarCompare" cvar=".StormTimerDMG" operation="LTE" value="0" />
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".StormTimerDMG" operation="set" value="-1"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="RadiationTemp2"></triggered_effect>
-      <passive_effect name="JumpStrength" operation="perc_subtract" value="0.10"></passive_effect>
-      <passive_effect name="Mobility" operation="base_add" value="-.1325"></passive_effect>
-    </effect_group>
-    <effect_group>
-      <triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".StormTimerGrace,.StormTimerDMG,$StormDamage,$StormDamageTotal,.StormTimerDisplay" />
-    </effect_group>
-</buff>
+	<buff name="buffBurnt_Storm_Recover01" name_key="buffBurnt_Storm_Recover01Name" description_key="buffBurnt_Storm_Recover01Desc" icon="ui_game_symbol_storm_burnt" icon_color="0,255,0" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<display_value value=".BurntRecover01Display"/>
+		<display_value_format value="time"/>
+		<effect_group>
+		<requirement name="CVarCompare" cvar=".BurntRecover01Display" operation="LT" value="1"/>
+		<requirement name="!HasBuff" buff="buffBurnt_Storm,buffBurnt_Storm_Stage01,buffBurnt_Storm_Stage02"/>
+			<passive_effect name="StaminaMaxBlockage" operation="base_add" value="@.BurntStage01DMG"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".BurntStage01BaseTime" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01BaseTime" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01Target" operation="set" value="@.BurntStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01Target" operation="multiply" value="@.insulationTotal"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01Target" operation="add" value="@.BurntStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01DMGRate" operation="set" value="@.BurntStage01DMGBase"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01DMGRate" operation="divide" value="@.BurntStage01Target"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01DMGRate" operation="multiply" value="3"/>
+		</effect_group>
+		<effect_group>
+			<requirement_group op="or">
+				<requirement name="IsSheltered"/>
+				<requirement_group op="and">
+					<requirement name="!HasBuff" buff="buffBurnt_Storm,buffBurnt_Storm_Stage01,buffBurnt_Storm_Stage02"/>
+				</requirement_group>
+			</requirement_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BurntStage01BaseTime" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BurntStage01DMGBase" operation="set" value="25"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BurntRecover01Display" operation="set" value="@.BurntStage01Display"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BurntTrackTime" operation="set" value="@.BurntTrackTime"/>
+				<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffBurnt_Storm_Recover01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntRecover01Display" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntTrackTime" operation="subtract" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BurntStage01DMG" operation="subtract" value="@.BurntStage01DMGRate"/>
+				<passive_effect name="StaminaMaxBlockage" operation="base_add" value="@.BurntStage01DMG">
+					<requirement name="CVarCompare" cvar=".BurntRecover01Display" operation="GT" value="0"/>
+					<requirement name="!HasBuff" buff="buffBurnt_Storm_Stage02"/>
+				</passive_effect>
+		</effect_group>
+		<effect_group>
+			<requirement name="!IsSheltered"/>
+			<requirement name="HasBuff" buff="buffBurnt_Storm,buffBurnt_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurnt_Storm_Recover01"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".BurntTrackTime" operation="LTE" value="0"/>
+			<requirement name="!HasBuff" buff="buffBurnt_Storm,buffBurnt_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurnt_Storm_Recover01"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".BurntTrackTime" operation="LTE" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".BurntRecover01Display"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".BurntRecover01Display,.BurntStage01DMG,.BurntStage01DMGRate"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".BurntStage01Display,.BurntTrackTime,.BurntStage01BaseTime,.BurntStage01DMGBase,.BurntStage01ETRate"/>
+		</effect_group>
+	</buff>
+
+	<buff name="buffDesert_Storm" hidden="true" name_key="buffDesert_StormName" description_key="buffDesert_StormDesc" icon="ui_game_symbol_storm_desert" icon_color="150,100,50" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffDesert_Storm_Stage01">
+				<requirement name="!HasBuff" buff="god"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffDesert_Storm"/>
+		</effect_group>
+		<effect_group>
+			<passive_effect name="LootDropProb" operation="perc_add" value="5"/>
+		</effect_group>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".StormTimerGrace,.StormTimerDMG,$StormDamage,$StormDamageTotal,.StormTimerDisplay"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".DesertStage01BaseTime,.DesertStage01DMGBase,.DesertStage01DMGRate,.DesertStage01Target"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffDesert_Storm_Recover01"/>
+		</effect_group>
+	</buff>
+
+	<buff name="buffDesert_Storm_Stage01" name_key="buffDesert_Storm_Stage01Name" description_key="buffDesert_Storm_Stage01Desc" icon="ui_game_symbol_storm_desert" icon_color="255,204,0" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<display_value value=".DesertStage01Display"/>
+		<display_value_format value="time"/>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".DesertTrackTime" operation="GT" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DesertStage01BaseTime" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DesertStage01Target" operation="set" value="@.DesertStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DesertStage01Target" operation="multiply" value="@.insulationTotal"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DesertStage01Target" operation="add" value="@.DesertStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DesertStage01Display" operation="set" value="@.DesertStage01Target"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DesertStage01Display" operation="subtract" value="@.DesertTrackTime"/>
+		</effect_group>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertTrackTime" operation="add" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffDesert_Storm_Recover01"/>
+			<requirement name="CVarCompare" cvar=".DesertTrackTime" operation="LT" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DesertStage01BaseTime" operation="set" value="30"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffDesert_Storm_Recover01"/>
+			<requirement name="CVarCompare" cvar=".DesertTrackTime" operation="LT" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01BaseTime" operation="set" value="30"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffDesert_Storm_Recover01"/>
+			<requirement name="CVarCompare" cvar=".DesertStage01BaseTime" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01Target" operation="set" value="@.DesertStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01Target" operation="multiply" value="@.insulationTotal"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01Target" operation="add" value="@.DesertStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01Display" operation="set" value="@.DesertStage01Target"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01Display" operation="subtract" value="@.DesertTrackTime"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".DesertStage01BaseTime" operation="EQ" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01BaseTime" operation="set" value="30"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffDesert_Storm_Recover01"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DesertStage01DMGBase" operation="set" value="2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01DMGRate" operation="set" value="@.DesertStage01DMGBase"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01DMGRate" operation="divide" value="@.DesertStage01Target">
+					<requirement name="CVarCompare" cvar=".DesertStage01Target" operation="GT" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01DMG" operation="add" value="@.DesertStage01DMGRate"/>
+				<passive_effect name="WaterChangeOT" operation="base_subtract" value=".1"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_subtract" value=".1"/>
+				<passive_effect name="WalkSpeed" operation="perc_subtract" value=".1"/>
+				<passive_effect name="RunSpeed" operation="perc_subtract" value=".1"/>
+				<passive_effect name="JumpStrength" operation="perc_subtract" value=".1"/>
+		</effect_group>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="10" effect_name="StormDesert">
+				<requirement name="!HasBuff" buff="god"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="10" effect_name="StormDesert"/>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffDesert_Storm_Stage01"/>
+		</effect_group>
+		<effect_group>
+			<requirement_group op="or">
+				<requirement name="IsSheltered"/>
+				<requirement name="!HasBuff" buff="buffDesert_Storm"/>
+			</requirement_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffDesert_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDesert_Storm_Recover01">
+					<requirement name="!HasBuff" buff="buffDesert_Storm_Recover01"/>
+				</triggered_effect>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".DesertStage01Display" operation="LTE" value="0"/>
+			<requirement name="!HasBuff" buff="buffDesert_Storm_Recover01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffDesert_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".DesertStage01Display"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffDesert_Storm_Stage02"/>
+		</effect_group>
+	</buff>
+
+	<buff name="buffDesert_Storm_Stage02" name_key="buffDesert_Storm_Stage02Name" description_key="buffDesert_Storm_Stage02Desc" icon="ui_game_symbol_storm_desert" icon_color="255,0,0" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="10" effect_name="StormDesert">
+				<requirement name="!HasBuff" buff="god"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="10" effect_name="StormDesert"/>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffDesert_Storm_Stage02"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffDesert_Storm_Recover01,god"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-4">
+					<requirement name="!HasBuff" buff="buffDesert_Hazard_Over,buffDesertSmoothieRun"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-2">
+					<requirement name="HasBuff" buff="buffDesert_Hazard_Over"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-2">
+					<requirement name="HasBuff" buff="buffDesertSmoothieRun"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="player#painsm"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_subtract" value=".1"/>
+				<passive_effect name="WalkSpeed" operation="perc_subtract" value=".1"/>
+				<passive_effect name="RunSpeed" operation="perc_subtract" value=".1"/>
+				<passive_effect name="JumpStrength" operation="perc_subtract" value=".1"/>
+		</effect_group>
+		<effect_group>
+			<requirement_group op="or">
+				<requirement name="IsSheltered"/>
+				<requirement name="!HasBuff" buff="buffDesert_Storm"/>
+			</requirement_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffDesert_Storm_Stage02"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffDesert_Storm_Recover01"/>
+		</effect_group>
+	</buff>
+
+	<buff name="buffDesert_Storm_Recover01" name_key="buffDesert_Storm_Recover01Name" description_key="buffDesert_Storm_Recover01Desc" icon="ui_game_symbol_storm_desert" icon_color="0,255,0" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<display_value value=".DesertRecover01Display"/>
+		<display_value_format value="time"/>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".DesertStage01BaseTime" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01BaseTime" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01Target" operation="set" value="@.DesertStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01Target" operation="multiply" value="@.insulationTotal"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01Target" operation="add" value="@.DesertStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01DMGRate" operation="set" value="@.DesertStage01DMGBase"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01DMGRate" operation="divide" value="@.DesertStage01Target"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertStage01DMGRate" operation="multiply" value="3"/>
+		</effect_group>
+		<effect_group>
+			<requirement_group op="or">
+				<requirement name="IsSheltered"/>
+				<requirement_group op="and">
+					<requirement name="!HasBuff" buff="buffDesert_Storm,buffDesert_Storm_Stage01,buffDesert_Storm_Stage02"/>
+				</requirement_group>
+			</requirement_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DesertStage01BaseTime" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DesertStage01DMGBase" operation="set" value="2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DesertRecover01Display" operation="set" value="@.DesertStage01Display"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DesertTrackTime" operation="set" value="@.DesertTrackTime"/>
+				<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffDesert_Storm_Recover01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertRecover01Display" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".DesertTrackTime" operation="subtract" value="3"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!IsSheltered"/>
+			<requirement name="HasBuff" buff="buffDesert_Storm,buffDesert_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffDesert_Storm_Recover01"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".DesertTrackTime" operation="LTE" value="0"/>
+			<requirement name="!HasBuff" buff="buffDesert_Storm,buffDesert_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffDesert_Storm_Recover01"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".DesertTrackTime" operation="LTE" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".DesertRecover01Display"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".DesertRecover01Display,.DesertStage01DMG,.DesertStage01DMGRate"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".DesertStage01Display,.DesertTrackTime,.DesertStage01BaseTime,.DesertStage01DMGBase,.DesertStage01ETRate"/>
+		</effect_group>
+	</buff>
+
+	<buff name="buffSnow_Storm" hidden="true" name_key="buffSnow_StormName" description_key="buffSnow_StormDesc" icon="ui_game_symbol_storm_snow" icon_color="150,100,50" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffSnow_Storm_Stage01">
+				<requirement name="!HasBuff" buff="god"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffSnow_Storm"/>
+		</effect_group>
+		<effect_group>
+			<passive_effect name="LootDropProb" operation="perc_add" value="5"/>
+		</effect_group>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".StormTimerGrace,.StormTimerDMG,$StormDamage,$StormDamageTotal,.StormTimerDisplay"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".SnowStage01BaseTime,.SnowStage01DMGBase,.SnowStage01DMGRate,.SnowStage01Target"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffSnow_Storm_Recover01"/>
+		</effect_group>
+	</buff>
+
+	<buff name="buffSnow_Storm_Stage01" name_key="buffSnow_Storm_Stage01Name" description_key="buffSnow_Storm_Stage01Desc" icon="ui_game_symbol_storm_snow" icon_color="255,204,0" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<display_value value=".SnowStage01Display"/>
+		<display_value_format value="time"/>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".SnowTrackTime" operation="GT" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".SnowStage01BaseTime" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".SnowStage01Target" operation="set" value="@.SnowStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".SnowStage01Target" operation="multiply" value="@.insulationTotal"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".SnowStage01Target" operation="add" value="@.SnowStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".SnowStage01Display" operation="set" value="@.SnowStage01Target"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".SnowStage01Display" operation="subtract" value="@.SnowTrackTime"/>
+		</effect_group>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowTrackTime" operation="add" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffSnow_Storm_Recover01"/>
+			<requirement name="CVarCompare" cvar=".SnowTrackTime" operation="LT" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".SnowStage01BaseTime" operation="set" value="30"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffSnow_Storm_Recover01"/>
+			<requirement name="CVarCompare" cvar=".SnowTrackTime" operation="LT" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01BaseTime" operation="set" value="30"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffSnow_Storm_Recover01"/>
+			<requirement name="CVarCompare" cvar=".SnowStage01BaseTime" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01Target" operation="set" value="@.SnowStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01Target" operation="multiply" value="@.insulationTotal"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01Target" operation="add" value="@.SnowStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01Display" operation="set" value="@.SnowStage01Target"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01Display" operation="subtract" value="@.SnowTrackTime"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".SnowStage01BaseTime" operation="EQ" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01BaseTime" operation="set" value="30"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffSnow_Storm_Recover01"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".SnowStage01DMGBase" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01DMGRate" operation="set" value="@.SnowStage01DMGBase"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01DMGRate" operation="divide" value="@.SnowStage01Target">
+						<requirement name="CVarCompare" cvar=".SnowStage01Target" operation="GT" value="0"/>
+					</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01DMG" operation="add" value="@.SnowStage01DMGRate"/>
+				<passive_effect name="FoodChangeOT" operation="base_subtract" value=".1"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_subtract" value=".15"/>
+				<passive_effect name="WalkSpeed" operation="perc_subtract" value=".15"/>
+				<passive_effect name="RunSpeed" operation="perc_subtract" value=".15"/>
+				<passive_effect name="JumpStrength" operation="perc_subtract" value=".15"/>
+		</effect_group>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="10" effect_name="StormSnow">
+				<requirement name="!HasBuff" buff="god"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="10" effect_name="StormSnow"/>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffSnow_Storm_Stage01"/>
+		</effect_group>
+		<effect_group>
+			<requirement_group op="or">
+				<requirement name="IsSheltered"/>
+				<requirement name="!HasBuff" buff="buffSnow_Storm"/>
+			</requirement_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffSnow_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffSnow_Storm_Recover01">
+					<requirement name="!HasBuff" buff="buffSnow_Storm_Recover01"/>
+				</triggered_effect>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".SnowStage01Display" operation="LTE" value="0"/>
+			<requirement name="!HasBuff" buff="buffSnow_Storm_Recover01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffSnow_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".SnowStage01Display"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffSnow_Storm_Stage02"/>
+		</effect_group>
+	</buff>
+
+	<buff name="buffSnow_Storm_Stage02" name_key="buffSnow_Storm_Stage02Name" description_key="buffSnow_Storm_Stage02Desc" icon="ui_game_symbol_storm_snow" icon_color="255,0,0" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="10" effect_name="StormSnow">
+				<requirement name="!HasBuff" buff="god"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="10" effect_name="StormSnow"/>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffSnow_Storm_Stage02"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffSnow_Storm_Recover01,god"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-4">
+					<requirement name="!HasBuff" buff="buffSnow_Hazard_Over,buffSnowSmoothieRun"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-2">
+					<requirement name="HasBuff" buff="buffSnow_Hazard_Over"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-2">
+					<requirement name="HasBuff" buff="buffSnowSmoothieRun"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="player#painsm"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_subtract" value=".15"/>
+				<passive_effect name="WalkSpeed" operation="perc_subtract" value=".15"/>
+				<passive_effect name="RunSpeed" operation="perc_subtract" value=".15"/>
+				<passive_effect name="JumpStrength" operation="perc_subtract" value=".15"/>
+		</effect_group>
+		<effect_group>
+			<requirement_group op="or">
+				<requirement name="IsSheltered"/>
+				<requirement name="!HasBuff" buff="buffSnow_Storm"/>
+			</requirement_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffSnow_Storm_Stage02"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffSnow_Storm_Recover01"/>
+		</effect_group>
+	</buff>
+
+	<buff name="buffSnow_Storm_Recover01" name_key="buffSnow_Storm_Recover01Name" description_key="buffSnow_Storm_Recover01Desc" icon="ui_game_symbol_storm_snow" icon_color="0,255,0" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<display_value value=".SnowRecover01Display"/>
+		<display_value_format value="time"/>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".SnowStage01BaseTime" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01BaseTime" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01Target" operation="set" value="@.SnowStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01Target" operation="multiply" value="@.insulationTotal"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01Target" operation="add" value="@.SnowStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01DMGRate" operation="set" value="@.SnowStage01DMGBase"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01DMGRate" operation="divide" value="@.SnowStage01Target"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01DMGRate" operation="multiply" value="3"/>
+		</effect_group>
+		<effect_group>
+			<requirement_group op="or">
+				<requirement name="IsSheltered"/>
+				<requirement_group op="and">
+					<requirement name="!HasBuff" buff="buffSnow_Storm,buffSnow_Storm_Stage01,buffSnow_Storm_Stage02"/>
+				</requirement_group>
+			</requirement_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".SnowStage01BaseTime" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".SnowStage01DMGBase" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".SnowRecover01Display" operation="set" value="@.SnowStage01Display"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".SnowTrackTime" operation="set" value="@.SnowTrackTime"/>
+				<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffSnow_Storm_Recover01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowRecover01Display" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowTrackTime" operation="subtract" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".SnowStage01DMG" operation="subtract" value="@.SnowStage01DMGRate"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!IsSheltered"/>
+			<requirement name="HasBuff" buff="buffSnow_Storm,buffSnow_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffSnow_Storm_Recover01"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".SnowTrackTime" operation="LTE" value="0"/>
+			<requirement name="!HasBuff" buff="buffSnow_Storm,buffSnow_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffSnow_Storm_Recover01"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".SnowTrackTime" operation="LTE" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".SnowRecover01Display"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".SnowRecover01Display,.SnowStage01DMG,.SnowStage01DMGRate"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".SnowStage01Display,.SnowTrackTime,.SnowStage01BaseTime,.SnowStage01DMGBase,.SnowStage01ETRate"/>
+		</effect_group>
+	</buff>
+
+	<buff name="buffWasteland_Storm" hidden="true" name_key="buffWasteland_StormName" description_key="buffWasteland_StormDesc" icon="ui_game_symbol_storm_wasteland" icon_color="150,100,50" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffWasteland_Storm_Stage01">
+				<requirement name="!HasBuff" buff="god"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffWasteland_Storm"/>
+		</effect_group>
+		<effect_group>
+			<passive_effect name="LootDropProb" operation="perc_add" value="5"/>
+		</effect_group>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".StormTimerGrace,.StormTimerDMG,$StormDamage,$StormDamageTotal,.StormTimerDisplay"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".WastelandStage01BaseTime,.WastelandStage01DMGBase,.WastelandStage01DMGRate,.WastelandStage01Target"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffWasteland_Storm_Recover01"/>
+		</effect_group>
+	</buff>
+
+	<buff name="buffWasteland_Storm_Stage01" name_key="buffWasteland_Storm_Stage01Name" description_key="buffWasteland_Storm_Stage01Desc" icon="ui_game_symbol_storm_wasteland" icon_color="255,204,0" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<display_value value=".WastelandStage01Display"/>
+		<display_value_format value="time"/>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".WastelandTrackTime" operation="GT" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".WastelandStage01BaseTime" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".WastelandStage01Target" operation="set" value="@.WastelandStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".WastelandStage01Target" operation="multiply" value="@.insulationTotal"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".WastelandStage01Target" operation="add" value="@.WastelandStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".WastelandStage01Display" operation="set" value="@.WastelandStage01Target"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".WastelandStage01Display" operation="subtract" value="@.WastelandTrackTime"/>
+		</effect_group>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandTrackTime" operation="add" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffWasteland_Storm_Recover01"/>
+			<requirement name="CVarCompare" cvar=".WastelandTrackTime" operation="LT" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".WastelandStage01BaseTime" operation="set" value="30"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffWasteland_Storm_Recover01"/>
+			<requirement name="CVarCompare" cvar=".WastelandTrackTime" operation="LT" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01BaseTime" operation="set" value="30"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffWasteland_Storm_Recover01"/>
+			<requirement name="CVarCompare" cvar=".WastelandStage01BaseTime" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01Target" operation="set" value="@.WastelandStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01Target" operation="multiply" value="@.insulationTotal"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01Target" operation="add" value="@.WastelandStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01Display" operation="set" value="@.WastelandStage01Target"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01Display" operation="subtract" value="@.WastelandTrackTime"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".WastelandStage01BaseTime" operation="EQ" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01BaseTime" operation="set" value="30"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffWasteland_Storm_Recover01"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".WastelandStage01DMGBase" operation="set" value="50"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01DMGRate" operation="set" value="@.WastelandStage01DMGBase"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01DMGRate" operation="divide" value="@.WastelandStage01Target">
+					<requirement name="CVarCompare" cvar=".WastelandStage01Target" operation="GT" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01DMG" operation="add" value="@.WastelandStage01DMGRate"/>
+				<passive_effect name="StaminaMaxBlockage" operation="base_add" value="@.WastelandStage01DMG"/>
+				<passive_effect name="HealthMaxBlockage" operation="base_add" value="@.WastelandStage01DMG"/>
+				<passive_effect name="DegradationPerUse" operation="base_add" value="2"/>
+		</effect_group>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="10" effect_name="StormWasteland">
+				<requirement name="!HasBuff" buff="god"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="10" effect_name="StormWasteland"/>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffWasteland_Storm_Stage01"/>
+		</effect_group>
+		<effect_group>
+			<requirement_group op="or">
+				<requirement name="IsSheltered"/>
+				<requirement name="!HasBuff" buff="buffWasteland_Storm"/>
+			</requirement_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffWasteland_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffWasteland_Storm_Recover01">
+					<requirement name="!HasBuff" buff="buffWasteland_Storm_Recover01"/>
+				</triggered_effect>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".WastelandStage01Display" operation="LTE" value="0"/>
+			<requirement name="!HasBuff" buff="buffWasteland_Storm_Recover01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffWasteland_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".WastelandStage01Display"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffWasteland_Storm_Stage02"/>
+		</effect_group>
+	</buff>
+
+	<buff name="buffWasteland_Storm_Stage02" name_key="buffWasteland_Storm_Stage02Name" description_key="buffWasteland_Storm_Stage02Desc" icon="ui_game_symbol_storm_wasteland" icon_color="255,0,0" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="10" effect_name="StormWasteland">
+				<requirement name="!HasBuff" buff="god"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="10" effect_name="StormWasteland"/>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffWasteland_Storm_Stage02"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffWasteland_Storm_Recover01,god"/>
+				<passive_effect name="StaminaMaxBlockage" operation="base_add" value="@.WastelandStage01DMG">
+					<requirement name="!HasBuff" buff="buffWasteland_Storm_Recover01"/>
+				</passive_effect>
+				<passive_effect name="HealthMaxBlockage" operation="base_add" value="@.WastelandStage01DMG"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-4">
+					<requirement name="!HasBuff" buff="buffWasteland_Hazard_Over,buffWastelandSmoothieRun"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-4">
+					<requirement name="HasBuff" buff="buffWasteland_Hazard_Over"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-2">
+					<requirement name="HasBuff" buff="buffWastelandSmoothieRun"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="player#painsm"/>
+		</effect_group>
+		<effect_group>
+			<requirement_group op="or">
+				<requirement name="IsSheltered"/>
+				<requirement name="!HasBuff" buff="buffWasteland_Storm"/>
+			</requirement_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffWasteland_Storm_Stage02"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffWasteland_Storm_Recover01"/>
+		</effect_group>
+	</buff>
+
+	<buff name="buffWasteland_Storm_Recover01" name_key="buffWasteland_Storm_Recover01Name" description_key="buffWasteland_Storm_Recover01Desc" icon="ui_game_symbol_storm_wasteland" icon_color="0,255,0" icon_blink="true">
+		<damage_type value="weather"/>
+		<update_rate value="1"/>
+		<display_value value=".WastelandRecover01Display"/>
+		<display_value_format value="time"/>
+		<effect_group>
+		<requirement name="CVarCompare" cvar=".WastelandRecover01Display" operation="LT" value="1"/>
+		<requirement name="!HasBuff" buff="buffWasteland_Storm,buffWasteland_Storm_Stage01,buffWasteland_Storm_Stage02"/>
+			<passive_effect name="StaminaMaxBlockage" operation="base_add" value="@.WastelandStage01DMG"/>
+			<passive_effect name="HealthMaxBlockage" operation="base_add" value="@.WastelandStage01DMG"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".WastelandStage01BaseTime" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01BaseTime" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01Target" operation="set" value="@.WastelandStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01Target" operation="multiply" value="@.insulationTotal"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01Target" operation="add" value="@.WastelandStage01BaseTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01DMGRate" operation="set" value="@.WastelandStage01DMGBase"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01DMGRate" operation="divide" value="@.WastelandStage01Target"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01DMGRate" operation="multiply" value="3"/>
+		</effect_group>
+		<effect_group>
+			<requirement_group op="or">
+				<requirement name="IsSheltered"/>
+				<requirement_group op="and">
+					<requirement name="!HasBuff" buff="buffWasteland_Storm,buffWasteland_Storm_Stage01,buffWasteland_Storm_Stage02"/>
+				</requirement_group>
+			</requirement_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".WastelandStage01BaseTime" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".WastelandStage01DMGBase" operation="set" value="50"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".WastelandRecover01Display" operation="set" value="@.WastelandStage01Display"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".WastelandTrackTime" operation="set" value="@.WastelandTrackTime"/>
+				<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffWasteland_Storm_Recover01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandRecover01Display" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandTrackTime" operation="subtract" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".WastelandStage01DMG" operation="subtract" value="@.WastelandStage01DMGRate"/>
+				<passive_effect name="StaminaMaxBlockage" operation="base_add" value="@.WastelandStage01DMG">
+					<requirement name="CVarCompare" cvar=".WastelandRecover01Display" operation="GT" value="0"/>
+					<requirement name="!HasBuff" buff="buffWasteland_Storm_Stage02"/>
+				</passive_effect>
+				<passive_effect name="HealthMaxBlockage" operation="base_add" value="@.WastelandStage01DMG">
+					<requirement name="CVarCompare" cvar=".WastelandRecover01Display" operation="GT" value="0"/>
+					<requirement name="!HasBuff" buff="buffWasteland_Storm_Stage02"/>
+				</passive_effect>
+		</effect_group>
+		<effect_group>
+			<requirement name="!IsSheltered"/>
+			<requirement name="HasBuff" buff="buffWasteland_Storm,buffWasteland_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffWasteland_Storm_Recover01"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".WastelandTrackTime" operation="LTE" value="0"/>
+			<requirement name="!HasBuff" buff="buffWasteland_Storm,buffWasteland_Storm_Stage01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffWasteland_Storm_Recover01"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".WastelandTrackTime" operation="LTE" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".WastelandRecover01Display"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".WastelandRecover01Display,.WastelandStage01DMG,.WastelandStage01DMGRate"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".WastelandStage01Display,.WastelandTrackTime,.WastelandStage01BaseTime,.WastelandStage01DMGBase,.WastelandStage01ETRate"/>
+		</effect_group>
+	</buff>
   
 </insertAfter>
 
@@ -416,7 +882,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffFLCannabisJoint" name_key="Du hast einen Joint geraucht." tooltip_key="Die Wirkung durchstrÃ¶mt deinen KÃ¶rper wie GlÃ¼ckseligkeit +1 auf Standhaftigkeit" description_key="Die Wirkung durchstrÃ¶mt deinen KÃ¶rper wie GlÃ¼ckseligkeit +1 auf Standhaftigkeit" icon="ui_game_symbol_FLCannabisLeaf" remove_on_death="true">
+<buff name="buffFLCannabisJoint" name_key="Du hast einen Joint geraucht." tooltip_key="Die Wirkung durchströmt deinen Körper wie Glückseligkeit +1 auf Standhaftigkeit" description_key="Die Wirkung durchströmt deinen Körper wie Glückseligkeit +1 auf Standhaftigkeit" icon="ui_game_symbol_FLCannabisLeaf" remove_on_death="true">
 	<stack_type value="replace"/>
 	<duration value="0"/>
 	<display_value value=".buffFLCannabisJointDisplay"/>
@@ -444,7 +910,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffFLDistorion" name_key="Du bist Stoned!" tooltip_key="Die Wirkung durchstrÃ¶mt deinen KÃ¶rper wie GlÃ¼ckseligkeit +1 auf Standhaftigkeit." description_key="Die Wirkung durchstrÃ¶mt deinen KÃ¶rper wie GlÃ¼ckseligkeit +1 auf Standhaftigkeit." icon="ui_game_symbol_FLCannabisLeaf" remove_on_death="true">
+<buff name="buffFLDistorion" name_key="Du bist Stoned!" tooltip_key="Die Wirkung durchströmt deinen Körper wie Glückseligkeit +1 auf Standhaftigkeit." description_key="Die Wirkung durchströmt deinen Körper wie Glückseligkeit +1 auf Standhaftigkeit." icon="ui_game_symbol_FLCannabisLeaf" remove_on_death="true">
 	<stack_type value="effect"/>
 	<duration value="10"/>
 	<display_value value=".buffFLDistorionDisplay"/>
@@ -460,7 +926,7 @@
 	</effect_group>
 </buff>
 	
-<buff name="Grandma's Recipe" name_key="Omas Rezept" description_key="ErhÃ¶ht Gesundheits Change OT um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Grandma's Recipe" name_key="Omas Rezept" description_key="Erhöht Gesundheits Change OT um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
 	<duration value="120"/>
 	<stack_type value="replace"/>
 	<effect_group farmLifeName="buff">
@@ -468,7 +934,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffKentuckyChar" name_key="Kentucky Char" description_key="WÃ¼rzig und bissig. Steigert StÃ¤rke, BetÃ¤ubungsresistenz und Ausdauerregeneration!" icon="ui_game_symbol_beer">
+<buff name="buffKentuckyChar" name_key="Kentucky Char" description_key="Würzig und bissig. Steigert Stärke, Betäubungsresistenz und Ausdauerregeneration!" icon="ui_game_symbol_beer">
 	<damage_type value="disease"/>
 	<stack_type value="replace"/>
 	<duration value="0"/>
@@ -508,7 +974,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffAppalachian" name_key="Appalachian" description_key="80 % Mais. 100 % Kampfkraftstoff. Steigert StÃ¤rke, BetÃ¤ubungsresistenz und Ausdauerregeneration!" icon="ui_game_symbol_beer">
+<buff name="buffAppalachian" name_key="Appalachian" description_key="80 % Mais. 100 % Kampfkraftstoff. Steigert Stärke, Betäubungsresistenz und Ausdauerregeneration!" icon="ui_game_symbol_beer">
 	<damage_type value="disease"/>
 	<stack_type value="replace"/>
 	<duration value="0"/>
@@ -548,7 +1014,7 @@
 	</effect_group>
 </buff>
 		
-<buff name="buffMotherRussia" name_key="Mutter Russland" description_key="Klar, stark und kann dich total betrunken machen. Steigert StÃ¤rke, BetÃ¤ubungsresistenz und Ausdauerregeneration!" icon="ui_game_symbol_beer">
+<buff name="buffMotherRussia" name_key="Mutter Russland" description_key="Klar, stark und kann dich total betrunken machen. Steigert Stärke, Betäubungsresistenz und Ausdauerregeneration!" icon="ui_game_symbol_beer">
 	<damage_type value="disease"/>
 	<stack_type value="replace"/>
 	<duration value="0"/>
@@ -588,7 +1054,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffSingleMalt" name_key="Single Malt" description_key="Im Eichenfass gereift. WÃ¼rzig. Der ultimative Spirituosen-Drink. StÃ¤rkt die Muskulatur, erhÃ¶ht die BetÃ¤ubungsresistenz und regeneriert die Ausdauer!" icon="ui_game_symbol_beer">
+<buff name="buffSingleMalt" name_key="Single Malt" description_key="Im Eichenfass gereift. Würzig. Der ultimative Spirituosen-Drink. Stärkt die Muskulatur, erhöht die Betäubungsresistenz und regeneriert die Ausdauer!" icon="ui_game_symbol_beer">
 	<damage_type value="disease"/>
 	<stack_type value="replace"/>
 	<duration value="0"/>
@@ -628,7 +1094,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffHardCider" name_key="Kentucky Char" description_key="Glutenfrei und sÃ¼ÃŸ nach Apfel. Steigert Kraft, BetÃ¤ubungsresistenz und Ausdauerregeneration!" icon="ui_game_symbol_beer">
+<buff name="buffHardCider" name_key="Kentucky Char" description_key="Glutenfrei und süß nach Apfel. Steigert Kraft, Betäubungsresistenz und Ausdauerregeneration!" icon="ui_game_symbol_beer">
 	<damage_type value="disease"/>
 	<stack_type value="replace"/>
 	<duration value="0"/>
@@ -668,7 +1134,7 @@
 	</effect_group>
 </buff>
 		
-<buff name="Forum Guy" name_key="Forum Guy" description_key="Ich hatte gerade ein ausgiebiges FrÃ¼hstÃ¼ck, jetzt ist es an der Zeit, die Foren auf korrekte Rechtschreibung und Grammatik zu Ã¼berprÃ¼fen." icon="ui_game_symbol_talk">
+<buff name="Forum Guy" name_key="Forum Guy" description_key="Ich hatte gerade ein ausgiebiges Frühstück, jetzt ist es an der Zeit, die Foren auf korrekte Rechtschreibung und Grammatik zu überprüfen." icon="ui_game_symbol_talk">
 	<stack_type value="replace"/>
 	<duration value="360"/>
 	<effect_group>
@@ -693,7 +1159,7 @@
 		</effect_group>
 </buff>
 
-<buff name="madmole" name_key="madmole" description_key="Ich hatte gerade ein ausgiebiges FrÃ¼hstÃ¼ck, jetzt ist es an der Zeit, so fest wie mÃ¶glich auf meiner mechanischen Tastatur herumzuhÃ¤mmern, wÃ¤hrend ich YouTube-Videos fÃ¼r Gelegenheitszuschauer aufnehme." icon="ui_game_symbol_muscle">
+<buff name="madmole" name_key="madmole" description_key="Ich hatte gerade ein ausgiebiges Frühstück, jetzt ist es an der Zeit, so fest wie möglich auf meiner mechanischen Tastatur herumzuhämmern, während ich YouTube-Videos für Gelegenheitszuschauer aufnehme." icon="ui_game_symbol_muscle">
 	<stack_type value="replace"/>
 	<duration value="360"/>
 	<effect_group>
@@ -733,7 +1199,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Mariachi" name_key="Mariachi" description_key="Ich habe die Energie und die Nervigkeit einer Mariachi-Band. Ich habe einen Bonus auf Konstitution, Heilung Ã¼ber Zeit und Ausdauerregeneration." icon="ui_game_symbol_add" icon_color="10,157,0">
+<buff name="Mariachi" name_key="Mariachi" description_key="Ich habe die Energie und die Nervigkeit einer Mariachi-Band. Ich habe einen Bonus auf Konstitution, Heilung über Zeit und Ausdauerregeneration." icon="ui_game_symbol_add" icon_color="10,157,0">
             <damage_type value="Disease"/>
             <stack_type value="replace"/>
             <duration value="2700"/>
@@ -743,7 +1209,7 @@
             </effect_group>
 </buff>
 
-<buff name="Heat Wave" name_key="Heat Wave" description_key="Scharfes Elchfleisch-Jerky sorgt fÃ¼r ein feuriges Brennen und einen Bonus auf deine ZÃ¤higkeit. AuÃŸerdem verleiht es TragfÃ¤higkeit, GlÃ¼ckspilz und Wagemutiger Abenteurer." icon="ui_game_symbol_medical">
+<buff name="Heat Wave" name_key="Heat Wave" description_key="Scharfes Elchfleisch-Jerky sorgt für ein feuriges Brennen und einen Bonus auf deine Zähigkeit. Außerdem verleiht es Tragfähigkeit, Glückspilz und Wagemutiger Abenteurer." icon="ui_game_symbol_medical">
             <damage_type value="Disease"/>
             <stack_type value="replace"/>
             <duration value="1800"/>
@@ -755,7 +1221,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Caffeinated" name_key="Caffeinated" description_key="Kaffee-Elchfleisch-Jerky wÃ¤rmt und erhÃ¶ht deine KÃ¤lteresistenz. AuÃŸerdem verleiht es TragfÃ¤higkeit, GlÃ¼ckspilz und Wagemutiger Abenteurer." icon="ui_game_symbol_coffee">
+<buff name="Caffeinated" name_key="Caffeinated" description_key="Kaffee-Elchfleisch-Jerky wärmt und erhöht deine Kälteresistenz. Außerdem verleiht es Tragfähigkeit, Glückspilz und Wagemutiger Abenteurer." icon="ui_game_symbol_coffee">
             <damage_type value="Disease"/>
             <stack_type value="replace"/>
             <duration value="1800"/>
@@ -767,7 +1233,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Traveling BBQ" name_key="Traveling BBQ" description_key="BBQ-Elch-Jerky hat ordentlich Wumms und erhÃ¶ht deine Beweglichkeit. AuÃŸerdem verleiht es dir die FÃ¤higkeiten TragfÃ¤higkeit, GlÃ¼ckspilz und Wagemutiger Abenteurer." icon="ui_game_symbol_agility">
+<buff name="Traveling BBQ" name_key="Traveling BBQ" description_key="BBQ-Elch-Jerky hat ordentlich Wumms und erhöht deine Beweglichkeit. Außerdem verleiht es dir die Fähigkeiten Tragfähigkeit, Glückspilz und Wagemutiger Abenteurer." icon="ui_game_symbol_agility">
             <damage_type value="Disease"/>
             <stack_type value="replace"/>
             <duration value="1800"/>
@@ -779,7 +1245,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Spicy Burn" name_key="Spicy Burn" description_key="Ich habe etwas sehr Scharfes gegessen und es brennt hÃ¶llisch." icon="ui_game_symbol_talk" icon_color="255,0,0">
+<buff name="Spicy Burn" name_key="Spicy Burn" description_key="Ich habe etwas sehr Scharfes gegessen und es brennt höllisch." icon="ui_game_symbol_talk" icon_color="255,0,0">
             <duration value="120"/>
             <stack_type value="duration"/>
             <update_rate value="30"/>
@@ -801,7 +1267,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Vitamin C" name_key="Vitamin C" description_key="Orangensaft schÃ¼tzt Ihren KÃ¶rper vor leichten Erkrankungen." icon="ui_game_symbol_pills">
+<buff name="Vitamin C" name_key="Vitamin C" description_key="Orangensaft schützt Ihren Körper vor leichten Erkrankungen." icon="ui_game_symbol_pills">
             <damage_type value="Disease"/>
             <stack_type value="replace"/>
             <duration value="120"/>
@@ -828,7 +1294,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Vitamin B" name_key="Vitamin B" description_key="FlÃ¼ssiges GemÃ¼se erhÃ¶ht die Ausdauerregeneration." icon="ui_game_symbol_cardio">
+<buff name="Vitamin B" name_key="Vitamin B" description_key="Flüssiges Gemüse erhöht die Ausdauerregeneration." icon="ui_game_symbol_cardio">
             <damage_type value="Disease"/>
             <stack_type value="replace"/>
             <duration value="120"/>
@@ -837,7 +1303,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Beetroot" name_key="Vitamin B" description_key="Rote Bete erhÃ¶ht die Ausdauerregeneration und heilt mit der Zeit." icon="ui_game_symbol_cardio">
+<buff name="Beetroot" name_key="Vitamin B" description_key="Rote Bete erhöht die Ausdauerregeneration und heilt mit der Zeit." icon="ui_game_symbol_cardio">
             <damage_type value="Disease"/>
             <stack_type value="replace"/>
             <duration value="120"/>
@@ -846,7 +1312,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Sugar Rush" name_key="Sugar Rush" description_key="ErhÃ¶hte TragfÃ¤higkeit." icon="ui_game_symbol_muscle">
+<buff name="Sugar Rush" name_key="Sugar Rush" description_key="Erhöhte Tragfähigkeit." icon="ui_game_symbol_muscle">
             <damage_type value="Disease"/>
             <stack_type value="replace"/>
             <duration value="540"/>
@@ -855,7 +1321,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Strong Bones" name_key="Strong Bones" description_key="Milch kann die Knochenheilung fÃ¶rdern. Bei einem Knochenbruch werden die Knochen geschient. Bei einer Verstauchung heilt der Knochen." icon="ui_game_symbol_splint">
+<buff name="Starke Knochen" name_key="Starke Knochen" description_key="Milch kann die Knochenheilung fördern. Bei einem Knochenbruch werden die Knochen geschient. Bei einer Verstauchung heilt der Knochen." icon="ui_game_symbol_splint">
 	<damage_type value="Disease"/>
 	<stack_type value="replace"/>
 	<duration value="120"/>
@@ -873,7 +1339,7 @@
 		</effect_group>
 </buff>
 
-<buff name="American Pie" name_key="American Pie" description_key="ErhÃ¶ht die Wirkung von leichter RÃ¼stung um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="American Pie" name_key="American Pie" description_key="Erhöht die Wirkung von leichter Rüstung um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
 	<duration value="120"/>
 	<stack_type value="replace"/>
 	<effect_group farmLifeName="buff">
@@ -881,7 +1347,7 @@
 	</effect_group>
 </buff>
 		
-<buff name="Afternoon Delight" name_key="Afternoon Delight" description_key="ErhÃ¶ht die Anzahl der Packesel um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Afternoon Delight" name_key="Afternoon Delight" description_key="Erhöht die Anzahl der Packesel um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
 	<duration value="120"/>
 	<stack_type value="replace"/>
 	<effect_group farmLifeName="buff">
@@ -889,7 +1355,7 @@
 	</effect_group>
 </buff>
 		
-<buff name="Light Lunch" name_key="Light Lunch" description_key="ErhÃ¶ht die WiderstandsfÃ¤higkeit gegen brennende Molotowcocktails um 13 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Light Lunch" name_key="Light Lunch" description_key="Erhöht die Widerstandsfähigkeit gegen brennende Molotowcocktails um 13 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -897,7 +1363,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Southern Favorite" name_key="Southern Favorite" description_key="ErhÃ¶ht die Laufgeschwindigkeit um 12 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Southern Favorite" name_key="Southern Favorite" description_key="Erhöht die Laufgeschwindigkeit um 12 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -905,7 +1371,7 @@
             </effect_group>
 </buff>
 
-<buff name="Salty Starch" name_key="Salty Starch" description_key="ErhÃ¶ht die Anzahl der olympischen Schwimmer um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Salty Starch" name_key="Salty Starch" description_key="Erhöht die Anzahl der olympischen Schwimmer um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
 	<duration value="120"/>
 	<stack_type value="replace"/>
 		<effect_group farmLifeName="buff">
@@ -913,7 +1379,7 @@
 		</effect_group>
 </buff>
 
-<buff name="Beefy" name_key="Beefy" description_key="ErhÃ¶ht die Resistenz gegen Brennende Flammenpfeile um 13%." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Beefy" name_key="Beefy" description_key="Erhöht die Resistenz gegen Brennende Flammenpfeile um 13%." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -929,7 +1395,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Beet me!" name_key="Beet me!" description_key="ErhÃ¶ht die EffektivitÃ¤t von Explosivwaffen um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Beet me!" name_key="Beet me!" description_key="Erhöht die Effektivität von Explosivwaffen um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -937,7 +1403,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Limp Bisquit" name_key="Limp Bisquit" description_key="ErhÃ¶ht die Anzahl automatischer Waffen um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Limp Bisquit" name_key="Limp Bisquit" description_key="Erhöht die Anzahl automatischer Waffen um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -945,7 +1411,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Shit n Shingles" name_key="Shit n Shingles" description_key="ErhÃ¶hungen bleiben um 1 niedriger." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Shit n Shingles" name_key="Shit n Shingles" description_key="Erhöhungen bleiben um 1 niedriger." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -953,14 +1419,14 @@
             </effect_group>
 </buff>
 		
-<buff name="Blue Tongue" name_key="Blue Tongue" description_key="ErhÃ¶ht den Ausdauer-Maximalmodifikator OT um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Blue Tongue" name_key="Blue Tongue" description_key="Erhöht den Ausdauer-Maximalmodifikator OT um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
             </effect_group>
 </buff>
 		
-<buff name="Ricer" name_key="Ricer" description_key="ErhÃ¶ht die Blutungsresistenz bei Verletzungen um 7 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Ricer" name_key="Ricer" description_key="Erhöht die Blutungsresistenz bei Verletzungen um 7 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -968,7 +1434,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Buenos Aires" name_key="Buenos Aires" description_key="ErhÃ¶ht die WiderstandsfÃ¤higkeit gegen GehirnerschÃ¼tterungen um 5 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Buenos Aires" name_key="Buenos Aires" description_key="Erhöht die Widerstandsfähigkeit gegen Gehirnerschütterungen um 5 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -976,7 +1442,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Diner Food" name_key="Diner Food" description_key="ErhÃ¶ht den Erfahrungsgewinn des Spielers um 5 %. ErhÃ¶ht den geheimen Vorrat um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Diner Food" name_key="Diner Food" description_key="Erhöht den Erfahrungsgewinn des Spielers um 5 %. Erhöht den geheimen Vorrat um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -985,7 +1451,7 @@
             </effect_group>
 </buff>
 		
-<buff name="You ate these?" name_key="You ate these?" description_key="ErhÃ¶ht die RÃ¼stungsdurchdringungsresistenz um 10%." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="You ate these?" name_key="You ate these?" description_key="Erhöht die Rüstungsdurchdringungsresistenz um 10%." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -993,7 +1459,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Cheesy Za" name_key="Cheesy Za" description_key="ErhÃ¶ht die WiderstandsfÃ¤higkeit gegen Armverstauchungen um 20 %. ErhÃ¶ht die maximale Ausdauer um 23." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Cheesy Za" name_key="Cheesy Za" description_key="Erhöht die Widerstandsfähigkeit gegen Armverstauchungen um 20 %. Erhöht die maximale Ausdauer um 23." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1002,7 +1468,7 @@
             </effect_group>
 </buff>
 		
-<buff name="With Cheese" name_key="With Cheese" description_key="ErhÃ¶ht die Schmiedekunst um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="With Cheese" name_key="With Cheese" description_key="Erhöht die Schmiedekunst um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1010,7 +1476,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Little Tart" name_key="Little Tart" description_key="ErhÃ¶ht die BrennbestÃ¤ndigkeit um 13%." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Little Tart" name_key="Little Tart" description_key="Erhöht die Brennbeständigkeit um 13%." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1018,7 +1484,7 @@
             </effect_group>
 </buff>
 		
-<buff name="She's my cherry pie" name_key="She's my cherry pie" description_key="ErhÃ¶ht die BestÃ¤ndigkeit gegenÃ¼ber brennenden Umgebungen um 9 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="She's my cherry pie" name_key="She's my cherry pie" description_key="Erhöht die Beständigkeit gegenüber brennenden Umgebungen um 9 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1026,7 +1492,7 @@
             </effect_group>
 </buff>
 		
-<buff name="No mal Tamale" name_key="No mal Tamale" description_key="ErhÃ¶ht die Resistenz gegen Ill-Infektionen um 6 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="No mal Tamale" name_key="No mal Tamale" description_key="Erhöht die Resistenz gegen Ill-Infektionen um 6 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1034,7 +1500,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Peppery Goodness" name_key="Peppery Goodness" description_key="ErhÃ¶ht die WiderstandsfÃ¤higkeit gegen BeinbrÃ¼che um 17 %. ErhÃ¶ht den Ausdauer-Maximalmodifikator (OT) um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Peppery Goodness" name_key="Peppery Goodness" description_key="Erhöht die Widerstandsfähigkeit gegen Beinbrüche um 17 %. Erhöht den Ausdauer-Maximalmodifikator (OT) um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1042,7 +1508,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Cool Soup" name_key="Cool Soup" description_key="ErhÃ¶ht die Isolierung um 2. ErhÃ¶ht die FÃ¤higkeit â€žTotes Augeâ€œ um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Cool Soup" name_key="Cool Soup" description_key="Erhöht die Isolierung um 2. Erhöht die Fähigkeit „Totes Auge“ um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1051,7 +1517,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Where's the guac?" name_key="Where's the guac?" description_key="ErhÃ¶ht die FÃ¤higkeit â€žÃœberleben von der Naturâ€œ um 2. ErhÃ¶ht die FÃ¤higkeit â€žSchwere RÃ¼stungâ€œ um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Where's the guac?" name_key="Where's the guac?" description_key="Erhöht die Fähigkeit „Überleben von der Natur“ um 2. Erhöht die Fähigkeit „Schwere Rüstung“ um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1060,7 +1526,7 @@
             </effect_group>
 </buff>
 		
-<buff name="No nut coconut" name_key="No nut coconut" description_key="ErhÃ¶ht die WiderstandsfÃ¤higkeit gegen ArmbrÃ¼che um 13 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="No nut coconut" name_key="No nut coconut" description_key="Erhöht die Widerstandsfähigkeit gegen Armbrüche um 13 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1068,7 +1534,7 @@
             </effect_group>
 </buff>
 		
-<buff name="BACON" name_key="BACON" description_key="ErhÃ¶ht die Anzahl der olympischen Schwimmer um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="BACON" name_key="BACON" description_key="Erhöht die Anzahl der olympischen Schwimmer um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1076,7 +1542,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Country Boy" name_key="Country Boy" description_key="Steigert die Intelligenz um 2. ErhÃ¶ht die Blutungsresistenz bei Verletzungen um 20%." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Country Boy" name_key="Country Boy" description_key="Steigert die Intelligenz um 2. Erhöht die Blutungsresistenz bei Verletzungen um 20%." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1085,7 +1551,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Rotten Eggs" name_key="Rotten Eggs" description_key="ErhÃ¶ht Run And Gun um 2. ErhÃ¶ht die Resistenz gegen Ill Infection0 um 21%." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Rotten Eggs" name_key="Rotten Eggs" description_key="Erhöht Run And Gun um 2. Erhöht die Resistenz gegen Ill Infection0 um 21%." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1094,7 +1560,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Gooey Gold" name_key="Gooey Gold" description_key="ErhÃ¶ht den SchÃ¤delbrecher um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Gooey Gold" name_key="Gooey Gold" description_key="Erhöht den Schädelbrecher um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1102,7 +1568,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Jerky Boy" name_key="Jerky Boy" description_key="ErhÃ¶ht den Erfahrungszuwachs des Spielers um 1%." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Jerky Boy" name_key="Jerky Boy" description_key="Erhöht den Erfahrungszuwachs des Spielers um 1%." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1110,7 +1576,7 @@
             </effect_group>
 </buff>
 		
-<buff name="4 eggs, your way" name_key="4 eggs, your way" description_key="ErhÃ¶ht die TragfÃ¤higkeit um 5. ErhÃ¶ht die MobilitÃ¤t um 29%." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="4 eggs, your way" name_key="4 eggs, your way" description_key="Erhöht die Tragfähigkeit um 5. Erhöht die Mobilität um 29%." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1119,7 +1585,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Sunny Side Up" name_key="Sunny Side Up" description_key="ErhÃ¶ht die Wirkung schwerer RÃ¼stungen um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Sunny Side Up" name_key="Sunny Side Up" description_key="Erhöht die Wirkung schwerer Rüstungen um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1127,7 +1593,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Ham. Steak." name_key="Ham. Steak." description_key="ErhÃ¶ht den Erfahrungszuwachs des Spielers um 1%." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Ham. Steak." name_key="Ham. Steak." description_key="Erhöht den Erfahrungszuwachs des Spielers um 1%." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1135,7 +1601,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Deep South" name_key="Deep South" description_key="ErhÃ¶ht die Schmerztoleranz um 2. ErhÃ¶ht die FÃ¤higkeit â€žRun and Gunâ€œ um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Deep South" name_key="Deep South" description_key="Erhöht die Schmerztoleranz um 2. Erhöht die Fähigkeit „Run and Gun“ um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1144,7 +1610,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Fruity Cake" name_key="Fruity Cake" description_key="ErhÃ¶ht Miner69r um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Fruity Cake" name_key="Fruity Cake" description_key="Erhöht Miner69r um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1152,7 +1618,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Cake boy" name_key="Cake boy" description_key="ErhÃ¶ht die Schmerztoleranz um das Doppelte. ErhÃ¶ht den Heilungsfaktor um das Doppelte." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Cake boy" name_key="Cake boy" description_key="Erhöht die Schmerztoleranz um das Doppelte. Erhöht den Heilungsfaktor um das Doppelte." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1161,7 +1627,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Yummy in mah tummy" name_key="Yummy in mah tummy" description_key="ErhÃ¶ht die Anzahl der Packesel um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Yummy in mah tummy" name_key="Yummy in mah tummy" description_key="Erhöht die Anzahl der Packesel um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1169,7 +1635,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Grandma's dead" name_key="Grandma's dead" description_key="ErhÃ¶ht die Ertrinkungsresistenz um 29 %. ErhÃ¶ht die BetÃ¤ubungsresistenz um 29 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Grandma's dead" name_key="Grandma's dead" description_key="Erhöht die Ertrinkungsresistenz um 29 %. Erhöht die Betäubungsresistenz um 29 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1178,7 +1644,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Sqush. Grilled.." name_key="Sqush. Grilled.." description_key="ErhÃ¶ht den Meisterkoch-Wert um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Sqush. Grilled.." name_key="Sqush. Grilled.." description_key="Erhöht den Meisterkoch-Wert um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1186,7 +1652,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Southern Bell" name_key="Southern Bell" description_key="ErhÃ¶ht die Anzahl automatischer Waffen um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Southern Bell" name_key="Southern Bell" description_key="Erhöht die Anzahl automatischer Waffen um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1194,7 +1660,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Wheres the salsa?" name_key="Wheres the salsa?" description_key="ErhÃ¶ht die WiderstandsfÃ¤higkeit gegen ArmbrÃ¼che um 30 %. ErhÃ¶ht den Schwermetall-Wert um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Wheres the salsa?" name_key="Wheres the salsa?" description_key="Erhöht die Widerstandsfähigkeit gegen Armbrüche um 30 %. Erhöht den Schwermetall-Wert um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1203,7 +1669,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Without Cheese" name_key="Without Cheese" description_key="ErhÃ¶ht die WiderstandsfÃ¤higkeit gegen GehirnerschÃ¼tterungen um 10 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Without Cheese" name_key="Without Cheese" description_key="Erhöht die Widerstandsfähigkeit gegen Gehirnerschütterungen um 10 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1211,7 +1677,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Whats taters precious?" name_key="Whats taters precious?" description_key="ErhÃ¶ht den Wert fÃ¼r den versteckten Schlag um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Whats taters precious?" name_key="Whats taters precious?" description_key="Erhöht den Wert für den versteckten Schlag um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1219,7 +1685,7 @@
             </effect_group>
 </buff>
 		
-<buff name="METED" name_key="METED" description_key="ErhÃ¶ht die BogenschieÃŸkunst um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="METED" name_key="METED" description_key="Erhöht die Bogenschießkunst um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1227,7 +1693,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Diarrhea CHA CHA CHA" name_key="Diarrhea CHA CHA CHA" description_key="ErhÃ¶ht die Anzahl der Ã„rzte um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Diarrhea CHA CHA CHA" name_key="Diarrhea CHA CHA CHA" description_key="Erhöht die Anzahl der Ärzte um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1235,7 +1701,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Forgot the seaweed.." name_key="Forgot the seaweed.." description_key="ErhÃ¶ht die TragfÃ¤higkeit um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Forgot the seaweed.." name_key="Forgot the seaweed.." description_key="Erhöht die Tragfähigkeit um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1243,7 +1709,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Rabbit Food" name_key="Rabbit Food" description_key="ErhÃ¶ht die TragfÃ¤higkeit um 3." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Rabbit Food" name_key="Rabbit Food" description_key="Erhöht die Tragfähigkeit um 3." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1251,7 +1717,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Old Timers are all dead.." name_key="Old Timers are all dead.." description_key="ErhÃ¶ht den Wert fÃ¼r Besser Tauschhandel um 2. ErhÃ¶ht die Resistenz gegen brennende Molotowcocktails um 18 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Old Timers are all dead.." name_key="Old Timers are all dead.." description_key="Erhöht den Wert für Besser Tauschhandel um 2. Erhöht die Resistenz gegen brennende Molotowcocktails um 18 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1260,7 +1726,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Pamcakes" name_key="Pamcakes" description_key="ErhÃ¶ht die EffektivitÃ¤t von Explosivwaffen um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Pamcakes" name_key="Pamcakes" description_key="Erhöht die Effektivität von Explosivwaffen um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1268,7 +1734,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Luigi" name_key="Luigi" description_key="ErhÃ¶ht den GlÃ¼ckspilz um 3. ErhÃ¶ht die Erntemenge um 95 %. ErhÃ¶ht die fortgeschrittene Ingenieurskunst um 3." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Luigi" name_key="Luigi" description_key="Erhöht den Glückspilz um 3. Erhöht die Erntemenge um 95 %. Erhöht die fortgeschrittene Ingenieurskunst um 3." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1278,7 +1744,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Chicka-chicka-boom" name_key="Chicka-chicka-boom" description_key="ErhÃ¶ht die RÃ¼stungsdurchdringungsresistenz um 11%." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Chicka-chicka-boom" name_key="Chicka-chicka-boom" description_key="Erhöht die Rüstungsdurchdringungsresistenz um 11%." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1286,7 +1752,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Basil and more basil" name_key="Basil and more basil" description_key="ErhÃ¶ht die Schmiedekunst um 2. ErhÃ¶ht die WiderstandsfÃ¤higkeit gegen brennende Umgebungen um 29%." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Basil and more basil" name_key="Basil and more basil" description_key="Erhöht die Schmiedekunst um 2. Erhöht die Widerstandsfähigkeit gegen brennende Umgebungen um 29%." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1295,7 +1761,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Blurp" name_key="Blurp" description_key="ErhÃ¶ht den Meisterkoch-Wert um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Blurp" name_key="Blurp" description_key="Erhöht den Meisterkoch-Wert um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1303,7 +1769,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Boring.." name_key="Boring.." description_key="ErhÃ¶ht die Selbstmedikation um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Boring.." name_key="Boring.." description_key="Erhöht die Selbstmedikation um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1311,7 +1777,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Gut bomb" name_key="Gut bomb" description_key="ErhÃ¶ht Charging Bull um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Gut bomb" name_key="Gut bomb" description_key="Erhöht Charging Bull um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1319,14 +1785,14 @@
             </effect_group>
 </buff>
 		
-<buff name="Healthy Breakfast" name_key="Healthy Breakfast" description_key="ErhÃ¶ht den Ausdauer-Maximalmodifikator OT um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Healthy Breakfast" name_key="Healthy Breakfast" description_key="Erhöht den Ausdauer-Maximalmodifikator OT um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
             </effect_group>
 </buff>
 		
-<buff name="Needs more H sauce" name_key="Needs more H sauce" description_key="ErhÃ¶ht Grease Monkey um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Needs more H sauce" name_key="Needs more H sauce" description_key="Erhöht Grease Monkey um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1334,7 +1800,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Chimicurri?" name_key="Chimicurri?" description_key="ErhÃ¶ht â€žAus dem Schattenâ€œ um 2. ErhÃ¶ht â€žVom Land lebenâ€œ um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Chimicurri?" name_key="Chimicurri?" description_key="Erhöht „Aus dem Schatten“ um 2. Erhöht „Vom Land leben“ um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1343,7 +1809,7 @@
             </effect_group>
 </buff>
 		
-<buff name="RASSSSPBERRY" name_key="RASSSSPBERRY" description_key="ErhÃ¶ht die Anzahl automatischer Waffen um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="RASSSSPBERRY" name_key="RASSSSPBERRY" description_key="Erhöht die Anzahl automatischer Waffen um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1351,7 +1817,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Fried times 2" name_key="Fried times 2" description_key="ErhÃ¶ht Parkour um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Fried times 2" name_key="Fried times 2" description_key="Erhöht Parkour um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1359,7 +1825,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Euro rice" name_key="Euro rice" description_key="ErhÃ¶ht den Wert von Revolverheld um 2. ErhÃ¶ht den Wert von Schlaghagel um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Euro rice" name_key="Euro rice" description_key="Erhöht den Wert von Revolverheld um 2. Erhöht den Wert von Schlaghagel um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1368,7 +1834,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Burnt like a witch" name_key="Burnt like a witch" description_key="ErhÃ¶ht Shotgun Messiah um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Burnt like a witch" name_key="Burnt like a witch" description_key="Erhöht Shotgun Messiah um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1376,14 +1842,14 @@
             </effect_group>
 </buff>
 		
-<buff name="Bunny Food" name_key="Bunny Food" description_key="ErhÃ¶ht den maximalen Gesundheitsmodifikator (OT) um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Bunny Food" name_key="Bunny Food" description_key="Erhöht den maximalen Gesundheitsmodifikator (OT) um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
             </effect_group>
 </buff>
 		
-<buff name="Smokey flavor" name_key="Smokey flavor" description_key="Verringert den Schatzradius um 2. ErhÃ¶ht den Erfahrungsgewinn des Spielers um 4 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Smokey flavor" name_key="Smokey flavor" description_key="Verringert den Schatzradius um 2. Erhöht den Erfahrungsgewinn des Spielers um 4 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1392,7 +1858,7 @@
             </effect_group>
 </buff>
 		
-<buff name="BACONNNN" name_key="BACONNNN" description_key="ErhÃ¶ht die maximale Ausdauer um 13." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="BACONNNN" name_key="BACONNNN" description_key="Erhöht die maximale Ausdauer um 13." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1400,7 +1866,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Wish it was Lox" name_key="Wish it was Lox" description_key="ErhÃ¶ht den Wert fÃ¼r Wagemutiger Abenteurer um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Wish it was Lox" name_key="Wish it was Lox" description_key="Erhöht den Wert für Wagemutiger Abenteurer um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1408,7 +1874,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Salmon-y" name_key="Salmon-y" description_key="ErhÃ¶ht den GlÃ¼cksplÃ¼nderer um 2. ErhÃ¶ht die Explosivwaffen um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Salmon-y" name_key="Salmon-y" description_key="Erhöht den Glücksplünderer um 2. Erhöht die Explosivwaffen um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1417,7 +1883,7 @@
             </effect_group>
 </buff>
 		
-<buff name="A classic dish" name_key="A classic dish" description_key="ErhÃ¶ht den Wert von â€žWagemutiger Abenteurerâ€œ um 2. ErhÃ¶ht den Wert von â€žSchrotflinten-Messiasâ€œ um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="A classic dish" name_key="A classic dish" description_key="Erhöht den Wert von „Wagemutiger Abenteurer“ um 2. Erhöht den Wert von „Schrotflinten-Messias“ um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1426,7 +1892,7 @@
             </effect_group>
 </buff>
 		
-<buff name="More beans.." name_key="More beans.." description_key="ErhÃ¶ht die Selbstmedikation um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="More beans.." name_key="More beans.." description_key="Erhöht die Selbstmedikation um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1442,7 +1908,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Spicy Salmon" name_key="Spicy Salmon" description_key="ErhÃ¶ht den Schwermetallvorrat um 1. ErhÃ¶ht die Packesel-FÃ¤higkeit um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Spicy Salmon" name_key="Spicy Salmon" description_key="Erhöht den Schwermetallvorrat um 1. Erhöht die Packesel-Fähigkeit um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1451,7 +1917,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Burro" name_key="Burro" description_key="ErhÃ¶ht die Resistenz gegen brennende Molotowcocktails um 22 %. ErhÃ¶ht die Leistung von automatischen Waffen um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Burro" name_key="Burro" description_key="Erhöht die Resistenz gegen brennende Molotowcocktails um 22 %. Erhöht die Leistung von automatischen Waffen um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1460,7 +1926,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Boring" name_key="Boring" description_key="ErhÃ¶ht Miner69r um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Boring" name_key="Boring" description_key="Erhöht Miner69r um 1." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1476,7 +1942,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Suns out Guns out" name_key="Suns out Guns out" description_key="ErhÃ¶ht die maximale Ausdauer um 22. ErhÃ¶ht den maximalen Gesundheitsmodifikator OT um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Suns out Guns out" name_key="Suns out Guns out" description_key="Erhöht die maximale Ausdauer um 22. Erhöht den maximalen Gesundheitsmodifikator OT um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1484,7 +1950,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Triple Bathroom Wednesday" name_key="Triple Bathroom Wednesday" description_key="ErhÃ¶ht die Trefferchance bei KopfschÃ¼ssen um 3. ErhÃ¶ht die Trefferchance bei Explosivwaffen um 3. ErhÃ¶ht den Nachladegeschwindigkeitsmultiplikator um 28 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Triple Bathroom Wednesday" name_key="Triple Bathroom Wednesday" description_key="Erhöht die Trefferchance bei Kopfschüssen um 3. Erhöht die Trefferchance bei Explosivwaffen um 3. Erhöht den Nachladegeschwindigkeitsmultiplikator um 28 %." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1494,7 +1960,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Veggie, eeeewwww" name_key="Veggie, eeeewwww" description_key="ErhÃ¶ht die WiderstandsfÃ¤higkeit gegen BeinbrÃ¼che um 30 %. ErhÃ¶ht die Wirkung schwerer RÃ¼stung um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Veggie, eeeewwww" name_key="Veggie, eeeewwww" description_key="Erhöht die Widerstandsfähigkeit gegen Beinbrüche um 30 %. Erhöht die Wirkung schwerer Rüstung um 2." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1503,7 +1969,7 @@
             </effect_group>
 </buff>
 		
-<buff name="Would go great with meat" name_key="Would go great with meat" description_key="ErhÃ¶ht die Verletzungsresistenz um 10%." icon="ui_game_symbol_skills" icon_color="132,0,155">
+<buff name="Would go great with meat" name_key="Would go great with meat" description_key="Erhöht die Verletzungsresistenz um 10%." icon="ui_game_symbol_skills" icon_color="132,0,155">
             <duration value="120"/>
             <stack_type value="replace"/>
             <effect_group farmLifeName="buff">
@@ -1511,7 +1977,7 @@
             </effect_group>
 </buff>
 	
-<buff name="buffStuffed" name_key="Stuffed" description_key="Ich konnte keinen Bissen mehr essen! -20 % Lauf-/Geschwindigkeit, -15 % Sprungkraft, +1 ZÃ¤higkeit, -1 Beweglichkeit. HP-Regeneration." tooltip_key="Ugh, so stuffed!" icon="ui_game_symbol_spatula" icon_color="217,217,35" tags="drug">
+<buff name="buffStuffed" name_key="Stuffed" description_key="Ich konnte keinen Bissen mehr essen! -20 % Lauf-/Geschwindigkeit, -15 % Sprungkraft, +1 Zähigkeit, -1 Beweglichkeit. HP-Regeneration." tooltip_key="Ugh, so stuffed!" icon="ui_game_symbol_spatula" icon_color="217,217,35" tags="drug">
 	<stack_type value="replace"/>
 			<duration value="60"/>
 			<effect_group>
@@ -1561,7 +2027,7 @@
 			</effect_group>
 </buff>
 	
-<buff name="buffDrunky" name_key="Drunky!" description_key="Moment mal, Kumpel. Bist du etwa etwas Ã¼bermÃ¼tig geworden? +50 % Schaden gegen Einheiten im Nahkampf, -20 % Angriffsgeschwindigkeit, +20 % Laufgeschwindigkeit, +1 StÃ¤rke, -Angriffsausdauer." tooltip_key="Betrunkener Narr" icon="ui_game_symbol_beer" icon_color="0,153,0" icon_blink="true" tags="drug">
+<buff name="buffDrunky" name_key="Drunky!" description_key="Moment mal, Kumpel. Bist du etwa etwas übermütig geworden? +50 % Schaden gegen Einheiten im Nahkampf, -20 % Angriffsgeschwindigkeit, +20 % Laufgeschwindigkeit, +1 Stärke, -Angriffsausdauer." tooltip_key="Betrunkener Narr" icon="ui_game_symbol_beer" icon_color="0,153,0" icon_blink="true" tags="drug">
 	<stack_type value="replace"/>
 			<duration value="45"/>
 			<effect_group>
@@ -1605,7 +2071,7 @@
 			</effect_group>
 </buff>
 
-<buff name="buffRiseAndShine" name_key="Rise and Shine!" description_key="Ausgewogenes FrÃ¼hstÃ¼ck! +40 % Geh-/Laufgeschwindigkeit, +1 ZÃ¤higkeit, +1 Beweglichkeit, +Ausdauer-/HP-Regeneration." tooltip_key="Iss gut, lebe gut!" icon="ui_game_symbol_coffee" icon_color="102,83,22" icon_blink="true" tags="drug">
+<buff name="buffRiseAndShine" name_key="Rise and Shine!" description_key="Ausgewogenes Frühstück! +40 % Geh-/Laufgeschwindigkeit, +1 Zähigkeit, +1 Beweglichkeit, +Ausdauer-/HP-Regeneration." tooltip_key="Iss gut, lebe gut!" icon="ui_game_symbol_coffee" icon_color="102,83,22" icon_blink="true" tags="drug">
 	<stack_type value="replace"/>
 			<duration value="15"/>
 			<effect_group>
@@ -1630,7 +2096,7 @@
 			</effect_group>
 </buff>
 	
-<buff name="buffHealthy" name_key="Healthy Living!" description_key="Iss gut, lebe gut! +40 % Geh-/Laufgeschwindigkeit, +1 ZÃ¤higkeit, +1 Beweglichkeit, +Ausdauer-/HP-Regeneration." tooltip_key="Iss gut, lebe gut!" icon="ui_game_symbol_adventure" icon_color="102,83,22" tags="drug">
+<buff name="buffHealthy" name_key="Healthy Living!" description_key="Iss gut, lebe gut! +40 % Geh-/Laufgeschwindigkeit, +1 Zähigkeit, +1 Beweglichkeit, +Ausdauer-/HP-Regeneration." tooltip_key="Iss gut, lebe gut!" icon="ui_game_symbol_adventure" icon_color="102,83,22" tags="drug">
 	<stack_type value="replace"/>
 			<duration value="180"/>
 			<effect_group>
@@ -1683,7 +2149,7 @@
 			</effect_group>
 </buff>
 
-<buff name="buffSmartyPants" name_key="Smarty Pants!" description_key="Sieh mal an, wie schlau du bist, Streber! +25 % EP-Gewinn, +2 Handwerksstufen, +30 % Handwerksgeschwindigkeit, -9 TragfÃ¤higkeit, -45 % Schadensresistenz." tooltip_key="Schicke Hosen" icon="ui_game_symbol_book" icon_color="25,163,227" icon_blink="true" tags="drug">
+<buff name="buffSmartyPants" name_key="Smarty Pants!" description_key="Sieh mal an, wie schlau du bist, Streber! +25 % EP-Gewinn, +2 Handwerksstufen, +30 % Handwerksgeschwindigkeit, -9 Tragfähigkeit, -45 % Schadensresistenz." tooltip_key="Schicke Hosen" icon="ui_game_symbol_book" icon_color="25,163,227" icon_blink="true" tags="drug">
 	<stack_type value="replace"/>
 			<duration value="45"/>
 			<effect_group>
@@ -1715,7 +2181,7 @@
 			</effect_group>
 </buff>
 
-<buff name="buffBeefcake" name_key="Beefcake" description_key="Stark, aber strohdumm. -30 % Lauf-/Geschwindigkeit, -2 Handwerksstufe, -40 % Handwerkszeit, +3 StÃ¤rke, +Volles Tragelimit, +500 % Schaden gegen Einheiten (mit Nahkampfwaffen und FÃ¤usten). +90 % Schadensresistenz, kein Ausdauerverlust, +50 % Kampfgeschwindigkeit." tooltip_key="Beefcake" icon="ui_game_symbol_muscle" icon_color="153,0,0" icon_blink="true" tags="drug">
+<buff name="buffBeefcake" name_key="Beefcake" description_key="Stark, aber strohdumm. -30 % Lauf-/Geschwindigkeit, -2 Handwerksstufe, -40 % Handwerkszeit, +3 Stärke, +Volles Tragelimit, +500 % Schaden gegen Einheiten (mit Nahkampfwaffen und Fäusten). +90 % Schadensresistenz, kein Ausdauerverlust, +50 % Kampfgeschwindigkeit." tooltip_key="Beefcake" icon="ui_game_symbol_muscle" icon_color="153,0,0" icon_blink="true" tags="drug">
 	<stack_type value="replace"/>
 			<duration value="30"/>
 			<effect_group>
@@ -1749,7 +2215,7 @@
 			</effect_group>
 </buff>
 	
-<buff name="buffPumpedUp" name_key="Pumped up!" description_key="Stark wie ein Ochse! -10 % Lauf-/Geschwindigkeit, -5 % Herstellungszeit, +1 StÃ¤rke, +Volle TragfÃ¤higkeit, +20 % Schaden gegen Einheiten (mit Nahkampfwaffen und FÃ¤usten). +25 % Schadensresistenz, +10 % Kampfgeschwindigkeit." tooltip_key="Beefcake" icon="ui_game_symbol_muscle" icon_color="153,0,0" tags="drug">
+<buff name="buffPumpedUp" name_key="Pumped up!" description_key="Stark wie ein Ochse! -10 % Lauf-/Geschwindigkeit, -5 % Herstellungszeit, +1 Stärke, +Volle Tragfähigkeit, +20 % Schaden gegen Einheiten (mit Nahkampfwaffen und Fäusten). +25 % Schadensresistenz, +10 % Kampfgeschwindigkeit." tooltip_key="Beefcake" icon="ui_game_symbol_muscle" icon_color="153,0,0" tags="drug">
 	<stack_type value="replace"/>
 			<duration value="90"/>
 			<effect_group>
@@ -1794,7 +2260,7 @@
 			</effect_group>
 </buff>	
 
-<buff name="buffHotWings" name_key="buffMegaCrushName" description_key="WOW, DAS IST HEISS! 200 % Laufgeschwindigkeit, +20 Gesundheit, +50 % Ausdauerkosten, -Hitzeresistenz, +KÃ¤lteresistenz." tooltip_key="OH HOT HOT HOT!" icon="ui_game_symbol_fire" icon_color="153,0,0" icon_blink="true" tags="drug">
+<buff name="buffHotWings" name_key="buffMegaCrushName" description_key="WOW, DAS IST HEISS! 200 % Laufgeschwindigkeit, +20 Gesundheit, +50 % Ausdauerkosten, -Hitzeresistenz, +Kälteresistenz." tooltip_key="OH HOT HOT HOT!" icon="ui_game_symbol_fire" icon_color="153,0,0" icon_blink="true" tags="drug">
 	<stack_type value="replace"/>
 			<duration value="10"/>
 			<effect_group>
@@ -1815,7 +2281,7 @@
 			</effect_group>
 </buff>
 
-<buff name="buffWaterPlease" name_key="Water! Please!" description_key="Immer noch am Rauchen! +40 % Laufgeschwindigkeit, +10 % Ausdauerkosten, -Hitzeresistenz, +KÃ¤lteresistenz." tooltip_key="Ich bin so durstig!" icon="ui_game_symbol_fire" icon_color="255,132,0" tags="drug">
+<buff name="buffWaterPlease" name_key="Water! Please!" description_key="Immer noch am Rauchen! +40 % Laufgeschwindigkeit, +10 % Ausdauerkosten, -Hitzeresistenz, +Kälteresistenz." tooltip_key="Ich bin so durstig!" icon="ui_game_symbol_fire" icon_color="255,132,0" tags="drug">
 	<stack_type value="replace"/>
 			<duration value="20"/>
 			<effect_group>
@@ -1867,7 +2333,7 @@
 			</effect_group>
 </buff>
 	
-<buff name="buffKungFoo" name_key="Kung Foo!" description_key="RUNDE 1! KÃ„MPFEN!!!" tooltip_key="KUNG FOO MASTER!" icon="ui_game_symbol_knunchuck" icon_color="153,0,153" icon_blink="true" tags="drug">
+<buff name="buffKungFoo" name_key="Kung Foo!" description_key="RUNDE 1! KÄMPFEN!!!" tooltip_key="KUNG FOO MASTER!" icon="ui_game_symbol_knunchuck" icon_color="153,0,153" icon_blink="true" tags="drug">
 	<stack_type value="replace"/>
 			<duration value="15"/>
 			<effect_group>
@@ -1901,7 +2367,7 @@
 			</effect_group>
 </buff>
 		
-<buff name="buffMartialArtist" name_key="Martial Artist!" description_key="Erwecke den KampfkÃ¼nstler in dir. Spring hoch, schlag schnell und prÃ¤zise zu!" tooltip_key="Triff prÃ¤zise und schnell!" icon="ui_game_symbol_knunchuck" icon_color="153,0,153" tags="drug">
+<buff name="buffMartialArtist" name_key="Martial Artist!" description_key="Erwecke den Kampfkünstler in dir. Spring hoch, schlag schnell und präzise zu!" tooltip_key="Triff präzise und schnell!" icon="ui_game_symbol_knunchuck" icon_color="153,0,153" tags="drug">
 	<stack_type value="replace"/>
 			<duration value="165"/>
 			<effect_group>
@@ -1935,7 +2401,7 @@
 			</effect_group>
 </buff>	
 		
-<buff name="buffNightTime" name_key="Night Time" description_key="Der perfekte Snack kurz vor dem Schlafengehen! 20 % EP, Sofort-Herstellung, +2 Herstellungsstufen, volle TragfÃ¤higkeit, 100 % Blockschaden mit Werkzeugen." tooltip_key="SÃ¼sse TrÃ¤ume" icon="ui_game_symbol_bed" icon_color="201,147,147" icon_blink="false" tags="drug">
+<buff name="buffNightTime" name_key="Night Time" description_key="Der perfekte Snack kurz vor dem Schlafengehen! 20 % EP, Sofort-Herstellung, +2 Herstellungsstufen, volle Tragfähigkeit, 100 % Blockschaden mit Werkzeugen." tooltip_key="Süsse Träume" icon="ui_game_symbol_bed" icon_color="201,147,147" icon_blink="false" tags="drug">
 	<stack_type value="replace"/>
 			<duration value="300"/>
 			<effect_group>
@@ -1953,7 +2419,7 @@
 			</effect_group>
 </buff>
 		
-<buff name="TonicBuff" name_key="Tonic" description_key="Der kÃ¶stliche Geschmack des Tonikums gibt dir neue Energie! Regeneriere deine Ausdauer schneller und stelle einen kleinen Teil deiner maximalen Gesundheit und Ausdauer wieder her." icon="ui_game_symbol_knunchuck">
+<buff name="TonicBuff" name_key="Tonic" description_key="Der köstliche Geschmack des Tonikums gibt dir neue Energie! Regeneriere deine Ausdauer schneller und stelle einen kleinen Teil deiner maximalen Gesundheit und Ausdauer wieder her." icon="ui_game_symbol_knunchuck">
 	<stack_type value="replace"/>
 	<display_value value=".buffDrugSteroidsDisplay"/>
 	<display_value_format value="time"/>
@@ -2024,7 +2490,7 @@
 	</effect_group>
 </buff>
 	
-<buff name="BUFFStormFall" name_key="StormFall" description_key="Yum Stormfall Monster Cola! Schnellere Erholung, erhÃ¶hter Nahkampfschaden, stellt auÃŸerdem etwas Ausdauer und Gesundheit wieder her. Deine maximale Laufgeschwindigkeit wurde ebenfalls erhÃ¶ht â€“ nutze sie mit Bedacht, haha!" icon="ui_game_symbol_StormFall">
+<buff name="BUFFStormFall" name_key="StormFall" description_key="Yum Stormfall Monster Cola! Schnellere Erholung, erhöhter Nahkampfschaden, stellt außerdem etwas Ausdauer und Gesundheit wieder her. Deine maximale Laufgeschwindigkeit wurde ebenfalls erhöht – nutze sie mit Bedacht, haha!" icon="ui_game_symbol_StormFall">
 	<stack_type value="ignore"/>
 	<display_value value=".buffDrugSteroidsDisplay"/>
 	<display_value_format value="time"/>
@@ -2060,7 +2526,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffPenthrox" name_key="Penthrox" description_key="FÃ¼r kurze Zeit bist du fÃ¼r Zombies teilweise unsichtbar, solange du sie nicht angreifst!" tags="drug" icon="ui_game_symbol_stealth">
+<buff name="buffPenthrox" name_key="Penthrox" description_key="Für kurze Zeit bist du für Zombies teilweise unsichtbar, solange du sie nicht angreifst!" tags="drug" icon="ui_game_symbol_stealth">
 	<stack_type value="duration"/>
 	<duration value="360"/>
 	<effect_group>
@@ -2069,7 +2535,7 @@
 	</effect_group>
 </buff>
 
-<buff name="BuffBollockRot" name_key="Bollock Rot" description_key="Du hast dir bei einer infizierten Stripperin die HodenfÃ¤ule eingefangen, deine Beweglichkeit ist beeintrÃ¤chtigt und du hast 120 Minuten Zeit, die HD-HodenfÃ¤ule-Injektion herzustellen und anzuwenden, oder deine Infektion entwickelt sich zu einer unheilbaren HodenfÃ¤ule, die dir weitere 13 Sekunden Leben vor dem Tod gewÃ¤hrt." tooltip_key="ScheiÃŸe!! Du hast dir HodenfÃ¤ule eingefangen."  icon="ui_game_symbol_BollockRot" remove_on_death="false">
+<buff name="BuffBollockRot" name_key="Bollock Rot" description_key="Du hast dir bei einer infizierten Stripperin die Hodenfäule eingefangen, deine Beweglichkeit ist beeinträchtigt und du hast 120 Minuten Zeit, die HD-Hodenfäule-Injektion herzustellen und anzuwenden, oder deine Infektion entwickelt sich zu einer unheilbaren Hodenfäule, die dir weitere 13 Sekunden Leben vor dem Tod gewährt." tooltip_key="Scheiße!! Du hast dir Hodenfäule eingefangen."  icon="ui_game_symbol_BollockRot" remove_on_death="false">
 	<damage_type value="Disease"/>
 	<stack_type value="ignore"/>
 	<duration value="7263"/>
@@ -2082,7 +2548,7 @@
 	</effect_group>
 </buff>
 
-<buff name="BuffBollockRot-Z" name_key="Unheilbarer HodenfÃ¤ule" description_key="ScheiÃŸe!! Du bist jetzt unheilbar, dein Darm ist geplatzt!" tooltip_key="ScheiÃŸe!! Du bist jetzt unheilbar, dein Darm ist geplatzt!"  icon="ui_game_symbol_DEATH" remove_on_death="true">
+<buff name="BuffBollockRot-Z" name_key="Unheilbarer Hodenfäule" description_key="Scheiße!! Du bist jetzt unheilbar, dein Darm ist geplatzt!" tooltip_key="Scheiße!! Du bist jetzt unheilbar, dein Darm ist geplatzt!"  icon="ui_game_symbol_DEATH" remove_on_death="true">
 	<damage_type value="Disease"/>
 	<stack_type value="ignore"/>
 	<duration value="13"/>
@@ -2106,7 +2572,7 @@
 		</effect_group>
 </buff>
 
-<buff name="BuffBirdFlu" name_key="Bird Flu" description_key="Du hast dich bei einem infizierten Geier mit Vogelgrippe angesteckt, deine WiderstandsfÃ¤higkeit ist beeintrÃ¤chtigt und du hast 120 Minuten Zeit, die HD-Vogelgrippe-Injektion herzustellen und anzuwenden, oder deine Infektion entwickelt sich zu einer unheilbaren Vogelgrippe, die dir weitere 13 Sekunden Leben vor dem Tod gewÃ¤hrt." tooltip_key="Mist! Du hast dich mit der Vogelgrippe angesteckt."  icon="ui_game_symbol_BirdFlu" remove_on_death="false">
+<buff name="BuffBirdFlu" name_key="Bird Flu" description_key="Du hast dich bei einem infizierten Geier mit Vogelgrippe angesteckt, deine Widerstandsfähigkeit ist beeinträchtigt und du hast 120 Minuten Zeit, die HD-Vogelgrippe-Injektion herzustellen und anzuwenden, oder deine Infektion entwickelt sich zu einer unheilbaren Vogelgrippe, die dir weitere 13 Sekunden Leben vor dem Tod gewährt." tooltip_key="Mist! Du hast dich mit der Vogelgrippe angesteckt."  icon="ui_game_symbol_BirdFlu" remove_on_death="false">
 	<damage_type value="Disease"/>
 	<stack_type value="ignore"/>
 	<duration value="7263"/>
@@ -2119,7 +2585,7 @@
 	</effect_group>
 </buff>
 
-<buff name="BuffBirdFlu-Z" name_key="Incurable Bird Flu" description_key="ScheiÃŸe!! Du bist jetzt unheilbar, dein Darm ist geplatzt!" tooltip_key="ScheiÃŸe!! Du bist jetzt unheilbar, dein Darm ist geplatzt!"  icon="ui_game_symbol_DEATH" remove_on_death="true">
+<buff name="BuffBirdFlu-Z" name_key="Incurable Bird Flu" description_key="Scheiße!! Du bist jetzt unheilbar, dein Darm ist geplatzt!" tooltip_key="Scheiße!! Du bist jetzt unheilbar, dein Darm ist geplatzt!"  icon="ui_game_symbol_DEATH" remove_on_death="true">
 	<damage_type value="Disease"/>
 	<stack_type value="ignore"/>
 	<duration value="13"/>
@@ -2143,7 +2609,7 @@
 		</effect_group>
 </buff>
 
-<buff name="BuffBrainHerpes" name_key="Brain Herpes" description_key="Sie haben sich bei einem infizierten Gefahrgutarbeiter mit Hirnherpes angesteckt, Ihre Intelligenz ist beeintrÃ¤chtigt und Sie haben 120 Minuten Zeit, die HD-Hirnherpes-Injektion herzustellen und anzuwenden, oder Ihre Infektion entwickelt sich zu unheilbarem Hirnherpes, was Ihnen weitere 13 Sekunden Leben vor dem Tod gewÃ¤hrt." tooltip_key="ScheiÃŸe!! Du hast dir Hirnherpes eingefangen"  icon="ui_game_symbol_BrainHerpes" remove_on_death="false">
+<buff name="BuffBrainHerpes" name_key="Brain Herpes" description_key="Sie haben sich bei einem infizierten Gefahrgutarbeiter mit Hirnherpes angesteckt, Ihre Intelligenz ist beeinträchtigt und Sie haben 120 Minuten Zeit, die HD-Hirnherpes-Injektion herzustellen und anzuwenden, oder Ihre Infektion entwickelt sich zu unheilbarem Hirnherpes, was Ihnen weitere 13 Sekunden Leben vor dem Tod gewährt." tooltip_key="Scheiße!! Du hast dir Hirnherpes eingefangen"  icon="ui_game_symbol_BrainHerpes" remove_on_death="false">
 	<damage_type value="Disease"/>
 	<stack_type value="ignore"/>
 	<duration value="7263"/>
@@ -2156,7 +2622,7 @@
 	</effect_group>
 </buff>
 
-<buff name="BuffBrainHerpes-Z" name_key="Incurable Brain Herpes" description_key="ScheiÃŸe!! Du bist jetzt unheilbar, dein Darm ist geplatzt!" tooltip_key="ScheiÃŸe!! Du bist jetzt unheilbar, dein Darm ist geplatzt!"  icon="ui_game_symbol_DEATH" remove_on_death="true">
+<buff name="BuffBrainHerpes-Z" name_key="Incurable Brain Herpes" description_key="Scheiße!! Du bist jetzt unheilbar, dein Darm ist geplatzt!" tooltip_key="Scheiße!! Du bist jetzt unheilbar, dein Darm ist geplatzt!"  icon="ui_game_symbol_DEATH" remove_on_death="true">
 	<damage_type value="Disease"/>
 	<stack_type value="ignore"/>
 	<duration value="13"/>
@@ -2180,7 +2646,7 @@
 		</effect_group>
 </buff>
 
-<buff name="BuffMRSA" name_key="MRSA" description_key="Sie haben sich bei einer infizierten Krankenschwester mit MRSA angesteckt, Ihre Wahrnehmung ist beeintrÃ¤chtigt und Sie haben 120 Minuten Zeit, die HD-MRSA-Injektion herzustellen und anzuwenden, oder Ihre Infektion entwickelt sich zu unheilbarem MRSA, was Ihnen weitere 13 Sekunden Leben vor dem Tod gewÃ¤hrt." tooltip_key="Mist! Du hast dich mit MRSA angesteckt."  icon="ui_game_symbol_MRSA" remove_on_death="false">
+<buff name="BuffMRSA" name_key="MRSA" description_key="Sie haben sich bei einer infizierten Krankenschwester mit MRSA angesteckt, Ihre Wahrnehmung ist beeinträchtigt und Sie haben 120 Minuten Zeit, die HD-MRSA-Injektion herzustellen und anzuwenden, oder Ihre Infektion entwickelt sich zu unheilbarem MRSA, was Ihnen weitere 13 Sekunden Leben vor dem Tod gewährt." tooltip_key="Mist! Du hast dich mit MRSA angesteckt."  icon="ui_game_symbol_MRSA" remove_on_death="false">
 	<damage_type value="Disease"/>
 	<stack_type value="ignore"/>
 	<duration value="7263"/>
@@ -2193,7 +2659,7 @@
 	</effect_group>
 </buff>
 
-<buff name="BuffMRSA-Z" name_key="Incurable MRSA" description_key="ScheiÃŸe!! Du bist jetzt unheilbar, dein Darm ist geplatzt!" tooltip_key="ScheiÃŸe!! Du bist jetzt unheilbar, dein Darm ist geplatzt!"  icon="ui_game_symbol_DEATH" remove_on_death="true">
+<buff name="BuffMRSA-Z" name_key="Incurable MRSA" description_key="Scheiße!! Du bist jetzt unheilbar, dein Darm ist geplatzt!" tooltip_key="Scheiße!! Du bist jetzt unheilbar, dein Darm ist geplatzt!"  icon="ui_game_symbol_DEATH" remove_on_death="true">
 	<damage_type value="Disease"/>
 	<stack_type value="ignore"/>
 	<duration value="13"/>
@@ -2217,7 +2683,7 @@
 		</effect_group>
 </buff>
 
-<buff name="BuffRabies" name_key="Rabies" description_key="Sie haben sich bei einem infizierten Hund mit Tollwut angesteckt, Ihre StÃ¤rke ist beeintrÃ¤chtigt und Sie haben 120 Minuten Zeit, die HD-Tollwutinjektion herzustellen und anzuwenden, oder Ihre Infektion entwickelt sich zu unheilbarer Tollwut, die Ihnen weitere 13 Sekunden Leben vor dem Tod gewÃ¤hrt." tooltip_key="Mist! Du hast dich mit Tollwut angesteckt."  icon="ui_game_symbol_RABIES" remove_on_death="false">
+<buff name="BuffRabies" name_key="Rabies" description_key="Sie haben sich bei einem infizierten Hund mit Tollwut angesteckt, Ihre Stärke ist beeinträchtigt und Sie haben 120 Minuten Zeit, die HD-Tollwutinjektion herzustellen und anzuwenden, oder Ihre Infektion entwickelt sich zu unheilbarer Tollwut, die Ihnen weitere 13 Sekunden Leben vor dem Tod gewährt." tooltip_key="Mist! Du hast dich mit Tollwut angesteckt."  icon="ui_game_symbol_RABIES" remove_on_death="false">
 	<damage_type value="Disease"/>
 	<stack_type value="ignore"/>
 	<duration value="7263"/>
@@ -2230,7 +2696,7 @@
 	</effect_group>
 </buff>
 
-<buff name="BuffRabies-Z" name_key="Incurable Rabies" description_key="ScheiÃŸe!! Du bist jetzt unheilbar, dein Darm ist geplatzt!" tooltip_key="ScheiÃŸe!! Du bist jetzt unheilbar, dein Darm ist geplatzt!"  icon="ui_game_symbol_DEATH" remove_on_death="true">
+<buff name="BuffRabies-Z" name_key="Incurable Rabies" description_key="Scheiße!! Du bist jetzt unheilbar, dein Darm ist geplatzt!" tooltip_key="Scheiße!! Du bist jetzt unheilbar, dein Darm ist geplatzt!"  icon="ui_game_symbol_DEATH" remove_on_death="true">
 	<damage_type value="Disease"/>
 	<stack_type value="ignore"/>
 	<duration value="13"/>
@@ -2318,7 +2784,7 @@
 	</effect_group>
 </buff>
 
-<buff name="BUFFBloodDrawSideEffect" name_key="Blood Draw SideEffect" description_key="Du hast zu viel Blut vergossen! Mach weiter so! Jedes Mal, wenn du stirbst, wird der Timer zurÃ¼ckgesetzt." icon="ui_game_symbol_BLOODDRAW1" remove_on_death="true">
+<buff name="BUFFBloodDrawSideEffect" name_key="Blood Draw SideEffect" description_key="Du hast zu viel Blut vergossen! Mach weiter so! Jedes Mal, wenn du stirbst, wird der Timer zurückgesetzt." icon="ui_game_symbol_BLOODDRAW1" remove_on_death="true">
     <stack_type value="ignore"/>
     <duration value="240"/>
     <effect_group>
@@ -2577,7 +3043,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffNewbieCoat" name_key="HD Noobie Coat v2" description_key="Es gibt keinen XP-Abzug beim Tod und du heilst dich selbst, wenn du verletzt bist. Du bist auÃŸerdem gegen alle Krankheitserreger, Strahlung, Vergiftungen und Feuer geschÃ¼tzt, aber dieser Schutz nimmt ab und verschwindet schlieÃŸlich. Achte also darauf, nicht Ã¼ber Level 6 hinaus erwischt zu werden."	icon="ui_game_symbol_light_Noob" remove_on_death="false">
+<buff name="buffNewbieCoat" name_key="HD Noobie Coat v2" description_key="Es gibt keinen XP-Abzug beim Tod und du heilst dich selbst, wenn du verletzt bist. Du bist außerdem gegen alle Krankheitserreger, Strahlung, Vergiftungen und Feuer geschützt, aber dieser Schutz nimmt ab und verschwindet schließlich. Achte also darauf, nicht über Level 6 hinaus erwischt zu werden."	icon="ui_game_symbol_light_Noob" remove_on_death="false">
 	<stack_type value="ignore"/>
 		
 	<effect_group>
@@ -2756,7 +3222,7 @@
 		</effect_group>
 </buff>
 	
-<buff name="buffDasTulipsMilkyStout" name_key="Buff Tulips Milky Stout" description_key="OMG, geh los und verprÃ¼gle alles!" tooltip_key="buffDrunk01Tooltip" icon="ui_game_symbol_DasTulips">
+<buff name="buffDasTulipsMilkyStout" name_key="Buff Tulips Milky Stout" description_key="OMG, geh los und verprügle alles!" tooltip_key="buffDrunk01Tooltip" icon="ui_game_symbol_DasTulips">
 	<damage_type value="disease"/>
 	<stack_type value="replace"/>
 	<duration value="0"/>
@@ -2796,7 +3262,7 @@
 	</effect_group>
 </buff>
 	
-<buff name="buffAntiZombieRadiation" name_key="Anti Zombie Radiation" description_key="Du bist jetzt fÃ¼r 60 Sekunden immun gegen Zombie-Strahlung." icon="ui_game_symbol_War3zukRadiationTerrain">
+<buff name="buffAntiZombieRadiation" name_key="Anti Zombie Radiation" description_key="Du bist jetzt für 60 Sekunden immun gegen Zombie-Strahlung." icon="ui_game_symbol_War3zukRadiationTerrain">
 	<stack_type value="ignore"/>
 	<duration value="63"/>
 	<effect_group>
@@ -2804,7 +3270,7 @@
 	</effect_group>
 </buff>
 	
-<buff name="buffPrimatesRunNGunJuice" name_key="Primates Run N Gun Juice" description_key="Hart wie die HÃ¶lle und bereit zum Kampf" icon="ui_game_symbol_Primates">
+<buff name="buffPrimatesRunNGunJuice" name_key="Primates Run N Gun Juice" description_key="Hart wie die Hölle und bereit zum Kampf" icon="ui_game_symbol_Primates">
 	<stack_type value="ignore"/>
 	<duration value="243"/>
 	<display_value value=".buffDrugSkullCrushersDisplay"/>
@@ -2827,7 +3293,7 @@
 	</effect_group>
 </buff>
 	
-<buff name="buffPikalynsPatbingsu" name_key="Pikalyns Patbingsu" description_key="Sie fÃ¼hlen sich energiegeladen, aber immer noch sehr feminin." tooltip_key="Sie fÃ¼hlen sich energiegeladen, aber immer noch sehr feminin." icon="ui_game_symbol_Pikalyns">
+<buff name="buffPikalynsPatbingsu" name_key="Pikalyns Patbingsu" description_key="Sie fühlen sich energiegeladen, aber immer noch sehr feminin." tooltip_key="Sie fühlen sich energiegeladen, aber immer noch sehr feminin." icon="ui_game_symbol_Pikalyns">
 	<stack_type value="replace"/>
 	<duration value="0"/>
 	<display_value value=".buffMegaCrushDisplay"/>
@@ -2850,7 +3316,7 @@
 	</effect_group>
 </buff>
 	
-<buff name="buffHDScubaTank" name_key="HD Scuba Tank" description_key="Du trÃ¤gst die Taucherflasche und kannst nicht ertrinken." icon="ui_game_symbol_HDScubaTank" remove_on_death="false">
+<buff name="buffHDScubaTank" name_key="HD Scuba Tank" description_key="Du trägst die Taucherflasche und kannst nicht ertrinken." icon="ui_game_symbol_HDScubaTank" remove_on_death="false">
 	<effect_group>
 		<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffDrowning01" />
 	</effect_group>
@@ -2922,7 +3388,7 @@
         </effect_group>
 </buff>
 
-<buff name="buffHDCannabisRedJoint" name_key="You've smoked a Hybrid Joint" tooltip_key="Die Wirkung durchstrÃ¶mt deinen KÃ¶rper wie GlÃ¼ckseligkeit +1 auf alle Attribute" description_key="Die Wirkung durchstrÃ¶mt deinen KÃ¶rper wie GlÃ¼ckseligkeit +1 auf alle Attribute" icon="ui_game_symbol_CannabisRedLeaf" remove_on_death="true">
+<buff name="buffHDCannabisRedJoint" name_key="You've smoked a Hybrid Joint" tooltip_key="Die Wirkung durchströmt deinen Körper wie Glückseligkeit +1 auf alle Attribute" description_key="Die Wirkung durchströmt deinen Körper wie Glückseligkeit +1 auf alle Attribute" icon="ui_game_symbol_CannabisRedLeaf" remove_on_death="true">
 	<stack_type value="replace"/>
 	<duration value="0"/>
 	<display_value value=".buffHDCannabisRedJointDisplay"/>
@@ -2953,7 +3419,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffHDCannabisJoint" name_key="You've smoked a Joint" tooltip_key="Die Wirkung durchstrÃ¶mt deinen KÃ¶rper wie GlÃ¼ckseligkeit +1 auf Standhaftigkeit" description_key="Die Wirkung durchstrÃ¶mt deinen KÃ¶rper wie GlÃ¼ckseligkeit +1 auf Standhaftigkeit" icon="ui_game_symbol_CannabisLeaf" remove_on_death="true">
+<buff name="buffHDCannabisJoint" name_key="You've smoked a Joint" tooltip_key="Die Wirkung durchströmt deinen Körper wie Glückseligkeit +1 auf Standhaftigkeit" description_key="Die Wirkung durchströmt deinen Körper wie Glückseligkeit +1 auf Standhaftigkeit" icon="ui_game_symbol_CannabisLeaf" remove_on_death="true">
 	<stack_type value="replace"/>
 	<duration value="0"/>
 	<display_value value=".buffHDCannabisJointDisplay"/>
@@ -2981,7 +3447,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffHDEdible" name_key="Juice Drink High!" tooltip_key="Hoch hinaus und die Annehmlichkeiten des Lebens genieÃŸen +1 auf StÃ¤rke" description_key="Hoch hinaus und die Annehmlichkeiten des Lebens genieÃŸen +1 auf StÃ¤rke" icon="ui_game_symbol_CannabisLeaf">
+<buff name="buffHDEdible" name_key="Juice Drink High!" tooltip_key="Hoch hinaus und die Annehmlichkeiten des Lebens genießen +1 auf Stärke" description_key="Hoch hinaus und die Annehmlichkeiten des Lebens genießen +1 auf Stärke" icon="ui_game_symbol_CannabisLeaf">
 	<stack_type value="replace"/>
 	<duration value="0"/>
 	<display_value value=".buffHDEdibleDisplay"/>
@@ -3009,7 +3475,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffHDEdible2" name_key="Cookie High!" tooltip_key="Hoch hinaus und die Annehmlichkeiten des Lebens genieÃŸen +1 auf StÃ¤rke" description_key="Hoch hinaus und die Annehmlichkeiten des Lebens genieÃŸen +1 auf StÃ¤rke" icon="ui_game_symbol_CannabisLeaf" remove_on_death="true">
+<buff name="buffHDEdible2" name_key="Cookie High!" tooltip_key="Hoch hinaus und die Annehmlichkeiten des Lebens genießen +1 auf Stärke" description_key="Hoch hinaus und die Annehmlichkeiten des Lebens genießen +1 auf Stärke" icon="ui_game_symbol_CannabisLeaf" remove_on_death="true">
 	<stack_type value="replace"/>
 	<duration value="0"/>
 	<display_value value=".buffHDEdible2Display"/>
@@ -3036,7 +3502,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffHDEdible3" name_key="Cookie High!" tooltip_key="Hoch hinaus und die Annehmlichkeiten des Lebens genieÃŸen +1 auf StÃ¤rke" description_key="Hoch hinaus und die Annehmlichkeiten des Lebens genieÃŸen +1 auf StÃ¤rke" icon="ui_game_symbol_CannabisLeaf" remove_on_death="true">
+<buff name="buffHDEdible3" name_key="Cookie High!" tooltip_key="Hoch hinaus und die Annehmlichkeiten des Lebens genießen +1 auf Stärke" description_key="Hoch hinaus und die Annehmlichkeiten des Lebens genießen +1 auf Stärke" icon="ui_game_symbol_CannabisLeaf" remove_on_death="true">
 	<stack_type value="replace"/>
 	<duration value="0"/>
 	<display_value value=".buffHDEdible3Display"/>
@@ -3063,7 +3529,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffHDEdible4" name_key="Brownie High!" tooltip_key="Hoch hinaus und die Annehmlichkeiten des Lebens genieÃŸen +1 auf StÃ¤rke" description_key="Hoch hinaus und die Annehmlichkeiten des Lebens genieÃŸen +1 auf StÃ¤rke" icon="ui_game_symbol_CannabisLeaf" remove_on_death="true">
+<buff name="buffHDEdible4" name_key="Brownie High!" tooltip_key="Hoch hinaus und die Annehmlichkeiten des Lebens genießen +1 auf Stärke" description_key="Hoch hinaus und die Annehmlichkeiten des Lebens genießen +1 auf Stärke" icon="ui_game_symbol_CannabisLeaf" remove_on_death="true">
 	<stack_type value="replace"/>
 	<duration value="0"/>
 	<display_value value=".buffHDEdible4Display"/>
@@ -3089,7 +3555,7 @@
 	</effect_group>
 </buff>
 
-<buff name="buffHDDistorion" name_key="You're Stoned!" tooltip_key="Die Wirkung durchstrÃ¶mt deinen KÃ¶rper wie GlÃ¼ckseligkeit +1 auf Standhaftigkeit" description_key="Die Wirkung durchstrÃ¶mt deinen KÃ¶rper wie GlÃ¼ckseligkeit +1 auf Standhaftigkeit" icon="ui_game_symbol_CannabisLeaf" remove_on_death="true">
+<buff name="buffHDDistorion" name_key="You're Stoned!" tooltip_key="Die Wirkung durchströmt deinen Körper wie Glückseligkeit +1 auf Standhaftigkeit" description_key="Die Wirkung durchströmt deinen Körper wie Glückseligkeit +1 auf Standhaftigkeit" icon="ui_game_symbol_CannabisLeaf" remove_on_death="true">
 	<stack_type value="effect"/>
 	<duration value="10"/>
 	<display_value value=".buffHDDistorionDisplay"/>
@@ -3130,7 +3596,7 @@
 	</effect_group>
 </buff>
 
-<buff name="HDNukaCherryBuff" name_key="HD Nuka Cherry" description_key="Der Geschmack von Nuka Cherry belebt dich! Regeneriere deine Ausdauer schneller und fÃ¼lle deinen Wasservorrat leicht auf. Ein Hauch von Strahlung verleiht deinem KÃ¶rper einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Cherry" tags="drug">
+<buff name="HDNukaCherryBuff" name_key="HD Nuka Cherry" description_key="Der Geschmack von Nuka Cherry belebt dich! Regeneriere deine Ausdauer schneller und fülle deinen Wasservorrat leicht auf. Ein Hauch von Strahlung verleiht deinem Körper einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Cherry" tags="drug">
 	<stack_type value="replace"/>
 	<duration value="360"/>
 	<effect_group>
@@ -3161,7 +3627,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaCherrySideEffect" name_key="HD Nuka Cherry Effect" description_key="Uurrgg, es scheint, als hÃ¤tte der Konsum dieses GetrÃ¤nks all deine Statistiken beeintrÃ¤chtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
+<buff name="HDNukaCherrySideEffect" name_key="HD Nuka Cherry Effect" description_key="Uurrgg, es scheint, als hätte der Konsum dieses Getränks all deine Statistiken beeinträchtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
 	<damage_type value="disease"/>
 	<stack_type value="ignore"/>
 	<duration value="120"/>
@@ -3173,7 +3639,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaColaBuff" name_key="HD Nuka Cola" description_key="Der Geschmack von Nuka Cola belebt dich! Regeneriere deine Ausdauer schneller, stelle deine maximale Gesundheit und deinen Wasserhaushalt wieder her. Mit einem Hauch von Strahlung fÃ¼r einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Cola" tags="drug">
+<buff name="HDNukaColaBuff" name_key="HD Nuka Cola" description_key="Der Geschmack von Nuka Cola belebt dich! Regeneriere deine Ausdauer schneller, stelle deine maximale Gesundheit und deinen Wasserhaushalt wieder her. Mit einem Hauch von Strahlung für einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Cola" tags="drug">
 	<stack_type value="replace"/>
 	<duration value="360"/>
 	<effect_group>
@@ -3204,7 +3670,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaColaSideEffect" name_key="HD Nuka Cola Effect" description_key="Uurrgg, es scheint, als hÃ¤tte der Konsum dieses GetrÃ¤nks all deine Statistiken beeintrÃ¤chtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
+<buff name="HDNukaColaSideEffect" name_key="HD Nuka Cola Effect" description_key="Uurrgg, es scheint, als hätte der Konsum dieses Getränks all deine Statistiken beeinträchtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
 	<damage_type value="disease"/>
 	<stack_type value="ignore"/>
 	<duration value="120"/>
@@ -3216,7 +3682,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaDarkBuff" name_key="HD Nuka Dark" description_key="Der Geschmack von Nuka Dark belebt dich! Regeneriere deine Ausdauer schneller, stelle deine maximale Gesundheit und deinen Wasservorrat etwas wieder her. Mit einem Hauch von Strahlung fÃ¼r einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Dark" tags="drug">
+<buff name="HDNukaDarkBuff" name_key="HD Nuka Dark" description_key="Der Geschmack von Nuka Dark belebt dich! Regeneriere deine Ausdauer schneller, stelle deine maximale Gesundheit und deinen Wasservorrat etwas wieder her. Mit einem Hauch von Strahlung für einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Dark" tags="drug">
 	<stack_type value="replace"/>
 	<duration value="360"/>
 	<effect_group>
@@ -3247,7 +3713,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaDarkSideEffect" name_key="HD Nuka Dark Effect" description_key="Uurrgg, es scheint, als hÃ¤tte der Konsum dieses GetrÃ¤nks all deine Statistiken beeintrÃ¤chtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
+<buff name="HDNukaDarkSideEffect" name_key="HD Nuka Dark Effect" description_key="Uurrgg, es scheint, als hätte der Konsum dieses Getränks all deine Statistiken beeinträchtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
 	<damage_type value="disease"/>
 	<stack_type value="ignore"/>
 	<duration value="120"/>
@@ -3259,7 +3725,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaGrapeBuff" name_key="HD Nuka Grape" description_key="Der Geschmack von Nuka Grape belebt dich! Regeneriere deine Ausdauer schneller und fÃ¼lle deinen FlÃ¼ssigkeitshaushalt etwas auf. Ein Hauch von Strahlung verleiht deinem KÃ¶rper einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Grape" tags="drug">
+<buff name="HDNukaGrapeBuff" name_key="HD Nuka Grape" description_key="Der Geschmack von Nuka Grape belebt dich! Regeneriere deine Ausdauer schneller und fülle deinen Flüssigkeitshaushalt etwas auf. Ein Hauch von Strahlung verleiht deinem Körper einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Grape" tags="drug">
 	<stack_type value="replace"/>
 	<duration value="360"/>
 	<effect_group>
@@ -3290,7 +3756,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaGrapeSideEffect" name_key="HD Nuka Grape Effect" description_key="Uurrgg, es scheint, als hÃ¤tte der Konsum dieses GetrÃ¤nks all deine Statistiken beeintrÃ¤chtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
+<buff name="HDNukaGrapeSideEffect" name_key="HD Nuka Grape Effect" description_key="Uurrgg, es scheint, als hätte der Konsum dieses Getränks all deine Statistiken beeinträchtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
 	<damage_type value="disease"/>
 	<stack_type value="ignore"/>
 	<duration value="120"/>
@@ -3302,7 +3768,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaOrangeBuff" name_key="HD Nuka Orange" description_key="Der Geschmack von Nuka Orange belebt dich! Regeneriere deine Ausdauer schneller und fÃ¼lle deinen Wasservorrat leicht auf. Ein Hauch von Strahlung verleiht deinem KÃ¶rper einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Orange" tags="drug">
+<buff name="HDNukaOrangeBuff" name_key="HD Nuka Orange" description_key="Der Geschmack von Nuka Orange belebt dich! Regeneriere deine Ausdauer schneller und fülle deinen Wasservorrat leicht auf. Ein Hauch von Strahlung verleiht deinem Körper einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Orange" tags="drug">
 	<stack_type value="replace"/>
 	<duration value="360"/>
 	<effect_group>
@@ -3333,7 +3799,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaOrangeSideEffect" name_key="HD Nuka Orange Effect" description_key="Uurrgg, es scheint, als hÃ¤tte der Konsum dieses GetrÃ¤nks all deine Statistiken beeintrÃ¤chtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
+<buff name="HDNukaOrangeSideEffect" name_key="HD Nuka Orange Effect" description_key="Uurrgg, es scheint, als hätte der Konsum dieses Getränks all deine Statistiken beeinträchtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
 	<damage_type value="disease"/>
 	<stack_type value="ignore"/>
 	<duration value="120"/>
@@ -3345,7 +3811,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaQuantumBuff" name_key="HD Nuka Quantum" description_key="Der Geschmack von Nuka Orange belebt dich! Regeneriere deine Ausdauer schneller und fÃ¼lle deinen Wasservorrat leicht auf. Ein Hauch von Strahlung verleiht deinem KÃ¶rper einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Quantum" tags="drug">
+<buff name="HDNukaQuantumBuff" name_key="HD Nuka Quantum" description_key="Der Geschmack von Nuka Orange belebt dich! Regeneriere deine Ausdauer schneller und fülle deinen Wasservorrat leicht auf. Ein Hauch von Strahlung verleiht deinem Körper einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Quantum" tags="drug">
 	<stack_type value="replace"/>
 	<duration value="360"/>
 	<effect_group>
@@ -3376,7 +3842,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaQuantumSideEffect" name_key="HD Nuka Quantum Effect" description_key="Uurrgg, es scheint, als hÃ¤tte der Konsum dieses GetrÃ¤nks all deine Statistiken beeintrÃ¤chtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
+<buff name="HDNukaQuantumSideEffect" name_key="HD Nuka Quantum Effect" description_key="Uurrgg, es scheint, als hätte der Konsum dieses Getränks all deine Statistiken beeinträchtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
 	<damage_type value="disease"/>
 	<stack_type value="ignore"/>
 	<duration value="120"/>
@@ -3388,7 +3854,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaQuartzBuff" name_key="HD Nuka Quartz" description_key="Der Geschmack von Nuka Quartz belebt dich! Regeneriere deine Ausdauer schneller, stelle deine maximale Gesundheit und deinen Wasservorrat etwas wieder her. Mit einem Hauch von Strahlung fÃ¼r einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Quartz" tags="drug">
+<buff name="HDNukaQuartzBuff" name_key="HD Nuka Quartz" description_key="Der Geschmack von Nuka Quartz belebt dich! Regeneriere deine Ausdauer schneller, stelle deine maximale Gesundheit und deinen Wasservorrat etwas wieder her. Mit einem Hauch von Strahlung für einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Quartz" tags="drug">
 	<stack_type value="replace"/>
 	<duration value="360"/>
 	<effect_group>
@@ -3419,7 +3885,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaQuartzSideEffect" name_key="HD Nuka Quartz Effect" description_key="Uurrgg, es scheint, als hÃ¤tte der Konsum dieses GetrÃ¤nks all deine Statistiken beeintrÃ¤chtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
+<buff name="HDNukaQuartzSideEffect" name_key="HD Nuka Quartz Effect" description_key="Uurrgg, es scheint, als hätte der Konsum dieses Getränks all deine Statistiken beeinträchtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
 	<damage_type value="disease"/>
 	<stack_type value="ignore"/>
 	<duration value="120"/>
@@ -3431,7 +3897,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaVictoryBuff" name_key="HD Nuka Victory" description_key="Der Geschmack von Nuka Victory belebt dich! Regeneriere deine Ausdauer schneller, stelle deine maximale Gesundheit und deinen Wasservorrat etwas wieder her. Mit einem Hauch von Strahlung fÃ¼r einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Victory" tags="drug">
+<buff name="HDNukaVictoryBuff" name_key="HD Nuka Victory" description_key="Der Geschmack von Nuka Victory belebt dich! Regeneriere deine Ausdauer schneller, stelle deine maximale Gesundheit und deinen Wasservorrat etwas wieder her. Mit einem Hauch von Strahlung für einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Victory" tags="drug">
 	<stack_type value="replace"/>
 	<duration value="360"/>
 	<effect_group>
@@ -3462,7 +3928,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaVictorySideEffect" name_key="HD Nuka Victory Effect" description_key="Uurrgg, es scheint, als hÃ¤tte der Konsum dieses GetrÃ¤nks all deine Statistiken beeintrÃ¤chtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
+<buff name="HDNukaVictorySideEffect" name_key="HD Nuka Victory Effect" description_key="Uurrgg, es scheint, als hätte der Konsum dieses Getränks all deine Statistiken beeinträchtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
 	<damage_type value="disease"/>
 	<stack_type value="ignore"/>
 	<duration value="120"/>
@@ -3474,7 +3940,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaWildBuff" name_key="HD Nuka Wild" description_key="Der Geschmack von Nuka Wild belebt dich! Regeneriere deine Ausdauer schneller, stelle deine maximale Gesundheit und deinen Wasservorrat etwas wieder her. Mit einem Hauch von Strahlung fÃ¼r einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Wild" tags="drug">
+<buff name="HDNukaWildBuff" name_key="HD Nuka Wild" description_key="Der Geschmack von Nuka Wild belebt dich! Regeneriere deine Ausdauer schneller, stelle deine maximale Gesundheit und deinen Wasservorrat etwas wieder her. Mit einem Hauch von Strahlung für einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Wild" tags="drug">
 	<stack_type value="replace"/>
 	<duration value="360"/>
 	<effect_group>
@@ -3505,7 +3971,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaWildSideEffect" name_key="HD Nuka Wild Effect" description_key="Uurrgg, es scheint, als hÃ¤tte der Konsum dieses GetrÃ¤nks all deine Statistiken beeintrÃ¤chtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
+<buff name="HDNukaWildSideEffect" name_key="HD Nuka Wild Effect" description_key="Uurrgg, es scheint, als hätte der Konsum dieses Getränks all deine Statistiken beeinträchtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
 	<damage_type value="disease"/>
 	<stack_type value="ignore"/>
 	<duration value="120"/>
@@ -3517,7 +3983,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaSarsaparillaBuff" name_key="HD Nuka Sarsaparilla" description_key="Der Geschmack von Nuka Sarsaparilla belebt dich! Regeneriere deine Ausdauer schneller und fÃ¼lle deinen maximalen Gesundheits- und Wasservorrat leicht auf. Ein Hauch von Strahlung verleiht deinem KÃ¶rper einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Sarsaparilla" tags="drug">
+<buff name="HDNukaSarsaparillaBuff" name_key="HD Nuka Sarsaparilla" description_key="Der Geschmack von Nuka Sarsaparilla belebt dich! Regeneriere deine Ausdauer schneller und fülle deinen maximalen Gesundheits- und Wasservorrat leicht auf. Ein Hauch von Strahlung verleiht deinem Körper einen kleinen Geschwindigkeitsschub!" icon="ui_game_symbol_Sarsaparilla" tags="drug">
 	<stack_type value="replace"/>
 	<duration value="360"/>
 	<effect_group>
@@ -3548,7 +4014,7 @@
 		</effect_group>
 </buff>
 
-<buff name="HDNukaSarsaparillaSideEffect" name_key="HD Nuka Sarsaparilla Effect" description_key="Uurrgg, es scheint, als hÃ¤tte der Konsum dieses GetrÃ¤nks all deine Statistiken beeintrÃ¤chtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
+<buff name="HDNukaSarsaparillaSideEffect" name_key="HD Nuka Sarsaparilla Effect" description_key="Uurrgg, es scheint, als hätte der Konsum dieses Getränks all deine Statistiken beeinträchtigt, da es abgelaufen ist, lol!" tooltip_key="Die Strahlung hat dich erreicht und dich krank gemacht!" icon="ui_game_symbol_NukaSideEffect" icon_color="255,128,0" tags="drug">
 	<damage_type value="disease"/>
 	<stack_type value="ignore"/>
 	<duration value="120"/>
@@ -3848,7 +4314,7 @@
 		</effect_group>
 </buff>
 	
-<buff name="buffSnakeBite" name_key="Snake Bite" description_key="Sie wurden von einer Schlange gebissen, die Gift injizierte." tooltip_key="Sie fÃ¼hlen sich durch die Giftigkeit des Schlangengifts wackelig." icon="ui_game_symbol_SnakeBite" icon_color="255,128,0">
+<buff name="buffSnakeBite" name_key="Snake Bite" description_key="Sie wurden von einer Schlange gebissen, die Gift injizierte." tooltip_key="Sie fühlen sich durch die Giftigkeit des Schlangengifts wackelig." icon="ui_game_symbol_SnakeBite" icon_color="255,128,0">
 		<stack_type value="replace"/>
 		<display_value value="$parasite"/>
 			

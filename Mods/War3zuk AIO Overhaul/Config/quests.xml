@@ -229,20 +229,20 @@
 </quest>
 
 <quest id="War3zuk Armor Quest">
-	<property name="name_key" value="Beweise deine WÃ¼rdigkeit gegenÃ¼ber War3zuk"/>
-	<property name="subtitle_key" value="TÃ¶te Zombies"/>
-	<property name="description_key" value="Nutze die Chance, zu kÃ¤mpfen und dich zu behaupten, und vernichte die Zombies."/>
+	<property name="name_key" value="Beweise deine Würdigkeit gegenüber War3zuk"/>
+	<property name="subtitle_key" value="Töte Zombies"/>
+	<property name="description_key" value="Nutze die Chance, zu kämpfen und dich zu behaupten, und vernichte die Zombies."/>
 	<property name="icon" value="ui_game_symbol_Armor"/>
 	<property name="repeatable" value="true"/>
 	<property name="category_key" value="challenge"/>
 	<property name="difficulty" value="medium"/>
 	<property name="difficulty_tier" value="4"/>
-	<property name="offer_key" value="Nutze die Chance, zu kÃ¤mpfen und dich zu behaupten, und vernichte die Zombies."/>
+	<property name="offer_key" value="Nutze die Chance, zu kämpfen und dich zu behaupten, und vernichte die Zombies."/>
 	<property name="statement_key" value="Alle Zombie-Spawnpunkte beseitigen."/>
-	<property name="response_key" value="Klare SchlÃ¤fer"/>
+	<property name="response_key" value="Klare Schläfer"/>
 
 	<property name="completiontype" value="TurnIn"/>
-	<property name="completion_key" value="Ich hÃ¤tte dir das nicht zugetraut. Du hast deinen Kampfgeist bewiesen. Gut gemacht, jetzt gibt's deine Belohnung."/>
+	<property name="completion_key" value="Ich hätte dir das nicht zugetraut. Du hast deinen Kampfgeist bewiesen. Gut gemacht, jetzt gibt's deine Belohnung."/>
 
 	<objective type="RandomPOIGoto">
 		<property name="phase" value="1"/>
@@ -562,7 +562,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="quest"/>
-		<property name="offer_key" value="War3zuk hat sich mit meinem Zigarrenvorrat aus dem Staub gemacht. Die feinsten Zigarren auf Erden. Holt sie euch zurÃ¼ck, koste es, was es wolle."/>
+		<property name="offer_key" value="War3zuk hat sich mit meinem Zigarrenvorrat aus dem Staub gemacht. Die feinsten Zigarren auf Erden. Holt sie euch zurück, koste es, was es wolle."/>
 		<property name="difficulty" value="medium"/>
 		<property name="difficulty_tier" value="3"/>
 		<property name="statement_key" value="quest_buried_supplies_statement"/>
@@ -654,7 +654,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="treasure"/>
-		<property name="offer_key" value="Du hast die Schatzkarte von HÃ¤ndler Luke gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Hamsterer von Lebensmitteln."/>
+		<property name="offer_key" value="Du hast die Schatzkarte von Händler Luke gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Hamsterer von Lebensmitteln."/>
 		<property name="add_to_tier_complete" value="false"/>
 		<property name="shareable" value="false"/>
 
@@ -677,7 +677,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="treasure"/>
-		<property name="offer_key" value="Du hast die Schatzkarte von Trader Jen gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Sammler von SanitÃ¤tsausrÃ¼stung."/>
+		<property name="offer_key" value="Du hast die Schatzkarte von Trader Jen gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Sammler von Sanitätsausrüstung."/>
 		<property name="add_to_tier_complete" value="false"/>
 		<property name="shareable" value="false"/>
 
@@ -700,7 +700,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="treasure"/>
-		<property name="offer_key" value="Du hast die Schatzkarte von HÃ¤ndler Rekt gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Sammler von landwirtschaftlichen Ressourcen."/>
+		<property name="offer_key" value="Du hast die Schatzkarte von Händler Rekt gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Sammler von landwirtschaftlichen Ressourcen."/>
 		<property name="add_to_tier_complete" value="false"/>
 		<property name="shareable" value="false"/>
 
@@ -746,7 +746,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="treasure"/>
-		<property name="offer_key" value="Du hast die Schatzkarte von HÃ¤ndler Hugh gefunden. Diese Person war vor dem Zombieausbruch ein ernsthafter Waffensammler."/>
+		<property name="offer_key" value="Du hast die Schatzkarte von Händler Hugh gefunden. Diese Person war vor dem Zombieausbruch ein ernsthafter Waffensammler."/>
 		<property name="add_to_tier_complete" value="false"/>
 		<property name="shareable" value="false"/>
 
@@ -769,7 +769,7 @@
 		<property name="icon" value="ui_game_symbol_treasure"/>
 		<property name="repeatable" value="true"/>
 		<property name="category_key" value="treasure"/>
-		<property name="offer_key" value="Du hast die Schatzkarte von HÃ¤ndler Joel gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter RÃ¼stungssammler."/>
+		<property name="offer_key" value="Du hast die Schatzkarte von Händler Joel gefunden. Diese Person war vor dem Zombie-Ausbruch ein ernsthafter Rüstungssammler."/>
 		<property name="add_to_tier_complete" value="false"/>
 		<property name="shareable" value="false"/>
 
